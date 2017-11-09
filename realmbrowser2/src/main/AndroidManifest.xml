@@ -1,1 +1,17 @@
-<manifest package="com.github.saran2020.realmbrowser" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.saran2020.realmbrowser">
+
+
+    <application>
+        <activity
+            android:name=".MainActivityJava"
+            android:icon="@drawable/ic_drafts_black_24dp"
+            android:taskAffinity="com.squareup.leakcanary.${applicationId}">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
