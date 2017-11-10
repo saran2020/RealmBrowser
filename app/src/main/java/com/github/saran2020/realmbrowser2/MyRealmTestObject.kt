@@ -1,4 +1,4 @@
-package com.github.saran2020.realmbrowser
+package com.github.saran2020.realmbrowser2
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
