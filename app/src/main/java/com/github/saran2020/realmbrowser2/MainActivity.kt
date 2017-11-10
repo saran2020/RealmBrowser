@@ -1,4 +1,4 @@
-package com.github.saran2020.realmbrowser
+package com.github.saran2020.realmbrowser2
 
 import android.os.AsyncTask
 import android.os.Bundle
@@ -43,6 +43,9 @@ class MainActivity : AppCompatActivity() {
                 (0..(DATA_SIZE - 1)).mapTo(list) { MyRealmTestObject(it.toLong(), "Test String $it") }
 
                 it.executeTransaction { realm -> realm.insert(list) }
+
+                Log.d("NO Tag", "Completed..")
+
             }
         }
     }

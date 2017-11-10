@@ -9,7 +9,7 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.github.saran2020.realmbrowser"
+        applicationId "com.github.saran2020.realmbrowser2"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
@@ -38,5 +38,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // Library
-    implementation project(':realmbrowser2')
+    implementation project(':realmbrowser')
 }

@@ -1,4 +1,4 @@
-package com.github.saran2020.realmbrowser
+package com.github.saran2020.realmbrowser2
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
