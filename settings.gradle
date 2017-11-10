@@ -1,1 +1,1 @@
-include ':app', ':realmbrowser2'
+include ':app', ':realmbrowser'
