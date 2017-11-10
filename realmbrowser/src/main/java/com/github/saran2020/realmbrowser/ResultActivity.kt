@@ -2,8 +2,8 @@ package com.github.saran2020.realmbrowser
 
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
+import android.support.v4.content.AsyncTaskLoader
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ProgressBar
@@ -18,12 +18,10 @@ import io.realm.RealmQuery
 class ResultActivity : AppCompatActivity() {
 
     private val TAG = ResultActivity::class.java.simpleName
+    private val LOADER_ID = 100
 
     lateinit var progressLoading: ProgressBar
     lateinit var textResult: TextView
-
-    private var task: FetchDataTask? = null
-
 
     companion object {
         public fun startActivity(context: Context, className: String) {
@@ -44,26 +42,50 @@ class ResultActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        task = FetchDataTask(intent.extras)
-        task?.execute()
+
+        // init Loader
+        supportLoaderManager.initLoader(LOADER_ID, intent.extras, AsyncTaskLoaderCallbacks()).forceLoad()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
 
-        task?.cancel(true)
-    }
+    /*
+     * inner classes
+     * loader callback for the task
+     */
+    inner class AsyncTaskLoaderCallbacks : android.support.v4.app.LoaderManager.LoaderCallbacks<String> {
+        override fun onCreateLoader(id: Int, args: Bundle?): android.support.v4.content.Loader<String> {
 
-    inner class FetchDataTask(var bundle: Bundle) : AsyncTask<Unit, Unit, String>() {
-
-
-        override fun onPreExecute() {
-            super.onPreExecute()
-            progressLoading.visibility = View.VISIBLE
+            showLoader(true)
+            return FetchDataTask(this@ResultActivity, intent.extras)
         }
 
-        override fun doInBackground(vararg params: Unit?): String? {
+        override fun onLoadFinished(loader: android.support.v4.content.Loader<String>?, data: String?) {
 
+            showLoader(false)
+            textResult.text = data
+        }
+
+        override fun onLoaderReset(loader: android.support.v4.content.Loader<String>?) {}
+
+        /**
+         * Show Loader or not
+         */
+        private fun showLoader(show: Boolean) {
+
+            if (show) {
+                progressLoading.visibility = View.VISIBLE
+                textResult.visibility = View.INVISIBLE
+            } else {
+                progressLoading.visibility = View.INVISIBLE
+                textResult.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    // AsyncTask
+    class FetchDataTask(context: Context, var bundle: Bundle) : AsyncTaskLoader<String>(context) {
+
+        override fun loadInBackground(): String {
             var returnText = "An error  occurred"
 
             try {
@@ -75,27 +97,16 @@ class ResultActivity : AppCompatActivity() {
             } catch (e: ClassNotFoundException) {
 
                 //TODO: class not found (Show appropriate message)
+                returnText = "Class not Found"
                 e.printStackTrace()
             } catch (e: NullPointerException) {
 
                 //TODO: Is not Realm Model class (Show appropriate message)
+                returnText = "Not an instance of RealmObject"
                 e.printStackTrace()
             }
 
-            return if (!isCancelled)
-                returnText
-            else
-                null
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-
-            if (result == null)
-                return
-
-            progressLoading.visibility = View.INVISIBLE
-            textResult.text = result
+            return returnText
         }
 
         private fun getRealmQuery(bundle: Bundle, realm: Realm): RealmQuery<RealmModel> {

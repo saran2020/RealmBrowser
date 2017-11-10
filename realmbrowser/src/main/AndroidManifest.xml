@@ -6,7 +6,8 @@
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/ic_drafts_black_24dp"
-            android:label="@string/library_name">
+            android:label="@string/library_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,7 +18,8 @@
         <activity
             android:name=".ResultActivity"
             android:label="@string/label_result"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 
