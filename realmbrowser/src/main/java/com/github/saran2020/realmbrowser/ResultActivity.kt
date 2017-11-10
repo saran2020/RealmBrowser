@@ -22,7 +22,7 @@ class ResultActivity : AppCompatActivity() {
     lateinit var progressLoading: ProgressBar
     lateinit var textResult: TextView
 
-    var task: FetchDataTask? = null
+    private var task: FetchDataTask? = null
 
 
     companion object {
@@ -44,8 +44,14 @@ class ResultActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        task = FetchDataTask(intent.extras)
+        task?.execute()
+    }
 
-        FetchDataTask(intent.extras).execute()
+    override fun onDestroy() {
+        super.onDestroy()
+
+        task?.cancel(true)
     }
 
     inner class FetchDataTask(var bundle: Bundle) : AsyncTask<Unit, Unit, String>() {
@@ -58,11 +64,13 @@ class ResultActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg params: Unit?): String? {
 
+            var returnText = "An error  occurred"
+
             try {
                 Realm.getDefaultInstance().use {
                     var query = getRealmQuery(bundle, it)
                     var result = query.findAll()
-                    return "${result.size} items found"
+                    returnText = "${result.size} items found"
                 }
             } catch (e: ClassNotFoundException) {
 
@@ -74,11 +82,17 @@ class ResultActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
 
-            return "An error  occurred"
+            return if (!isCancelled)
+                returnText
+            else
+                null
         }
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
+
+            if (result == null)
+                return
 
             progressLoading.visibility = View.INVISIBLE
             textResult.text = result
