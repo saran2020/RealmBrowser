@@ -76,10 +76,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     // member functions
-    private fun getFindItems(): List<Short> {
-        return listOf<Short>(
-                Constants.FIND_ALL,
-                Constants.FIND_FIRST)
+    private fun getFindItems(): List<String> {
+        return listOf(
+                Constants.FIND_ALL_STRING,
+                Constants.FIND_FIRST_STRING)
     }
 
     // listeners
@@ -101,9 +101,14 @@ class MainActivity : AppCompatActivity() {
         var fullClassName = textPackageName.text.toString()
         if (fullClassName.isEmpty()) return@OnClickListener
 
-        ResultActivity.startActivity(this, fullClassName)
+        var find = if (this@MainActivity.recyclerFindAdapter.selectedItem != Constants.NO_ITEM_SELECTED)
+            this@MainActivity.recyclerFindAdapter.selectedItem
+        else
+            return@OnClickListener
+
+        ResultActivity.startActivity(this, fullClassName, find)
     }
 
     // inner class
-    class QueryItem(var type: Short, var queryList: LinkedList<String>, var queryValues: LinkedList<String>)
+    class QueryItem(var type: Byte, var queryList: LinkedList<String>, var queryValues: LinkedList<String>)
 }

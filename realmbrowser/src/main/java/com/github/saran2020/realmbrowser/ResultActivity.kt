@@ -11,6 +11,7 @@ import android.widget.TextView
 import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.RealmQuery
+import io.realm.RealmResults
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -24,10 +25,11 @@ class ResultActivity : AppCompatActivity() {
     lateinit var textResult: TextView
 
     companion object {
-        public fun startActivity(context: Context, className: String) {
+        public fun startActivity(context: Context, className: String, find: Byte) {
 
             var intent = Intent(context, ResultActivity::class.java)
             intent.putExtra(Constants.EXTRA_CLASS_NAME, className)
+            intent.putExtra(Constants.EXTRA_FIND, find)
             context.startActivity(intent)
         }
     }
@@ -90,9 +92,13 @@ class ResultActivity : AppCompatActivity() {
 
             try {
                 Realm.getDefaultInstance().use {
-                    var query = getRealmQuery(bundle, it)
-                    var result = query.findAll()
-                    returnText = "${result.size} items found"
+                    var result = findResult(it, bundle)
+
+                    returnText = when (result) {
+                        null -> "Some error occurred"
+                        is RealmResults<*> -> "${result.size} objects found"
+                        else -> "One object found"
+                    }
                 }
             } catch (e: ClassNotFoundException) {
 
@@ -109,13 +115,23 @@ class ResultActivity : AppCompatActivity() {
             return returnText
         }
 
-        private fun getRealmQuery(bundle: Bundle, realm: Realm): RealmQuery<RealmModel> {
+        private fun getRealmQuery(realm: Realm, bundle: Bundle): RealmQuery<RealmModel> {
 
             var fullClassName = bundle.getString(Constants.EXTRA_CLASS_NAME)
             var className = Class.forName(fullClassName) as Class<RealmModel>
             var query = realm.where(className)
 
             return query
+        }
+
+        private fun findResult(realm: Realm, bundle: Bundle): Any? {
+            var query = getRealmQuery(realm, bundle)
+
+            return when (bundle.getByte(Constants.EXTRA_FIND)) {
+                Constants.FIND_ALL -> query.findAll()
+                Constants.FIND_FIRST -> query.findFirst()
+                else -> null
+            }
         }
     }
 }

@@ -9,9 +9,9 @@ import android.widget.TextView
 /**
  * Created by its me on 11-Nov-17.
  */
-class FindAdapter(private var itemList: List<Short>) : RecyclerView.Adapter<FindAdapter.ViewHolder>() {
+class FindAdapter(private var itemList: List<String>) : RecyclerView.Adapter<FindAdapter.ViewHolder>() {
 
-    private var selectedItem = Constants.NO_ITEM_SELECTED
+    var selectedItem = Constants.NO_ITEM_SELECTED
 
     override fun getItemCount() = itemList.size
 
@@ -21,22 +21,22 @@ class FindAdapter(private var itemList: List<Short>) : RecyclerView.Adapter<Find
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-
-        var fromText = ""
-
-        when (itemList[position]) {
-            Constants.FIND_ALL -> fromText = Constants.FIND_ALL_STRING
-            Constants.FIND_FIRST -> fromText = Constants.FIND_FIRST_STRING
-        }
-
-        holder?.textItemFind?.text = fromText
+        holder?.textItemFind?.text = itemList[position]
     }
 
     private fun setSelectedItem(position: Int) {
-        selectedItem = if (position == selectedItem)
+
+        var selectedPosition: Byte = when (position) {
+            0 -> Constants.FIND_ALL
+            1 -> Constants.FIND_FIRST
+            else -> Constants.NO_ITEM_SELECTED
+        }
+
+        selectedItem = if (selectedPosition == selectedItem)
             Constants.NO_ITEM_SELECTED
         else
-            position
+            selectedPosition
+
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
