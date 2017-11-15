@@ -1,1 +1,1 @@
-include ':app', ':realmbrowser'
+include ':sample', ':library'
