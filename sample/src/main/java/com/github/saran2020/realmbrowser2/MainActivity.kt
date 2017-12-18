@@ -8,6 +8,7 @@ import io.realm.Realm
 
 class MainActivity : AppCompatActivity() {
 
+    private val TAG = "MainActivitySampleApp"
     private lateinit var realm: Realm
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,9 +19,9 @@ class MainActivity : AppCompatActivity() {
         var result = realm.where(MyRealmTestObject::class.java).findAll()
 
         if (result.size == 0)
-            FeedDataTask().execute()
+            FeedDataTask(TAG).execute()
 
-        Log.d("NO Tag", "Size: ${result.size}")
+        Log.d(TAG, "Size: ${result.size}")
     }
 
     override fun onDestroy() {
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    class FeedDataTask() : AsyncTask<Unit, Unit, Unit>() {
+    class FeedDataTask(val TAG: String) : AsyncTask<Unit, Unit, Unit>() {
 
         private val DATA_SIZE = 100000
 
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
                 it.executeTransaction { realm -> realm.insert(list) }
 
-                Log.d("NO Tag", "Completed..")
+                Log.d(TAG, "Completed..")
 
             }
         }
