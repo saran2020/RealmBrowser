@@ -8,11 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import io.realm.Realm
-import io.realm.RealmModel
-import io.realm.RealmObject
-import io.realm.RealmQuery
-import java.lang.reflect.Modifier
+import io.realm.*
+import java.lang.reflect.Method
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -100,7 +97,7 @@ class ResultActivity : AppCompatActivity() {
                 Realm.getDefaultInstance().use {
                     var result = findResult(it, bundle)
 
-                    returnText = if (result == null)
+                    returnText = if (result == null || result.size == 0)
                         "Some error occured"
                     else
                         "One item found"
@@ -122,32 +119,40 @@ class ResultActivity : AppCompatActivity() {
 
         private fun findResult(realm: Realm, bundle: Bundle): List<FieldItem>? {
             var query = getRealmQuery(realm, bundle)
-            var resultAny = query.findFirst()
+            var findResult = query.findFirst()
 
-            if (resultAny == null)
+            if (findResult == null)
                 return null
 
+            val classItem = findResult::class.java
+
+            // TODO: handle NoSuchMethodException, SecurityException in classItem.getMethod()
             var fieldList = mutableListOf<FieldItem>()
-            var methods = resultAny::class.java.methods
+            var fieldNames = classItem.getMethod("getFieldNames")
+                    .invoke(findResult) as List<String>
+            var methods = classItem.methods
 
-            for (method in methods) {
+            for (fieldName in fieldNames) {
 
-                val isPublic = method.modifiers and Modifier.PUBLIC != 0
+                var method: Method? = null
 
-                // Only fetch getters
-                if (method.name.startsWith(Constants.GETTER_PREFIX, true) &&
-                        method.parameterTypes.size == 0 && isPublic) {
+                for (methodInstance in methods) {
+                    if (methodInstance.name.startsWith("get")
+                            && methodInstance.name.contains(fieldName, true)) {
 
-                    val type = method.returnType
-                    val name = method.name.removePrefix(Constants.GETTER_PREFIX)
-                    val data = method.invoke(resultAny)
-
-                    val field = FieldItem(type, name, data)
-
-                    fieldList.add(field)
-
+                        method = methodInstance
+                        break;
+                    }
                 }
 
+                if (method == null) return mutableListOf<FieldItem>()
+
+                val type = method.returnType
+                val name = fieldName
+                val data = method?.invoke(findResult)
+
+                val fieldItem = FieldItem(type, name, data)
+                fieldList.add(fieldItem)
             }
 
             return fieldList;
@@ -202,38 +207,23 @@ class ResultActivity : AppCompatActivity() {
     // result item
     class FieldItem(dataType: Class<*>, val fieldName: String, val value: Any?) {
 
-        private val type: Byte = when (dataType) {
-            Boolean::class.javaPrimitiveType,
-            Boolean::class.javaObjectType -> Constants.BOOLEAN
+        private var type: Byte
 
-            Byte::class.javaPrimitiveType,
-            Byte::class.javaObjectType -> Constants.BYTE
-
-            Char::class.javaPrimitiveType,
-            Char::class.javaObjectType -> Constants.CHAR
-
-            Short::class.javaPrimitiveType,
-            Short::class.javaObjectType -> Constants.SHORT
-
-            Int::class.javaPrimitiveType,
-            Int::class.javaObjectType -> Constants.INT
-
-            Long::class.javaPrimitiveType,
-            Long::class.javaObjectType -> Constants.LONG
-
-            Float::class.javaPrimitiveType,
-            Float::class.javaObjectType -> Constants.FLOAT
-
-            Double::class.javaPrimitiveType,
-            Double::class.javaObjectType -> Constants.DOUBLE
-
-            String::class.java -> Constants.STRING
-
-            RealmObject::class.javaPrimitiveType,
-            RealmObject::class.javaObjectType -> Constants.REALM_OBJECt
-
-            else -> Constants.NO_DATA_TYPE
+        init {
+            type = when {
+                dataType.isAssignableFrom(Boolean::class.java) -> Constants.TYPE_BOOLEAN
+                dataType.isAssignableFrom(Byte::class.java) -> Constants.TYPE_BYTE
+                dataType.isAssignableFrom(Char::class.java) -> Constants.TYPE_CHAR
+                dataType.isAssignableFrom(Short::class.java) -> Constants.TYPE_SHORT
+                dataType.isAssignableFrom(Int::class.java) -> Constants.TYPE_INT
+                dataType.isAssignableFrom(Long::class.java) -> Constants.TYPE_LONG
+                dataType.isAssignableFrom(Float::class.java) -> Constants.TYPE_FLOAT
+                dataType.isAssignableFrom(Double::class.java) -> Constants.TYPE_DOUBLE
+                dataType.isAssignableFrom(String::class.java) -> Constants.TYPE_STRING
+                dataType.isAssignableFrom(RealmList::class.java) -> Constants.TYPE_REALM_LIST
+                dataType.superclass == RealmObject::class.java -> Constants.TYPE_REALM_OBJECT
+                else -> Constants.NO_DATA_TYPE
+            }
         }
-
     }
 }

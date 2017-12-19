@@ -30,16 +30,17 @@ class Constants {
 
         // data types
         val NO_DATA_TYPE: Byte = 0
-        val BOOLEAN: Byte = -1
-        val BYTE: Byte = -2
-        val CHAR: Byte = -3
-        val SHORT: Byte = -4
-        val INT: Byte = -5
-        val LONG: Byte = -6
-        val FLOAT: Byte = -7
-        val DOUBLE: Byte = -8
-        val STRING: Byte = -9
-        val REALM_OBJECt: Byte = -10
+        val TYPE_BOOLEAN: Byte = -1
+        val TYPE_BYTE: Byte = -2
+        val TYPE_CHAR: Byte = -3
+        val TYPE_SHORT: Byte = -4
+        val TYPE_INT: Byte = -5
+        val TYPE_LONG: Byte = -6
+        val TYPE_FLOAT: Byte = -7
+        val TYPE_DOUBLE: Byte = -8
+        val TYPE_STRING: Byte = -9
+        val TYPE_REALM_LIST: Byte = -10
+        val TYPE_REALM_OBJECT: Byte = -11
 
         val GETTER_PREFIX = "get"
 
