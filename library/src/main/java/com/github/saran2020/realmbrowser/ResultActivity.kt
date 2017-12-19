@@ -10,8 +10,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import io.realm.Realm
 import io.realm.RealmModel
+import io.realm.RealmObject
 import io.realm.RealmQuery
-import io.realm.RealmResults
+import java.lang.reflect.Modifier
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -45,16 +46,21 @@ class ResultActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        // init Loader
-        supportLoaderManager.initLoader(LOADER_ID, intent.extras, AsyncTaskLoaderCallbacks()).forceLoad()
-    }
+        val findType = intent.extras.getByte(Constants.EXTRA_FIND, Constants.FIND_NO);
 
+        if (findType == Constants.FIND_FIRST)
+            supportLoaderManager.initLoader(LOADER_ID, intent.extras, AsyncFindFirstTaskCallbacks())
+                    .forceLoad()
+        else if (findType == Constants.FIND_ALL)
+            supportLoaderManager.initLoader(LOADER_ID, intent.extras, AsyncFindAllTaskCallbacks())
+                    .forceLoad()
+    }
 
     /*
      * inner classes
-     * loader callback for the task
+     * loader callback for findFirst()
      */
-    inner class AsyncTaskLoaderCallbacks : android.support.v4.app.LoaderManager.LoaderCallbacks<String> {
+    inner class AsyncFindFirstTaskCallbacks : android.support.v4.app.LoaderManager.LoaderCallbacks<String> {
         override fun onCreateLoader(id: Int, args: Bundle?): android.support.v4.content.Loader<String> {
 
             showLoader(true)
@@ -94,11 +100,10 @@ class ResultActivity : AppCompatActivity() {
                 Realm.getDefaultInstance().use {
                     var result = findResult(it, bundle)
 
-                    returnText = when (result) {
-                        null -> "Some error occurred"
-                        is RealmResults<*> -> "${result.size} objects found"
-                        else -> "One object found"
-                    }
+                    returnText = if (result == null)
+                        "Some error occured"
+                    else
+                        "One item found"
                 }
             } catch (e: ClassNotFoundException) {
 
@@ -115,6 +120,39 @@ class ResultActivity : AppCompatActivity() {
             return returnText
         }
 
+        private fun findResult(realm: Realm, bundle: Bundle): List<FieldItem>? {
+            var query = getRealmQuery(realm, bundle)
+            var resultAny = query.findFirst()
+
+            if (resultAny == null)
+                return null
+
+            var fieldList = mutableListOf<FieldItem>()
+            var methods = resultAny::class.java.methods
+
+            for (method in methods) {
+
+                val isPublic = method.modifiers and Modifier.PUBLIC != 0
+
+                // Only fetch getters
+                if (method.name.startsWith(Constants.GETTER_PREFIX, true) &&
+                        method.parameterTypes.size == 0 && isPublic) {
+
+                    val type = method.returnType
+                    val name = method.name.removePrefix(Constants.GETTER_PREFIX)
+                    val data = method.invoke(resultAny)
+
+                    val field = FieldItem(type, name, data)
+
+                    fieldList.add(field)
+
+                }
+
+            }
+
+            return fieldList;
+        }
+
         private fun getRealmQuery(realm: Realm, bundle: Bundle): RealmQuery<RealmModel> {
 
             var fullClassName = bundle.getString(Constants.EXTRA_CLASS_NAME)
@@ -123,15 +161,79 @@ class ResultActivity : AppCompatActivity() {
 
             return query
         }
+    }
 
-        private fun findResult(realm: Realm, bundle: Bundle): Any? {
-            var query = getRealmQuery(realm, bundle)
 
-            return when (bundle.getByte(Constants.EXTRA_FIND)) {
-                Constants.FIND_ALL -> query.findAll()
-                Constants.FIND_FIRST -> query.findFirst()
-                else -> null
+    /*
+     * loader callback for findAll()
+     */
+    inner class AsyncFindAllTaskCallbacks : android.support.v4.app.LoaderManager.LoaderCallbacks<String> {
+        override fun onCreateLoader(id: Int, args: Bundle?): android.support.v4.content.Loader<String> {
+
+            showLoader(true)
+            return FetchDataTask(this@ResultActivity, intent.extras)
+        }
+
+        override fun onLoadFinished(loader: android.support.v4.content.Loader<String>?, data: String?) {
+
+            showLoader(false)
+            textResult.text = data
+        }
+
+        override fun onLoaderReset(loader: android.support.v4.content.Loader<String>?) {}
+
+        /**
+         * Show Loader or not
+         */
+        private fun showLoader(show: Boolean) {
+
+            //TODO: Show loader is common duplicates can be removed
+
+            if (show) {
+                progressLoading.visibility = View.VISIBLE
+                textResult.visibility = View.INVISIBLE
+            } else {
+                progressLoading.visibility = View.INVISIBLE
+                textResult.visibility = View.VISIBLE
             }
         }
+    }
+
+    // result item
+    class FieldItem(dataType: Class<*>, val fieldName: String, val value: Any?) {
+
+        private val type: Byte = when (dataType) {
+            Boolean::class.javaPrimitiveType,
+            Boolean::class.javaObjectType -> Constants.BOOLEAN
+
+            Byte::class.javaPrimitiveType,
+            Byte::class.javaObjectType -> Constants.BYTE
+
+            Char::class.javaPrimitiveType,
+            Char::class.javaObjectType -> Constants.CHAR
+
+            Short::class.javaPrimitiveType,
+            Short::class.javaObjectType -> Constants.SHORT
+
+            Int::class.javaPrimitiveType,
+            Int::class.javaObjectType -> Constants.INT
+
+            Long::class.javaPrimitiveType,
+            Long::class.javaObjectType -> Constants.LONG
+
+            Float::class.javaPrimitiveType,
+            Float::class.javaObjectType -> Constants.FLOAT
+
+            Double::class.javaPrimitiveType,
+            Double::class.javaObjectType -> Constants.DOUBLE
+
+            String::class.java -> Constants.STRING
+
+            RealmObject::class.javaPrimitiveType,
+            RealmObject::class.javaObjectType -> Constants.REALM_OBJECt
+
+            else -> Constants.NO_DATA_TYPE
+        }
+
     }
 }
