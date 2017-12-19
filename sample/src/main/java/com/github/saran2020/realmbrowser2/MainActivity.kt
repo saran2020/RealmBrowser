@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import io.realm.Realm
+import io.realm.RealmList
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,8 +41,23 @@ class MainActivity : AppCompatActivity() {
             Realm.getDefaultInstance().use {
 
                 var list: ArrayList<MyRealmTestObject> = ArrayList<MyRealmTestObject>(DATA_SIZE)
+                var listId: Long = 0
+                var singleItemId = 0
 
-                (0..(DATA_SIZE - 1)).mapTo(list) { MyRealmTestObject(it.toLong(), "Test String $it") }
+                for (i in 0 until DATA_SIZE) {
+                    var listItems: RealmList<RealmListItem> = RealmList()
+
+                    for (id in listId until (listId + 5)) {
+                        listItems.add(RealmListItem(id, "List item with Id $listId"))
+                    }
+
+                    var singleItem = RealmSingleItem(singleItemId.toLong(), "Single item with Id $singleItemId")
+
+                    list.add(MyRealmTestObject(i.toLong(), "MyRealmTestObject with id $i", listItems, singleItem))
+
+                    singleItemId++
+                    listId += 5
+                }
 
                 it.executeTransaction { realm -> realm.insert(list) }
 
