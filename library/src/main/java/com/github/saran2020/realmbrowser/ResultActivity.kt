@@ -4,13 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.TypedValue
 import android.view.View
-import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import io.realm.*
+import io.realm.Realm
+import io.realm.RealmList
+import io.realm.RealmModel
+import io.realm.RealmObject
 import java.lang.reflect.Method
 import java.util.*
 
@@ -57,8 +58,9 @@ class ResultActivity : AppCompatActivity() {
         val fieldNameSpec = GridLayout.spec(GridLayout.UNDEFINED, 2)
         val fieldValueSpec = GridLayout.spec(GridLayout.UNDEFINED, 3)
 
-        val pixel = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14F, resources.displayMetrics).toInt();
         for ((row, data) in datas.withIndex()) {
+
+            if (data.getType() == Constants.TYPE_REALM_OBJECT) addItemsToLayout(data.value as List<FieldItem>)
 
             val rowNameSpec = GridLayout.spec(row, 1)
             val rowValueSpec = GridLayout.spec(row, 1)
@@ -66,12 +68,11 @@ class ResultActivity : AppCompatActivity() {
             val fieldNameParms = GridLayout.LayoutParams(rowNameSpec, fieldNameSpec)
             val fieldValueParms = GridLayout.LayoutParams(rowValueSpec, fieldValueSpec)
 
-            var textViewFieldName = TextView(this@ResultActivity)
+            var textViewFieldName = TextView(this@ResultActivity, null, R.style.LabelStyle)
             textViewFieldName.text = data.fieldName
-            textViewFieldName.layoutParams = ViewGroup.LayoutParams(100, 100)
-            textViewFieldName.setPadding(pixel, pixel, pixel, pixel)
+//            textViewFieldName.layoutParams = ViewGroup.LayoutParams(100, 100)
 
-            var textViewFieldValue = TextView(this@ResultActivity)
+            var textViewFieldValue = TextView(this@ResultActivity, null, R.style.ValueStyle)
             textViewFieldValue.text = data.getValue()
 
             girdLayout.addView(textViewFieldName, fieldNameParms)
@@ -117,19 +118,30 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun findResult(realm: Realm, bundle: Bundle): List<FieldItem>? {
-        var query = getRealmQuery(realm, bundle)
+
+        var fullClassName = bundle.getString(Constants.EXTRA_CLASS_NAME)
+        var className = Class.forName(fullClassName) as Class<RealmModel>
+        var query = realm.where(className)
+
         var findResult = query.findFirst()
 
         if (findResult == null)
             return null
 
-        val classItem = findResult::class.java
+        return getDataFromObject(findResult)
+    }
+
+    private fun getDataFromObject(findResult: RealmModel?): MutableList<FieldItem> {
+
+        if (findResult == null) return mutableListOf<FieldItem>()
+
+        val resultObjectClass = findResult::class.java
 
         // TODO: handle NoSuchMethodException, SecurityException in classItem.getMethod()
         var fieldList = mutableListOf<FieldItem>()
-        var fieldNames = classItem.getMethod("getFieldNames")
+        var fieldNames = resultObjectClass.getMethod("getFieldNames")
                 .invoke(findResult) as List<String>
-        var methods = classItem.methods
+        var methods = resultObjectClass.methods
 
         for (fieldName in fieldNames) {
 
@@ -148,22 +160,19 @@ class ResultActivity : AppCompatActivity() {
 
             val type = method.returnType
             val name = fieldName
-            val data = method?.invoke(findResult)
+            var data = method.invoke(findResult)
+
+            // If the field is an instance of Realm model, recursively find items inside that.
+            if (type.superclass == RealmObject::class.java) {
+
+                data = getDataFromObject(data as RealmModel)
+            }
 
             val fieldItem = FieldItem(type, name, data)
             fieldList.add(fieldItem)
         }
 
         return fieldList.toMutableList();
-    }
-
-    private fun getRealmQuery(realm: Realm, bundle: Bundle): RealmQuery<RealmModel> {
-
-        var fullClassName = bundle.getString(Constants.EXTRA_CLASS_NAME)
-        var className = Class.forName(fullClassName) as Class<RealmModel>
-        var query = realm.where(className)
-
-        return query
     }
 
     // result item
@@ -184,6 +193,8 @@ class ResultActivity : AppCompatActivity() {
             else -> Constants.NO_DATA_TYPE
         }
 
+        fun getType() = type
+
         public fun getValue(): String {
 
             return when (type) {
@@ -197,7 +208,7 @@ class ResultActivity : AppCompatActivity() {
                 Constants.TYPE_DOUBLE -> (value as Double).toString()
                 Constants.TYPE_STRING -> (value as String)
                 Constants.TYPE_REALM_LIST -> (value as RealmList<*>).toString()
-                Constants.TYPE_REALM_OBJECT -> (value as RealmObject).toString()
+                Constants.TYPE_REALM_OBJECT -> (value as List<FieldItem>).toString()
                 else -> "Some error occurred"
             }
         }
