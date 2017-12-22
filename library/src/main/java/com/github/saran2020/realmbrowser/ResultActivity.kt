@@ -66,7 +66,12 @@ class ResultActivity : AppCompatActivity() {
             val type = field.type
 
             if (field.type == Constants.TYPE_REALM_LIST) {
+
+                val fieldItems = field.value as List<List<FieldItem>>
+
+                for (fieldItem in fieldItems) addItemsToLayout(fieldItem, row)
                 continue
+
             } else if (field.type == Constants.TYPE_REALM_OBJECT) {
                 addItemsToLayout(field.value as List<FieldItem>, row)
                 continue
@@ -190,6 +195,18 @@ class ResultActivity : AppCompatActivity() {
             if (type.superclass == RealmObject::class.java) {
 
                 data = getDataFromObject(data as RealmModel)
+            } else if (type.isAssignableFrom(RealmList::class.java)) {
+
+                val objects = data as RealmList<RealmModel>
+                val itemsList: MutableList<List<FieldItem>> = arrayListOf()
+
+                for (singleObject in objects) {
+
+                    val itemList = getDataFromObject(singleObject as RealmModel)
+                    itemsList.add(itemList)
+                }
+
+                data = itemsList
             }
 
             val fieldItem = FieldItem(type, name, data)
