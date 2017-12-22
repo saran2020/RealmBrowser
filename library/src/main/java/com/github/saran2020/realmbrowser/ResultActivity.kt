@@ -49,18 +49,40 @@ class ResultActivity : AppCompatActivity() {
 
         showLoader(true)
         val fieldsList = fetchFields()
-        addItemsToLayout(fieldsList)
+        addItemsToLayout(fieldsList, 0)
         showLoader(false)
     }
 
-    private fun addItemsToLayout(datas: List<FieldItem>) {
+    private fun addItemsToLayout(fields: List<FieldItem>, rowNum: Int) {
+
+        var row = rowNum
 
         val fieldNameSpec = GridLayout.spec(GridLayout.UNDEFINED, 2)
         val fieldValueSpec = GridLayout.spec(GridLayout.UNDEFINED, 3)
 
-        for ((row, data) in datas.withIndex()) {
+        for (field in fields) {
 
-            if (data.getType() == Constants.TYPE_REALM_OBJECT) addItemsToLayout(data.value as List<FieldItem>)
+            val type = field.type
+
+            if (field.type == Constants.TYPE_REALM_LIST) {
+                continue
+            } else if (field.type == Constants.TYPE_REALM_OBJECT) {
+                addItemsToLayout(field.value as List<FieldItem>, row)
+                continue
+            }
+
+            val fieldValue: String = when (type) {
+                Constants.TYPE_BOOLEAN -> (field.value as Boolean).toString()
+                Constants.TYPE_BYTE -> (field.value as Byte).toString()
+                Constants.TYPE_CHAR -> (field.value as Char).toString()
+                Constants.TYPE_SHORT -> (field.value as Short).toString()
+                Constants.TYPE_INT -> (field.value as Int).toString()
+                Constants.TYPE_LONG -> (field.value as Long).toString()
+                Constants.TYPE_FLOAT -> (field.value as Float).toString()
+                Constants.TYPE_DOUBLE -> (field.value as Double).toString()
+                Constants.TYPE_STRING -> (field.value as String)
+                else -> "Some error occurred"
+            }
 
             val rowNameSpec = GridLayout.spec(row, 1)
             val rowValueSpec = GridLayout.spec(row, 1)
@@ -69,15 +91,16 @@ class ResultActivity : AppCompatActivity() {
             val fieldValueParms = GridLayout.LayoutParams(rowValueSpec, fieldValueSpec)
 
             var textViewFieldName = TextView(this@ResultActivity, null, R.style.LabelStyle)
-            textViewFieldName.text = data.fieldName
+            textViewFieldName.text = field.fieldName
 //            textViewFieldName.layoutParams = ViewGroup.LayoutParams(100, 100)
 
             var textViewFieldValue = TextView(this@ResultActivity, null, R.style.ValueStyle)
-            textViewFieldValue.text = data.getValue()
+            textViewFieldValue.text = fieldValue
 
             girdLayout.addView(textViewFieldName, fieldNameParms)
             girdLayout.addView(textViewFieldValue, fieldValueParms)
 
+            row++
         }
     }
 
@@ -178,7 +201,7 @@ class ResultActivity : AppCompatActivity() {
     // result item
     class FieldItem(dataType: Class<*>, var fieldName: String, val value: Any?) {
 
-        private var type = when {
+        var type = when {
             dataType.isAssignableFrom(Boolean::class.java) -> Constants.TYPE_BOOLEAN
             dataType.isAssignableFrom(Byte::class.java) -> Constants.TYPE_BYTE
             dataType.isAssignableFrom(Char::class.java) -> Constants.TYPE_CHAR
@@ -191,26 +214,6 @@ class ResultActivity : AppCompatActivity() {
             dataType.isAssignableFrom(RealmList::class.java) -> Constants.TYPE_REALM_LIST
             dataType.superclass == RealmObject::class.java -> Constants.TYPE_REALM_OBJECT
             else -> Constants.NO_DATA_TYPE
-        }
-
-        fun getType() = type
-
-        public fun getValue(): String {
-
-            return when (type) {
-                Constants.TYPE_BOOLEAN -> (value as Boolean).toString()
-                Constants.TYPE_BYTE -> (value as Byte).toString()
-                Constants.TYPE_CHAR -> (value as Char).toString()
-                Constants.TYPE_SHORT -> (value as Short).toString()
-                Constants.TYPE_INT -> (value as Int).toString()
-                Constants.TYPE_LONG -> (value as Long).toString()
-                Constants.TYPE_FLOAT -> (value as Float).toString()
-                Constants.TYPE_DOUBLE -> (value as Double).toString()
-                Constants.TYPE_STRING -> (value as String)
-                Constants.TYPE_REALM_LIST -> (value as RealmList<*>).toString()
-                Constants.TYPE_REALM_OBJECT -> (value as List<FieldItem>).toString()
-                else -> "Some error occurred"
-            }
         }
     }
 }
