@@ -14,6 +14,7 @@ import io.realm.RealmModel
 import io.realm.RealmObject
 import java.lang.reflect.Method
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -154,9 +155,9 @@ class ResultActivity : AppCompatActivity() {
         return getDataFromObject(findResult)
     }
 
-    private fun getDataFromObject(findResult: RealmModel?): MutableList<FieldItem> {
+    private fun getDataFromObject(findResult: RealmModel?): ArrayList<FieldItem> {
 
-        if (findResult == null) return mutableListOf<FieldItem>()
+        if (findResult == null) return ArrayList<FieldItem>()
 
         val resultObjectClass = findResult::class.java
 
@@ -179,7 +180,7 @@ class ResultActivity : AppCompatActivity() {
                 }
             }
 
-            if (method == null) return mutableListOf<FieldItem>()
+            if (method == null) return ArrayList<FieldItem>()
 
             val type = method.returnType
             val name = fieldName
@@ -195,7 +196,7 @@ class ResultActivity : AppCompatActivity() {
             fieldList.add(fieldItem)
         }
 
-        return fieldList.toMutableList();
+        return ArrayList(fieldList)
     }
 
     // result item
