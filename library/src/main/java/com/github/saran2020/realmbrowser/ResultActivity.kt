@@ -10,7 +10,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import io.realm.Realm
 import io.realm.RealmList
-import io.realm.RealmModel
 import io.realm.RealmObject
 import java.lang.reflect.Method
 import java.util.*
@@ -149,7 +148,7 @@ class ResultActivity : AppCompatActivity() {
     private fun findResult(realm: Realm, bundle: Bundle): List<FieldItem>? {
 
         var fullClassName = bundle.getString(Constants.EXTRA_CLASS_NAME)
-        var className = Class.forName(fullClassName) as Class<RealmModel>
+        var className = Class.forName(fullClassName) as Class<RealmObject>
         var query = realm.where(className)
 
         var findResult = query.findFirst()
@@ -160,7 +159,7 @@ class ResultActivity : AppCompatActivity() {
         return getDataFromObject(findResult)
     }
 
-    private fun getDataFromObject(findResult: RealmModel?): ArrayList<FieldItem> {
+    private fun getDataFromObject(findResult: RealmObject?): ArrayList<FieldItem> {
 
         if (findResult == null) return ArrayList<FieldItem>()
 
@@ -194,15 +193,15 @@ class ResultActivity : AppCompatActivity() {
             // If the field is an instance of Realm model, recursively find items inside that.
             if (type.superclass == RealmObject::class.java) {
 
-                data = getDataFromObject(data as RealmModel)
+                data = getDataFromObject(data as RealmObject)
             } else if (type.isAssignableFrom(RealmList::class.java)) {
 
-                val objects = data as RealmList<RealmModel>
+                val objects = data as RealmList<RealmObject>
                 val itemsList: MutableList<List<FieldItem>> = arrayListOf()
 
                 for (singleObject in objects) {
 
-                    val itemList = getDataFromObject(singleObject as RealmModel)
+                    val itemList = getDataFromObject(singleObject as RealmObject)
                     itemsList.add(itemList)
                 }
 
