@@ -4,7 +4,9 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.github.saran2020.realmbrowser2.model.Senator
 import io.realm.Realm
+import java.io.InputStream
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +18,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         realm = Realm.getDefaultInstance()
+
+        val result = realm.where(Senator::class.java).findAll().size
+
+        if (result > 0) {
+            Log.d(TAG, "Completed..")
+        } else {
+            val inputStream = resources.openRawResource(R.raw.data_source)
+            FeedDataTask(TAG, inputStream).execute()
+        }
     }
 
     override fun onDestroy() {
@@ -26,15 +37,15 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    class FeedDataTask(val TAG: String) : AsyncTask<Unit, Unit, Unit>() {
-
-        private val DATA_SIZE = 100000
+    class FeedDataTask(val TAG: String, val inputStream: InputStream) : AsyncTask<Unit, Unit, Unit>() {
 
         override fun doInBackground(vararg params: Unit?) {
             Realm.getDefaultInstance().use {
-                Log.d(TAG, "Completed..")
 
+                it.executeTransaction { realm -> realm.createAllFromJson(Senator::class.java, inputStream) }
             }
+
+            Log.d(TAG, "Completed..")
         }
     }
 }
