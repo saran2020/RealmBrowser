@@ -13,7 +13,6 @@ import io.realm.RealmList
 import io.realm.RealmObject
 import java.lang.reflect.Method
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -75,18 +74,24 @@ class ResultActivity : AppCompatActivity() {
                 continue
             }
 
-            val fieldValue: String = when (type) {
-                Constants.TYPE_BOOLEAN -> (field.value as Boolean).toString()
-                Constants.TYPE_BYTE -> (field.value as Byte).toString()
-                Constants.TYPE_CHAR -> (field.value as Char).toString()
-                Constants.TYPE_SHORT -> (field.value as Short).toString()
-                Constants.TYPE_INT -> (field.value as Int).toString()
-                Constants.TYPE_LONG -> (field.value as Long).toString()
-                Constants.TYPE_FLOAT -> (field.value as Float).toString()
-                Constants.TYPE_DOUBLE -> (field.value as Double).toString()
-                Constants.TYPE_STRING -> (field.value as String)
-                else -> "Some error occurred"
+            var fieldValue: String = if (field.value == null) {
+                "null"
+            } else {
+                when (type) {
+                    Constants.TYPE_BOOLEAN -> (field.value as Boolean).toString()
+                    Constants.TYPE_BYTE -> (field.value as Byte).toString()
+                    Constants.TYPE_CHAR -> (field.value as Char).toString()
+                    Constants.TYPE_SHORT -> (field.value as Short).toString()
+                    Constants.TYPE_INT -> (field.value as Int).toString()
+                    Constants.TYPE_LONG -> (field.value as Long).toString()
+                    Constants.TYPE_FLOAT -> (field.value as Float).toString()
+                    Constants.TYPE_DOUBLE -> (field.value as Double).toString()
+                    Constants.TYPE_STRING -> (field.value as String)
+                    else -> "Some error occurred"
+                }
             }
+
+            if (type == Constants.TYPE_STRING && fieldValue.isEmpty()) fieldValue = "\"\""
 
             val rowNameSpec = GridLayout.spec(row, 1)
             val rowValueSpec = GridLayout.spec(row, 1)
