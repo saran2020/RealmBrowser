@@ -67,8 +67,7 @@ class ResultActivity : AppCompatActivity() {
             if (field.type == Constants.TYPE_REALM_LIST) {
 
                 val fieldItems = field.value as List<List<FieldItem>>
-
-                for (fieldItem in fieldItems) addItemsToLayout(fieldItem, row)
+                fieldItems.forEach { fieldItem -> addItemsToLayout(fieldItem, row) }
                 continue
 
             } else if (field.type == Constants.TYPE_REALM_OBJECT) {
@@ -159,7 +158,7 @@ class ResultActivity : AppCompatActivity() {
         return getDataFromObject(findResult)
     }
 
-    private fun getDataFromObject(findResult: RealmObject?): ArrayList<FieldItem> {
+    private fun getDataFromObject(findResult: RealmObject?): List<FieldItem> {
 
         if (findResult == null) return ArrayList<FieldItem>()
 
@@ -173,18 +172,13 @@ class ResultActivity : AppCompatActivity() {
 
         for (fieldName in fieldNames) {
 
-            var method: Method? = null
+            // getters and is for boolean
+            val nameGet = "get$fieldName"
+            val nameIs = "is$fieldName"
 
-            for (methodInstance in methods) {
-                if (methodInstance.name.startsWith("get")
-                        && methodInstance.name.contains(fieldName, true)) {
-
-                    method = methodInstance
-                    break;
-                }
-            }
-
-            if (method == null) return ArrayList<FieldItem>()
+            val method: Method = methods.firstOrNull {
+                it.name.equals(nameGet, true) || it.name.equals(nameIs, true)
+            } ?: return ArrayList<FieldItem>()
 
             val type = method.returnType
             val name = fieldName
@@ -196,16 +190,19 @@ class ResultActivity : AppCompatActivity() {
                 data = getDataFromObject(data as RealmObject)
             } else if (type.isAssignableFrom(RealmList::class.java)) {
 
-                val objects = data as RealmList<RealmObject>
-                val itemsList: MutableList<List<FieldItem>> = arrayListOf()
+                val objects = data as RealmList<*>
+                val mutableList = arrayListOf<List<FieldItem>>()
 
-                for (singleObject in objects) {
-
-                    val itemList = getDataFromObject(singleObject as RealmObject)
-                    itemsList.add(itemList)
+                objects.withIndex().forEach { (index, item) ->
+                    // check if the items are of type realm object or normal types such as String, Boolean etc.
+                    if (item::class.java.superclass == RealmObject::class.java) {
+                        mutableList.add(getDataFromObject(item as RealmObject))
+                    } else {
+                        mutableList.add(Collections.singletonList(FieldItem(item::class.java, "value $index", item)))
+                    }
                 }
 
-                data = itemsList
+                data = mutableList
             }
 
             val fieldItem = FieldItem(type, name, data)
