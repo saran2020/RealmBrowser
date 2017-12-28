@@ -39,8 +39,9 @@ class Constants {
         val TYPE_FLOAT: Byte = -7
         val TYPE_DOUBLE: Byte = -8
         val TYPE_STRING: Byte = -9
-        val TYPE_REALM_LIST: Byte = -10
-        val TYPE_REALM_OBJECT: Byte = -11
+        val TYPE_BYTE_ARRAY: Byte = -10
+        val TYPE_REALM_LIST: Byte = -11
+        val TYPE_REALM_OBJECT: Byte = -12
 
         val GETTER_PREFIX = "get"
 
