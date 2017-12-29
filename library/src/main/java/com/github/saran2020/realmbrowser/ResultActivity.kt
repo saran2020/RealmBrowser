@@ -8,11 +8,6 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import io.realm.Realm
-import io.realm.RealmList
-import io.realm.RealmObject
-import java.lang.reflect.Method
-import java.util.*
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -20,7 +15,6 @@ import java.util.*
 class ResultActivity : AppCompatActivity() {
 
     private val TAG = ResultActivity::class.java.simpleName
-    private val LOADER_ID = 100
 
     lateinit var progressLoading: ProgressBar
     lateinit var girdLayout: GridLayout
@@ -47,7 +41,9 @@ class ResultActivity : AppCompatActivity() {
         super.onStart()
 
         showLoader(true)
-        val fieldsList = fetchFields()
+        val fieldsList = GetFields()
+                .from(intent.extras).findFirst()
+
         addItemsToLayout(fieldsList, 0)
         showLoader(false)
     }
@@ -59,25 +55,29 @@ class ResultActivity : AppCompatActivity() {
         val fieldNameSpec = GridLayout.spec(GridLayout.UNDEFINED, 2)
         val fieldValueSpec = GridLayout.spec(GridLayout.UNDEFINED, 3)
 
+        // TODO: handle null values of value
         for (field in fields) {
 
             val type = field.type
+            var fieldValue: String = ""
 
-            if (field.type == Constants.TYPE_REALM_LIST) {
+            if (field.value == null) {
+                fieldValue = "null"
 
-                val fieldItems = field.value as List<List<FieldItem>>
-                fieldItems.forEach { fieldItem -> addItemsToLayout(fieldItem, row) }
-                continue
-
-            } else if (field.type == Constants.TYPE_REALM_OBJECT) {
-                addItemsToLayout(field.value as List<FieldItem>, row)
-                continue
-            }
-
-            var fieldValue: String = if (field.value == null) {
-                "null"
             } else {
-                when (type) {
+
+                if (field.type == Constants.TYPE_REALM_LIST) {
+
+                    val fieldItems = field.value as List<List<FieldItem>>
+                    fieldItems.forEach { fieldItem -> addItemsToLayout(fieldItem, row) }
+                    continue
+
+                } else if (field.type == Constants.TYPE_REALM_OBJECT) {
+                    addItemsToLayout(field.value as List<FieldItem>, row)
+                    continue
+                }
+
+                fieldValue = when (type) {
                     Constants.TYPE_BOOLEAN -> (field.value as Boolean).toString()
                     Constants.TYPE_BYTE -> (field.value as Byte).toString()
                     Constants.TYPE_CHAR -> (field.value as Char).toString()
@@ -99,11 +99,11 @@ class ResultActivity : AppCompatActivity() {
             val fieldNameParms = GridLayout.LayoutParams(rowNameSpec, fieldNameSpec)
             val fieldValueParms = GridLayout.LayoutParams(rowValueSpec, fieldValueSpec)
 
-            var textViewFieldName = TextView(this@ResultActivity, null, R.style.LabelStyle)
+            val textViewFieldName = TextView(this@ResultActivity, null, R.style.LabelStyle)
             textViewFieldName.text = field.fieldName
 //            textViewFieldName.layoutParams = ViewGroup.LayoutParams(100, 100)
 
-            var textViewFieldValue = TextView(this@ResultActivity, null, R.style.ValueStyle)
+            val textViewFieldValue = TextView(this@ResultActivity, null, R.style.ValueStyle)
             textViewFieldValue.text = fieldValue
 
             girdLayout.addView(textViewFieldName, fieldNameParms)
