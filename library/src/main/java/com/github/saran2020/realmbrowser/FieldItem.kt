@@ -11,17 +11,36 @@ import io.realm.RealmObject
 class FieldItem(dataType: Class<*>, var fieldName: String, val value: Any?) {
 
     var type: Byte = when {
+        dataType.isAssignableFrom(Boolean::class.javaObjectType) -> Constants.TYPE_BOOLEAN
         dataType.isAssignableFrom(Boolean::class.java) -> Constants.TYPE_BOOLEAN
+
+        dataType.isAssignableFrom(Byte::class.javaObjectType) -> Constants.TYPE_BYTE
         dataType.isAssignableFrom(Byte::class.java) -> Constants.TYPE_BYTE
+
+        dataType.isAssignableFrom(Char::class.javaObjectType) -> Constants.TYPE_CHAR
         dataType.isAssignableFrom(Char::class.java) -> Constants.TYPE_CHAR
+
+        dataType.isAssignableFrom(Short::class.javaObjectType) -> Constants.TYPE_SHORT
         dataType.isAssignableFrom(Short::class.java) -> Constants.TYPE_SHORT
+
+        dataType.isAssignableFrom(Int::class.javaObjectType) -> Constants.TYPE_INT
         dataType.isAssignableFrom(Int::class.java) -> Constants.TYPE_INT
+
+        dataType.isAssignableFrom(Long::class.javaObjectType) -> Constants.TYPE_LONG
         dataType.isAssignableFrom(Long::class.java) -> Constants.TYPE_LONG
+
+        dataType.isAssignableFrom(Float::class.javaObjectType) -> Constants.TYPE_FLOAT
         dataType.isAssignableFrom(Float::class.java) -> Constants.TYPE_FLOAT
+
+        dataType.isAssignableFrom(Double::class.javaObjectType) -> Constants.TYPE_DOUBLE
         dataType.isAssignableFrom(Double::class.java) -> Constants.TYPE_DOUBLE
+
         dataType.isAssignableFrom(String::class.java) -> Constants.TYPE_STRING
+
         dataType.isAssignableFrom(RealmList::class.java) -> Constants.TYPE_REALM_LIST
+
         dataType.superclass == RealmObject::class.java -> Constants.TYPE_REALM_OBJECT
+
         else -> Constants.NO_DATA_TYPE
     }
 
