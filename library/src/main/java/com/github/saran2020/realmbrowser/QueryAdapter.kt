@@ -26,7 +26,7 @@ class QueryAdapter : RecyclerView.Adapter<QueryAdapter.ViewHolder>() {
         var queryString = ""
 
         when (itemList.get(position).type) {
-            Constants.QUERY_EQUAL_TO -> queryString = Constants.QUERY_EQUAL_TO_STRING
+            QUERY_EQUAL_TO -> queryString = QUERY_EQUAL_TO_STRING
         }
 
         holder?.textItemQuery?.text = queryString

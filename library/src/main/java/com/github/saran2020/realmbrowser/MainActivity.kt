@@ -78,8 +78,8 @@ class MainActivity : AppCompatActivity() {
     // member functions
     private fun getFindItems(): List<String> {
         return listOf(
-                Constants.FIND_ALL_STRING,
-                Constants.FIND_FIRST_STRING)
+                FIND_ALL_STRING,
+                FIND_FIRST_STRING)
     }
 
     // listeners
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         var fullClassName = textPackageName.text.toString()
         if (fullClassName.isEmpty()) return@OnClickListener
 
-        var find = if (this@MainActivity.recyclerFindAdapter.selectedItem != Constants.NO_ITEM_SELECTED)
+        var find = if (this@MainActivity.recyclerFindAdapter.selectedItem != NO_ITEM_SELECTED)
             this@MainActivity.recyclerFindAdapter.selectedItem
         else
             return@OnClickListener

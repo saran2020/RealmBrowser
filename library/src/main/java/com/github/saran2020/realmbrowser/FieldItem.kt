@@ -11,44 +11,44 @@ import io.realm.RealmObject
 class FieldItem(dataType: Class<*>, var fieldName: String, val value: Any?) {
 
     var type: Byte = when {
-        dataType.isAssignableFrom(Boolean::class.javaObjectType) -> Constants.TYPE_BOOLEAN
-        dataType.isAssignableFrom(Boolean::class.java) -> Constants.TYPE_BOOLEAN
+        dataType.isAssignableFrom(Boolean::class.javaObjectType) -> TYPE_BOOLEAN
+        dataType.isAssignableFrom(Boolean::class.java) -> TYPE_BOOLEAN
 
-        dataType.isAssignableFrom(Byte::class.javaObjectType) -> Constants.TYPE_BYTE
-        dataType.isAssignableFrom(Byte::class.java) -> Constants.TYPE_BYTE
+        dataType.isAssignableFrom(Byte::class.javaObjectType) -> TYPE_BYTE
+        dataType.isAssignableFrom(Byte::class.java) -> TYPE_BYTE
 
-        dataType.isAssignableFrom(Char::class.javaObjectType) -> Constants.TYPE_CHAR
-        dataType.isAssignableFrom(Char::class.java) -> Constants.TYPE_CHAR
+        dataType.isAssignableFrom(Char::class.javaObjectType) -> TYPE_CHAR
+        dataType.isAssignableFrom(Char::class.java) -> TYPE_CHAR
 
-        dataType.isAssignableFrom(Short::class.javaObjectType) -> Constants.TYPE_SHORT
-        dataType.isAssignableFrom(Short::class.java) -> Constants.TYPE_SHORT
+        dataType.isAssignableFrom(Short::class.javaObjectType) -> TYPE_SHORT
+        dataType.isAssignableFrom(Short::class.java) -> TYPE_SHORT
 
-        dataType.isAssignableFrom(Int::class.javaObjectType) -> Constants.TYPE_INT
-        dataType.isAssignableFrom(Int::class.java) -> Constants.TYPE_INT
+        dataType.isAssignableFrom(Int::class.javaObjectType) -> TYPE_INT
+        dataType.isAssignableFrom(Int::class.java) -> TYPE_INT
 
-        dataType.isAssignableFrom(Long::class.javaObjectType) -> Constants.TYPE_LONG
-        dataType.isAssignableFrom(Long::class.java) -> Constants.TYPE_LONG
+        dataType.isAssignableFrom(Long::class.javaObjectType) -> TYPE_LONG
+        dataType.isAssignableFrom(Long::class.java) -> TYPE_LONG
 
-        dataType.isAssignableFrom(Float::class.javaObjectType) -> Constants.TYPE_FLOAT
-        dataType.isAssignableFrom(Float::class.java) -> Constants.TYPE_FLOAT
+        dataType.isAssignableFrom(Float::class.javaObjectType) -> TYPE_FLOAT
+        dataType.isAssignableFrom(Float::class.java) -> TYPE_FLOAT
 
-        dataType.isAssignableFrom(Double::class.javaObjectType) -> Constants.TYPE_DOUBLE
-        dataType.isAssignableFrom(Double::class.java) -> Constants.TYPE_DOUBLE
+        dataType.isAssignableFrom(Double::class.javaObjectType) -> TYPE_DOUBLE
+        dataType.isAssignableFrom(Double::class.java) -> TYPE_DOUBLE
 
-        dataType.isAssignableFrom(String::class.java) -> Constants.TYPE_STRING
+        dataType.isAssignableFrom(String::class.java) -> TYPE_STRING
 
-        dataType.isAssignableFrom(RealmList::class.java) -> Constants.TYPE_REALM_LIST
+        dataType.isAssignableFrom(RealmList::class.java) -> TYPE_REALM_LIST
 
-        dataType.superclass == RealmObject::class.java -> Constants.TYPE_REALM_OBJECT
+        dataType.superclass == RealmObject::class.java -> TYPE_REALM_OBJECT
 
-        else -> Constants.NO_DATA_TYPE
+        else -> NO_DATA_TYPE
     }
 
     init {
 
-        if (type == Constants.NO_DATA_TYPE &&
+        if (type == NO_DATA_TYPE &&
                 dataType.isArray &&
                 dataType.componentType == Byte::class.java)
-            type == Constants.TYPE_BYTE_ARRAY
+            type == TYPE_BYTE_ARRAY
     }
 }

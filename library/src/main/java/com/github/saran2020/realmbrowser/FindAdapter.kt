@@ -11,7 +11,7 @@ import android.widget.TextView
  */
 class FindAdapter(private var itemList: List<String>) : RecyclerView.Adapter<FindAdapter.ViewHolder>() {
 
-    var selectedItem = Constants.NO_ITEM_SELECTED
+    var selectedItem = NO_ITEM_SELECTED
 
     override fun getItemCount() = itemList.size
 
@@ -27,13 +27,13 @@ class FindAdapter(private var itemList: List<String>) : RecyclerView.Adapter<Fin
     private fun setSelectedItem(position: Int) {
 
         var selectedPosition: Byte = when (position) {
-            0 -> Constants.FIND_ALL
-            1 -> Constants.FIND_FIRST
-            else -> Constants.NO_ITEM_SELECTED
+            0 -> FIND_ALL
+            1 -> FIND_FIRST
+            else -> NO_ITEM_SELECTED
         }
 
         selectedItem = if (selectedPosition == selectedItem)
-            Constants.NO_ITEM_SELECTED
+            NO_ITEM_SELECTED
         else
             selectedPosition
 

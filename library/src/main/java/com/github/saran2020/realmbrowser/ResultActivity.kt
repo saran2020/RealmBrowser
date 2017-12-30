@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.GridLayout
 import android.widget.ProgressBar
@@ -23,8 +24,8 @@ class ResultActivity : AppCompatActivity() {
         public fun startActivity(context: Context, className: String, find: Byte) {
 
             val intent = Intent(context, ResultActivity::class.java)
-            intent.putExtra(Constants.EXTRA_CLASS_NAME, className)
-            intent.putExtra(Constants.EXTRA_FIND, find)
+            intent.putExtra(EXTRA_CLASS_NAME, className)
+            intent.putExtra(EXTRA_FIND, find)
             context.startActivity(intent)
         }
     }
@@ -66,32 +67,36 @@ class ResultActivity : AppCompatActivity() {
 
             } else {
 
-                if (field.type == Constants.TYPE_REALM_LIST) {
+                if (field.type == TYPE_REALM_LIST) {
 
                     val fieldItems = field.value as List<List<FieldItem>>
                     fieldItems.forEach { fieldItem -> addItemsToLayout(fieldItem, row) }
                     continue
 
-                } else if (field.type == Constants.TYPE_REALM_OBJECT) {
+                } else if (field.type == TYPE_REALM_OBJECT) {
                     addItemsToLayout(field.value as List<FieldItem>, row)
                     continue
                 }
 
                 fieldValue = when (type) {
-                    Constants.TYPE_BOOLEAN -> (field.value as Boolean).toString()
-                    Constants.TYPE_BYTE -> (field.value as Byte).toString()
-                    Constants.TYPE_CHAR -> (field.value as Char).toString()
-                    Constants.TYPE_SHORT -> (field.value as Short).toString()
-                    Constants.TYPE_INT -> (field.value as Int).toString()
-                    Constants.TYPE_LONG -> (field.value as Long).toString()
-                    Constants.TYPE_FLOAT -> (field.value as Float).toString()
-                    Constants.TYPE_DOUBLE -> (field.value as Double).toString()
-                    Constants.TYPE_STRING -> (field.value as String)
+                    TYPE_BOOLEAN -> (field.value as Boolean).toString()
+                    TYPE_BYTE -> (field.value as Byte).toString()
+                    TYPE_CHAR -> (field.value as Char).toString()
+                    TYPE_SHORT -> (field.value as Short).toString()
+                    TYPE_INT -> (field.value as Int).toString()
+                    TYPE_LONG -> (field.value as Long).toString()
+                    TYPE_FLOAT -> (field.value as Float).toString()
+                    TYPE_DOUBLE -> (field.value as Double).toString()
+                    TYPE_STRING -> (field.value as String)
                     else -> "Some error occurred"
+                }
+
+                if (fieldValue.equals("Some error occurred")) {
+                    Log.d(TAG, "addItemsToLayout: FieldName = ${field.fieldName} Type = ${field.type}")
                 }
             }
 
-            if (type == Constants.TYPE_STRING && fieldValue.isEmpty()) fieldValue = "\"\""
+            if (type == TYPE_STRING && fieldValue.isEmpty()) fieldValue = "\"\""
 
             val rowNameSpec = GridLayout.spec(row, 1)
             val rowValueSpec = GridLayout.spec(row, 1)
