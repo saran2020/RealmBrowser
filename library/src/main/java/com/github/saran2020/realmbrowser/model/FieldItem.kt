@@ -1,5 +1,6 @@
-package com.github.saran2020.realmbrowser
+package com.github.saran2020.realmbrowser.model
 
+import com.github.saran2020.realmbrowser.*
 import io.realm.RealmList
 import io.realm.RealmObject
 

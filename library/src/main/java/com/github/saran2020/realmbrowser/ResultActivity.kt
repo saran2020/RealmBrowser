@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.github.saran2020.realmbrowser.model.FieldItem
 
 /**
  * Created by Saran Sankaran on 11/10/17.

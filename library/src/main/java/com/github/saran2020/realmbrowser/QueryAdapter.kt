@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.github.saran2020.realmbrowser.model.QueryItem
 
 /**
  * Created by its me on 11-Nov-17.
  */
 class QueryAdapter : RecyclerView.Adapter<QueryAdapter.ViewHolder>() {
 
-    private var itemList: MutableList<MainActivity.QueryItem> = ArrayList<MainActivity.QueryItem>()
+    private var itemList: MutableList<QueryItem> = ArrayList<QueryItem>()
 
     override fun getItemCount() = itemList.size
 
@@ -37,7 +38,7 @@ class QueryAdapter : RecyclerView.Adapter<QueryAdapter.ViewHolder>() {
         notifyItemRemoved(position)
     }
 
-    public fun addItemToList(queryItem: MainActivity.QueryItem) {
+    public fun addItemToList(queryItem: QueryItem) {
         var position = itemList.size
         itemList.add(queryItem)
         notifyItemInserted(position)

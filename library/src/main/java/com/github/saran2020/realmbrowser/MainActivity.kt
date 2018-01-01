@@ -108,7 +108,4 @@ class MainActivity : AppCompatActivity() {
 
         ResultActivity.startActivity(this, fullClassName, find)
     }
-
-    // inner class
-    class QueryItem(var type: Byte, var queryList: LinkedList<String>, var queryValues: LinkedList<String>)
 }

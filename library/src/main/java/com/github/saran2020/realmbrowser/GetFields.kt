@@ -2,6 +2,7 @@ package com.github.saran2020.realmbrowser
 
 import android.os.Bundle
 import android.util.Log
+import com.github.saran2020.realmbrowser.model.FieldItem
 import io.realm.*
 import java.lang.reflect.Method
 import java.util.*
