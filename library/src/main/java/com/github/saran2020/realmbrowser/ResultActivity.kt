@@ -4,11 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
-import android.widget.GridLayout
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.view.ViewGroup
+import android.widget.*
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -17,8 +15,8 @@ class ResultActivity : AppCompatActivity() {
 
     private val TAG = ResultActivity::class.java.simpleName
 
-    lateinit var progressLoading: ProgressBar
-    lateinit var girdLayout: GridLayout
+    private lateinit var progressLoading: ProgressBar
+    private lateinit var scrollView: HorizontalScrollView
 
     companion object {
         public fun startActivity(context: Context, className: String, find: Byte) {
@@ -35,7 +33,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result_library)
 
         progressLoading = findViewById(R.id.progress_loading)
-        girdLayout = findViewById(R.id.grid_layout)
+        scrollView = findViewById(R.id.scroll_view)
     }
 
     override fun onStart() {
@@ -45,40 +43,26 @@ class ResultActivity : AppCompatActivity() {
         val fieldsList = GetFields()
                 .from(intent.extras).findFirst()
 
-        addItemsToLayout(fieldsList, 0)
+        val view = addItemsToLayout(fieldsList)
+        scrollView.addView(view)
         showLoader(false)
+
     }
 
-    private fun addItemsToLayout(fields: List<FieldItem>, rowNum: Int) {
+    private fun addItemsToLayout(fields: List<FieldItem>): GridLayout {
 
-        var row = rowNum
+        val gridLayout = createGridLayout()
 
-        val fieldNameSpec = GridLayout.spec(GridLayout.UNDEFINED, 2)
-        val fieldValueSpec = GridLayout.spec(GridLayout.UNDEFINED, 3)
-
-        // TODO: handle null values of value
+        var index = 0
         for (field in fields) {
 
-            val type = field.type
-            var fieldValue: String = ""
+            var fieldData: String
 
             if (field.value == null) {
-                fieldValue = "null"
-
+                fieldData = "null"
             } else {
 
-                if (field.type == TYPE_REALM_LIST) {
-
-                    val fieldItems = field.value as List<List<FieldItem>>
-                    fieldItems.forEach { fieldItem -> addItemsToLayout(fieldItem, row) }
-                    continue
-
-                } else if (field.type == TYPE_REALM_OBJECT) {
-                    addItemsToLayout(field.value as List<FieldItem>, row)
-                    continue
-                }
-
-                fieldValue = when (type) {
+                fieldData = when (field.type) {
                     TYPE_BOOLEAN -> (field.value as Boolean).toString()
                     TYPE_BYTE -> (field.value as Byte).toString()
                     TYPE_CHAR -> (field.value as Char).toString()
@@ -87,35 +71,54 @@ class ResultActivity : AppCompatActivity() {
                     TYPE_LONG -> (field.value as Long).toString()
                     TYPE_FLOAT -> (field.value as Float).toString()
                     TYPE_DOUBLE -> (field.value as Double).toString()
-                    TYPE_STRING -> (field.value as String)
+                    TYPE_STRING -> {
+                        if ((field.value as String).isEmpty())
+                            "\"\""
+                        else
+                            field.value
+                    }
                     else -> "Some error occurred"
-                }
-
-                if (fieldValue.equals("Some error occurred")) {
-                    Log.d(TAG, "addItemsToLayout: FieldName = ${field.fieldName} Type = ${field.type}")
                 }
             }
 
-            if (type == TYPE_STRING && fieldValue.isEmpty()) fieldValue = "\"\""
-
-            val rowNameSpec = GridLayout.spec(row, 1)
-            val rowValueSpec = GridLayout.spec(row, 1)
-
-            val fieldNameParms = GridLayout.LayoutParams(rowNameSpec, fieldNameSpec)
-            val fieldValueParms = GridLayout.LayoutParams(rowValueSpec, fieldValueSpec)
-
+            // print field name
             val textViewFieldName = TextView(this@ResultActivity, null, R.style.LabelStyle)
-            textViewFieldName.text = field.fieldName
-//            textViewFieldName.layoutParams = ViewGroup.LayoutParams(100, 100)
+            textViewFieldName.text = String.format("%s:", field.fieldName)
+            gridLayout.addView(textViewFieldName, index++)
 
-            val textViewFieldValue = TextView(this@ResultActivity, null, R.style.ValueStyle)
-            textViewFieldValue.text = fieldValue
+            val fieldValue: View
 
-            girdLayout.addView(textViewFieldName, fieldNameParms)
-            girdLayout.addView(textViewFieldValue, fieldValueParms)
+            // TODO: Print realm list
+            // if type is realm object, only print the field name and then  recursively
+            // call the function again to print data inside
+            if (field.type == TYPE_REALM_OBJECT) {
 
-            row++
+                @Suppress("UNCHECKED_CAST")
+                fieldValue = addItemsToLayout(field.value as List<FieldItem>)
+            } else {
+
+                // print field value
+                val textViewFieldValue = TextView(this@ResultActivity, null, R.style.ValueStyle)
+                textViewFieldValue.text = fieldData
+
+                fieldValue = textViewFieldValue
+            }
+
+            gridLayout.addView(fieldValue, index++)
         }
+
+        return gridLayout
+    }
+
+    private fun createGridLayout(): GridLayout {
+
+        val gridLayout = GridLayout(this)
+        gridLayout.layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        gridLayout.columnCount = 2
+        gridLayout.isColumnOrderPreserved = true
+
+        return gridLayout
     }
 
     /**
@@ -125,10 +128,10 @@ class ResultActivity : AppCompatActivity() {
 
         if (show) {
             progressLoading.visibility = View.VISIBLE
-            girdLayout.visibility = View.INVISIBLE
+            scrollView.visibility = View.INVISIBLE
         } else {
             progressLoading.visibility = View.INVISIBLE
-            girdLayout.visibility = View.VISIBLE
+            scrollView.visibility = View.VISIBLE
         }
     }
 }
