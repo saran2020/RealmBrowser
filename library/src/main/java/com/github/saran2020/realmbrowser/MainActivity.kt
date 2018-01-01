@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.*
 import com.xiaofeng.flowlayoutmanager.FlowLayoutManager
 import io.realm.Realm
-import java.util.*
 
 /**
  * Created by Saran Sankaran on 11/9/17.
@@ -106,6 +105,6 @@ class MainActivity : AppCompatActivity() {
         else
             return@OnClickListener
 
-        ResultActivity.startActivity(this, fullClassName, find)
+        ResultActivitySingle.startActivity(this, fullClassName, find)
     }
 }

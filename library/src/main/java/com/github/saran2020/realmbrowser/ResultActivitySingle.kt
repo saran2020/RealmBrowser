@@ -11,9 +11,9 @@ import android.widget.ProgressBar
 /**
  * Created by Saran Sankaran on 11/10/17.
  */
-class ResultActivity : AppCompatActivity() {
+class ResultActivitySingle : AppCompatActivity() {
 
-    private val TAG = ResultActivity::class.java.simpleName
+    private val TAG = ResultActivitySingle::class.java.simpleName
 
     private lateinit var progressLoading: ProgressBar
     private lateinit var scrollView: HorizontalScrollView
@@ -21,7 +21,7 @@ class ResultActivity : AppCompatActivity() {
     companion object {
         public fun startActivity(context: Context, className: String, find: Byte) {
 
-            val intent = Intent(context, ResultActivity::class.java)
+            val intent = Intent(context, ResultActivitySingle::class.java)
             intent.putExtra(EXTRA_CLASS_NAME, className)
             intent.putExtra(EXTRA_FIND, find)
             context.startActivity(intent)
@@ -43,7 +43,7 @@ class ResultActivity : AppCompatActivity() {
         val fieldsList = GetFields()
                 .from(intent.extras).findFirst()
 
-        val view = getGridLayoutForFieldItem(this@ResultActivity, fieldsList)
+        val view = getGridLayoutForFieldItem(this@ResultActivitySingle, fieldsList)
         scrollView.addView(view)
         showLoader(false)
     }

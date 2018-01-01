@@ -16,7 +16,7 @@
         </activity>
 
         <activity
-            android:name=".ResultActivity"
+            android:name=".ResultActivitySingle"
             android:label="@string/label_result"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"/>
