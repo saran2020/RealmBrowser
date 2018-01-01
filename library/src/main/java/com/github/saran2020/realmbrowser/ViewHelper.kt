@@ -1,6 +1,8 @@
 package com.github.saran2020.realmbrowser
 
 import android.content.Context
+import android.content.res.Resources
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -14,8 +16,10 @@ import com.github.saran2020.realmbrowser.model.FieldItem
  */
 fun getGridLayoutForFieldItem(context: Context, fields: List<FieldItem>): GridLayout {
     val gridLayout = createGridLayout(context)
+    val nameColSpec = GridLayout.spec(0, 2)
+    val valueColSpec = GridLayout.spec(2, 3, 1F)
 
-    var index = 0
+    var rowIndex = 0
     for (field in fields) {
 
         var fieldData: String
@@ -43,10 +47,16 @@ fun getGridLayoutForFieldItem(context: Context, fields: List<FieldItem>): GridLa
             }
         }
 
+        val rowSpec = GridLayout.spec(rowIndex)
+
         // print field name
         val textViewFieldName = TextView(context, null, R.style.LabelStyle)
+        textViewFieldName.setBackgroundResource(R.drawable.field_item_background)
         textViewFieldName.text = String.format("%s:", field.fieldName)
-        gridLayout.addView(textViewFieldName, index++)
+
+        val layoutParms = GridLayout.LayoutParams(rowSpec, nameColSpec)
+        layoutParms.setGravity(Gravity.FILL)
+        gridLayout.addView(textViewFieldName, layoutParms)
 
         val fieldValue: View
 
@@ -66,10 +76,19 @@ fun getGridLayoutForFieldItem(context: Context, fields: List<FieldItem>): GridLa
             fieldValue = textViewFieldValue
         }
 
-        gridLayout.addView(fieldValue, index++)
+        val valueLayoutParms = GridLayout.LayoutParams(rowSpec, valueColSpec)
+        valueLayoutParms.setGravity(Gravity.FILL)
+        fieldValue.setBackgroundResource(R.drawable.field_item_background)
+        gridLayout.addView(fieldValue, valueLayoutParms)
+
+        rowIndex++
     }
 
     return gridLayout
+}
+
+private fun dpToPx(dp: Int): Int {
+    return (dp * Resources.getSystem().getDisplayMetrics().density).toInt()
 }
 
 private fun createGridLayout(context: Context): GridLayout {
@@ -77,7 +96,7 @@ private fun createGridLayout(context: Context): GridLayout {
     val gridLayout = GridLayout(context)
     gridLayout.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-    gridLayout.columnCount = 2
+    gridLayout.columnCount = 5
     gridLayout.isColumnOrderPreserved = true
 
     return gridLayout

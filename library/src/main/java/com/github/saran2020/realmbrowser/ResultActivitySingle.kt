@@ -44,6 +44,7 @@ class ResultActivitySingle : AppCompatActivity() {
                 .from(intent.extras).findFirst()
 
         val view = getGridLayoutForFieldItem(this@ResultActivitySingle, fieldsList)
+        scrollView.removeAllViews()
         scrollView.addView(view)
         showLoader(false)
     }
