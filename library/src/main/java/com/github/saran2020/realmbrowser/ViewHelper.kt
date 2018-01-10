@@ -2,6 +2,7 @@ package com.github.saran2020.realmbrowser
 
 import android.content.Context
 import android.content.res.Resources
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -109,9 +110,11 @@ private fun createGridLayout(context: Context): GridLayout {
 
 fun getLinearLayout(context: Context, size: Int): LinearLayout {
     val layout = getLinearLayout(context)
+    val widthInPx = getTextViewWidth(context)
+    val textPadding = dpToPx(8)
 
     for (index in 0 until size) {
-        val textView = getTextView(context)
+        val textView = getTextView(context, widthInPx, textPadding)
         layout.addView(textView)
     }
 
@@ -127,14 +130,16 @@ private fun getLinearLayout(context: Context): LinearLayout {
     return layout
 }
 
-private fun getTextView(context: Context): TextView {
+private fun getTextView(context: Context, widthPx: Int, padding: Int): TextView {
 
-    val layoutParms = LinearLayout.LayoutParams(0,
+    val layoutParms = LinearLayout.LayoutParams(widthPx,
             ViewGroup.LayoutParams.WRAP_CONTENT)
-    layoutParms.weight = 1F
 
     val textView = TextView(context)
     textView.layoutParams = layoutParms
+    textView.maxLines = 1
+    textView.ellipsize = TextUtils.TruncateAt.END
+    textView.setPadding(padding, padding, padding, padding)
 
     return textView
 }
@@ -142,16 +147,19 @@ private fun getTextView(context: Context): TextView {
 fun populateHeader(context: Context, layout: LinearLayout, item: List<FieldItem>) {
 
     val fieldCount = item.size
+    val widthInPx = getTextViewWidth(context)
+    val textPadding = dpToPx(8)
+
     for (index in 0 until fieldCount) {
-        layout.addView(getHeaderText(context, item.get(index)))
+        layout.addView(getHeaderText(context, item.get(index), widthInPx, textPadding))
     }
 
     Log.d(TAG, "Completed")
 }
 
-private fun getHeaderText(context: Context, field: FieldItem): TextView {
+private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, textPadding: Int): TextView {
 
-    val textView = getTextView(context)
+    val textView = getTextView(context, textWidth, textPadding)
     textView.text = field.fieldName
 
     Log.d(TAG, "data = ${field.fieldName}")
@@ -199,4 +207,10 @@ private fun setTextToView(textView: TextView, field: FieldItem) {
 
     Log.d(TAG, "data = $fieldData")
     textView.text = fieldData
+}
+
+
+private fun getTextViewWidth(context: Context): Int {
+    val metrics = context.resources.displayMetrics
+    return metrics.widthPixels / 3
 }
