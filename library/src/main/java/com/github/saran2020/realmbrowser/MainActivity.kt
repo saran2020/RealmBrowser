@@ -100,11 +100,10 @@ class MainActivity : AppCompatActivity() {
         var fullClassName = textPackageName.text.toString()
         if (fullClassName.isEmpty()) return@OnClickListener
 
-        var find = if (this@MainActivity.recyclerFindAdapter.selectedItem != NO_ITEM_SELECTED)
-            this@MainActivity.recyclerFindAdapter.selectedItem
-        else
-            return@OnClickListener
-
-        ResultActivitySingle.startActivity(this, fullClassName, find)
+        when (this@MainActivity.recyclerFindAdapter.selectedItem) {
+            NO_ITEM_SELECTED -> this@MainActivity.recyclerFindAdapter.selectedItem
+            FIND_ALL -> ResultActivityMultiple.startActivity(this, fullClassName, FIND_ALL)
+            FIND_FIRST -> ResultActivitySingle.startActivity(this, fullClassName, FIND_FIRST)
+        }
     }
 }

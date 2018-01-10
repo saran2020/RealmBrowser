@@ -1,5 +1,5 @@
-<manifest package="com.github.saran2020.realmbrowser"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.saran2020.realmbrowser">
 
 
     <application>
@@ -10,8 +10,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -19,7 +19,13 @@
             android:name=".ResultActivitySingle"
             android:label="@string/label_result"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ResultActivityMultiple"
+            android:label="@string/label_result"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
