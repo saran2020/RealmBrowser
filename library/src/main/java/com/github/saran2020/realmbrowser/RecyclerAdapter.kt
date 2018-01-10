@@ -23,7 +23,5 @@ class RecyclerAdapter(val context: Context, val items: List<List<FieldItem>>) : 
         populateViews(holder?.item, items.get(position))
     }
 
-    class ViewHolder(val item: LinearLayout) : RecyclerView.ViewHolder(item) {
-
-    }
+    class ViewHolder(val item: LinearLayout) : RecyclerView.ViewHolder(item)
 }

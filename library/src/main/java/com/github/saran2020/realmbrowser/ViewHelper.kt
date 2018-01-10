@@ -2,6 +2,7 @@ package com.github.saran2020.realmbrowser
 
 import android.content.Context
 import android.content.res.Resources
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,9 @@ import com.github.saran2020.realmbrowser.model.FieldItem
  * A helper class to get the gridview with populated field items
  * Created by its me on 02-Jan-18.
  */
+
+val TAG = "ViewHelper"
+
 fun getGridLayoutForFieldItem(context: Context, fields: List<FieldItem>): GridLayout {
     val gridLayout = createGridLayout(context)
     val nameColSpec = GridLayout.spec(0, 2)
@@ -106,7 +110,7 @@ private fun createGridLayout(context: Context): GridLayout {
 fun getLinearLayout(context: Context, size: Int): LinearLayout {
     val layout = getLinearLayout(context)
 
-    for (index in 0..size) {
+    for (index in 0 until size) {
         val textView = getTextView(context)
         layout.addView(textView)
     }
@@ -135,13 +139,33 @@ private fun getTextView(context: Context): TextView {
     return textView
 }
 
+fun populateHeader(context: Context, layout: LinearLayout, item: List<FieldItem>) {
+
+    val fieldCount = item.size
+    for (index in 0 until fieldCount) {
+        layout.addView(getHeaderText(context, item.get(index)))
+    }
+
+    Log.d(TAG, "Completed")
+}
+
+private fun getHeaderText(context: Context, field: FieldItem): TextView {
+
+    val textView = getTextView(context)
+    textView.text = field.fieldName
+
+    Log.d(TAG, "data = ${field.fieldName}")
+
+    return textView
+}
+
 fun populateViews(layout: LinearLayout?, item: List<FieldItem>) {
 
     if (layout == null)
         return
 
     val viewCount = layout.childCount
-    for (index in 0..viewCount) {
+    for (index in 0 until viewCount) {
         setTextToView(layout.getChildAt(index) as TextView, item.get(index))
     }
 }
@@ -173,5 +197,6 @@ private fun setTextToView(textView: TextView, field: FieldItem) {
         }
     }
 
+    Log.d(TAG, "data = $fieldData")
     textView.text = fieldData
 }
