@@ -4,24 +4,25 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.HorizontalScrollView
 import android.widget.ProgressBar
 
 /**
  * Created by Saran Sankaran on 11/10/17.
  */
-class ResultActivitySingle : AppCompatActivity() {
+class ResultActivityMultiple : AppCompatActivity() {
 
-    private val TAG = ResultActivitySingle::class.java.simpleName
+    private val TAG = ResultActivityMultiple::class.java.simpleName
 
     private lateinit var progressLoading: ProgressBar
-    private lateinit var scrollView: HorizontalScrollView
+    private lateinit var recyclerResults: RecyclerView
 
     companion object {
         public fun startActivity(context: Context, className: String, find: Byte) {
 
-            val intent = Intent(context, ResultActivitySingle::class.java)
+            val intent = Intent(context, ResultActivityMultiple::class.java)
             intent.putExtra(EXTRA_CLASS_NAME, className)
             intent.putExtra(EXTRA_FIND, find)
             context.startActivity(intent)
@@ -33,7 +34,7 @@ class ResultActivitySingle : AppCompatActivity() {
         setContentView(R.layout.activity_result_library)
 
         progressLoading = findViewById(R.id.progress_loading_library)
-        scrollView = findViewById(R.id.scroll_view)
+        recyclerResults = findViewById(R.id.recycler_results_library)
     }
 
     override fun onStart() {
@@ -43,9 +44,9 @@ class ResultActivitySingle : AppCompatActivity() {
         val fieldsList = GetFields()
                 .from(intent.extras).findFirst()
 
-        val view = getGridLayoutForFieldItem(this@ResultActivitySingle, fieldsList)
-        scrollView.removeAllViews()
-        scrollView.addView(view)
+        recyclerResults.layoutManager =
+                LinearLayoutManager(this@ResultActivityMultiple, LinearLayoutManager.VERTICAL, false)
+        recyclerResults.adapter = RecyclerAdapter()
         showLoader(false)
     }
 

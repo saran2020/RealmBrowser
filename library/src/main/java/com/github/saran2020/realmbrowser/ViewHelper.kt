@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.GridLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.github.saran2020.realmbrowser.model.FieldItem
 
@@ -100,4 +101,77 @@ private fun createGridLayout(context: Context): GridLayout {
     gridLayout.isColumnOrderPreserved = true
 
     return gridLayout
+}
+
+fun getLinearLayout(context: Context, size: Int): LinearLayout {
+    val layout = getLinearLayout(context)
+
+    for (index in 0..size) {
+        val textView = getTextView(context)
+        layout.addView(textView)
+    }
+
+    return layout
+}
+
+private fun getLinearLayout(context: Context): LinearLayout {
+    val layout = LinearLayout(context)
+    layout.layoutParams =
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT)
+    layout.orientation = LinearLayout.HORIZONTAL
+    return layout
+}
+
+private fun getTextView(context: Context): TextView {
+
+    val layoutParms = LinearLayout.LayoutParams(0,
+            ViewGroup.LayoutParams.WRAP_CONTENT)
+    layoutParms.weight = 1F
+
+    val textView = TextView(context)
+    textView.layoutParams = layoutParms
+
+    return textView
+}
+
+fun populateViews(layout: LinearLayout?, item: List<FieldItem>) {
+
+    if (layout == null)
+        return
+
+    val viewCount = layout.childCount
+    for (index in 0..viewCount) {
+        setTextToView(layout.getChildAt(index) as TextView, item.get(index))
+    }
+}
+
+private fun setTextToView(textView: TextView, field: FieldItem) {
+
+    val fieldData: String
+
+    if (field.value == null) {
+        fieldData = "null"
+    } else {
+
+        fieldData = when (field.type) {
+            TYPE_BOOLEAN -> (field.value as Boolean).toString()
+            TYPE_BYTE -> (field.value as Byte).toString()
+            TYPE_CHAR -> (field.value as Char).toString()
+            TYPE_SHORT -> (field.value as Short).toString()
+            TYPE_INT -> (field.value as Int).toString()
+            TYPE_LONG -> (field.value as Long).toString()
+            TYPE_FLOAT -> (field.value as Float).toString()
+            TYPE_DOUBLE -> (field.value as Double).toString()
+            TYPE_STRING -> {
+                if ((field.value as String).isEmpty())
+                    "\"\""
+                else
+                    field.value
+            }
+            else -> "Some error occurred"
+        }
+    }
+
+    textView.text = fieldData
 }
