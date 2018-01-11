@@ -30,6 +30,7 @@
                 android:id="@+id/headers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/headerColor"
                 android:orientation="horizontal" />
 
             <!--data-->

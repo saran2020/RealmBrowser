@@ -2,6 +2,7 @@ package com.github.saran2020.realmbrowser
 
 import android.content.Context
 import android.content.res.Resources
+import android.os.Build
 import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
@@ -151,7 +152,8 @@ fun populateHeader(context: Context, layout: LinearLayout, item: List<FieldItem>
     val textPadding = dpToPx(8)
 
     for (index in 0 until fieldCount) {
-        layout.addView(getHeaderText(context, item.get(index), widthInPx, textPadding))
+        val textHeader = getHeaderText(context, item.get(index), widthInPx, textPadding)
+        layout.addView(textHeader)
     }
 
     Log.d(TAG, "Completed")
@@ -159,12 +161,18 @@ fun populateHeader(context: Context, layout: LinearLayout, item: List<FieldItem>
 
 private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, textPadding: Int): TextView {
 
-    val textView = getTextView(context, textWidth, textPadding)
-    textView.text = field.fieldName
+    val textHeader = getTextView(context, textWidth, textPadding)
 
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        textHeader.setTextAppearance(context, R.style.headerTextAppearance)
+    } else {
+        textHeader.setTextAppearance(R.style.headerTextAppearance)
+    }
+
+    textHeader.text = field.fieldName
     Log.d(TAG, "data = ${field.fieldName}")
 
-    return textView
+    return textHeader
 }
 
 fun populateViews(layout: LinearLayout?, item: List<FieldItem>) {

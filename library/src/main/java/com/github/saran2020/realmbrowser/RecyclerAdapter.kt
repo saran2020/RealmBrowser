@@ -1,6 +1,8 @@
 package com.github.saran2020.realmbrowser
 
 import android.content.Context
+import android.os.Build
+import android.support.annotation.ColorInt
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -11,7 +13,19 @@ import com.github.saran2020.realmbrowser.model.FieldItem
  */
 class RecyclerAdapter(val context: Context, val items: List<List<FieldItem>>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    val size: Int = items.get(0).size
+    private val size: Int = items.get(0).size
+    @ColorInt private val oddColor: Int
+    @ColorInt private val evenColor: Int
+
+    init {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            oddColor = context.getColor(R.color.tableBackroundOdd)
+            evenColor = context.getColor(R.color.tableBackroundEven)
+        } else {
+            oddColor = context.resources.getColor(R.color.tableBackroundOdd)
+            evenColor = context.resources.getColor(R.color.tableBackroundEven)
+        }
+    }
 
     override fun getItemCount() = items.size
 
@@ -21,6 +35,12 @@ class RecyclerAdapter(val context: Context, val items: List<List<FieldItem>>) : 
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         populateViews(holder?.item, items.get(position))
+
+        if (position % 2 == 0) {
+            holder?.item?.setBackgroundColor(evenColor)
+        } else {
+            holder?.item?.setBackgroundColor(oddColor)
+        }
     }
 
     class ViewHolder(val item: LinearLayout) : RecyclerView.ViewHolder(item)
