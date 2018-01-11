@@ -36,7 +36,7 @@ class ResultActivityMultiple : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result_library)
+        setContentView(R.layout.activity_multiple_result_library)
 
         progressLoading = findViewById(R.id.progress_loading_library)
         scrollView = findViewById(R.id.scroll_view)

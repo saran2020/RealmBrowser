@@ -19,6 +19,7 @@ class ResultActivitySingle : AppCompatActivity() {
     private lateinit var scrollView: HorizontalScrollView
 
     companion object {
+        // TODO: Review if the find parm is required
         public fun startActivity(context: Context, className: String, find: Byte) {
 
             val intent = Intent(context, ResultActivitySingle::class.java)
