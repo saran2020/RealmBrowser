@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import com.github.saran2020.realmbrowser.model.FieldItem
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -48,15 +49,8 @@ class ResultActivityMultiple : AppCompatActivity() {
         super.onStart()
 
         showLoader(true)
-        val fieldsList = GetFields()
-                .from(intent.extras).findAll()
-
-        populateHeader(this@ResultActivityMultiple, linearResultHeader, fieldsList.get(0))
-
-        recyclerResults.layoutManager =
-                LinearLayoutManager(this@ResultActivityMultiple, LinearLayoutManager.VERTICAL, false)
-        recyclerResults.adapter = RecyclerAdapter(this@ResultActivityMultiple, fieldsList)
-        showLoader(false)
+        GetFields()
+                .from(intent.extras).find(callback)
     }
 
     /**
@@ -70,6 +64,24 @@ class ResultActivityMultiple : AppCompatActivity() {
         } else {
             progressLoading.visibility = View.INVISIBLE
             scrollView.visibility = View.VISIBLE
+        }
+    }
+
+    private val callback: FieldsTaskCompleteCallback = object : FieldsTaskCompleteCallback() {
+
+        override fun onMultipleFetchComplete(fields: List<List<FieldItem>>?) {
+            super.onMultipleFetchComplete(fields)
+
+            if (fields == null) {
+                return
+            }
+
+            populateHeader(this@ResultActivityMultiple, linearResultHeader, fields[0])
+
+            recyclerResults.layoutManager =
+                    LinearLayoutManager(this@ResultActivityMultiple, LinearLayoutManager.VERTICAL, false)
+            recyclerResults.adapter = RecyclerAdapter(this@ResultActivityMultiple, fields)
+            showLoader(false)
         }
     }
 }

@@ -11,9 +11,9 @@ import com.github.saran2020.realmbrowser.model.FieldItem
 /**
  * Created by its me on 08-Jan-18.
  */
-class RecyclerAdapter(val context: Context, val items: List<List<FieldItem>>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(private val context: Context, private val items: List<List<FieldItem>>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private val size: Int = items.get(0).size
+    private val size: Int = items[0].size
     @ColorInt private val oddColor: Int
     @ColorInt private val evenColor: Int
 

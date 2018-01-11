@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.ProgressBar
+import com.github.saran2020.realmbrowser.model.FieldItem
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -41,13 +42,9 @@ class ResultActivitySingle : AppCompatActivity() {
         super.onStart()
 
         showLoader(true)
-        val fieldsList = GetFields()
-                .from(intent.extras).findFirst()
-
-        val view = getGridLayoutForFieldItem(this@ResultActivitySingle, fieldsList)
-        scrollView.removeAllViews()
-        scrollView.addView(view)
-        showLoader(false)
+        GetFields()
+                .from(intent.extras)
+                .find(callback)
     }
 
     /**
@@ -61,6 +58,22 @@ class ResultActivitySingle : AppCompatActivity() {
         } else {
             progressLoading.visibility = View.INVISIBLE
             scrollView.visibility = View.VISIBLE
+        }
+    }
+
+    private val callback: FieldsTaskCompleteCallback = object : FieldsTaskCompleteCallback() {
+
+        override fun onSingleFetchComplete(fields: List<FieldItem>?) {
+            super.onSingleFetchComplete(fields)
+
+            if (fields == null) {
+                return
+            }
+
+            val view = getGridLayoutForFieldItem(this@ResultActivitySingle, fields)
+            scrollView.removeAllViews()
+            scrollView.addView(view)
+            showLoader(false)
         }
     }
 }
