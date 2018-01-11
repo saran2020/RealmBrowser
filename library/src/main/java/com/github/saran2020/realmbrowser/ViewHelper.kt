@@ -217,7 +217,6 @@ private fun setTextToView(textView: TextView, field: FieldItem) {
     textView.text = fieldData
 }
 
-
 private fun getTextViewWidth(context: Context): Int {
     val metrics = context.resources.displayMetrics
     return metrics.widthPixels / 3

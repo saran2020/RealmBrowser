@@ -7,9 +7,6 @@ import com.github.saran2020.realmbrowser.model.FieldItem
  */
 abstract class FieldsTaskCompleteCallback {
 
-    open fun onMultipleFetchComplete(fields: List<List<FieldItem>>?) {
-    }
-
-    open fun onSingleFetchComplete(fields: List<FieldItem>?) {
+    open fun onFetchComplete(fields: List<List<FieldItem>>?) {
     }
 }

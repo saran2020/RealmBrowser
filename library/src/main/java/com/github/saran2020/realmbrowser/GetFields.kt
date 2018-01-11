@@ -173,11 +173,7 @@ class GetFields {
             if (callback == null)
                 return
 
-            if (result?.size == 1) {
-                callback.onSingleFetchComplete(result.first())
-            } else {
-                callback.onMultipleFetchComplete(result)
-            }
+            callback.onFetchComplete(result)
         }
     }
 }
