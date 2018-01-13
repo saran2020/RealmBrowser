@@ -1,5 +1,6 @@
 package com.github.saran2020.realmbrowser
 
+import com.github.saran2020.realmbrowser.model.ClassItem
 import com.github.saran2020.realmbrowser.model.FieldItem
 
 /**
@@ -7,6 +8,6 @@ import com.github.saran2020.realmbrowser.model.FieldItem
  */
 abstract class FieldsTaskCompleteCallback {
 
-    open fun onFetchComplete(fields: List<List<FieldItem>>?) {
+    open fun onFetchComplete(fields: List<ClassItem>?) {
     }
 }

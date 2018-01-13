@@ -6,14 +6,14 @@ import android.support.annotation.ColorInt
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.github.saran2020.realmbrowser.model.FieldItem
+import com.github.saran2020.realmbrowser.model.ClassItem
 
 /**
  * Created by its me on 08-Jan-18.
  */
-class RecyclerAdapter(private val context: Context, private val items: List<List<FieldItem>>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(private val context: Context, private val items: List<ClassItem>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private val size: Int = items[0].size
+    private val size: Int = items[0].fieldsList.size + 1
     @ColorInt private val oddColor: Int
     @ColorInt private val evenColor: Int
 

@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import com.github.saran2020.realmbrowser.model.ClassItem
 import com.github.saran2020.realmbrowser.model.FieldItem
 
 /**
@@ -70,7 +71,7 @@ class ResultActivity : AppCompatActivity() {
 
     private val callback: FieldsTaskCompleteCallback = object : FieldsTaskCompleteCallback() {
 
-        override fun onFetchComplete(fields: List<List<FieldItem>>?) {
+        override fun onFetchComplete(fields: List<ClassItem>?) {
             super.onFetchComplete(fields)
 
             if (fields == null) {

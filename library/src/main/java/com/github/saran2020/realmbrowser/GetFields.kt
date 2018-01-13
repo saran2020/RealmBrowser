@@ -3,10 +3,13 @@ package com.github.saran2020.realmbrowser
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import com.github.saran2020.realmbrowser.Exception.GetterMethodNotFoundException
+import com.github.saran2020.realmbrowser.Exception.SchemaNotFoundException
+import com.github.saran2020.realmbrowser.model.ClassItem
 import com.github.saran2020.realmbrowser.model.FieldItem
+import com.github.saran2020.realmbrowser.model.ObjectType
 import io.realm.*
 import java.lang.reflect.Method
-import java.util.*
 
 /**
  * Created by its me on 29-Dec-17.
@@ -26,11 +29,11 @@ class GetFields {
         FetchFieldsTask(bundle, this.callback).execute()
     }
 
-    class FetchFieldsTask(private val bundle: Bundle, private val callback: FieldsTaskCompleteCallback?) : AsyncTask<Void, Void, List<List<FieldItem>>>() {
+    class FetchFieldsTask(private val bundle: Bundle, private val callback: FieldsTaskCompleteCallback?) : AsyncTask<Void, Void, List<ClassItem>>() {
 
         lateinit var realm: Realm
 
-        override fun doInBackground(vararg params: Void?): List<List<FieldItem>> {
+        override fun doInBackground(vararg params: Void?): List<ClassItem> {
 
             realm = Realm.getDefaultInstance()
 
@@ -56,19 +59,19 @@ class GetFields {
         }
 
 
-        private fun findFirst(query: RealmQuery<*>): List<FieldItem> {
+        private fun findFirst(query: RealmQuery<*>): ClassItem {
 
             val resultValue = query.findFirst() as RealmObject
             return findFieldsOfInstance(resultValue)
         }
 
 
-        private fun findAll(query: RealmQuery<*>): List<List<FieldItem>> {
+        private fun findAll(query: RealmQuery<*>): ArrayList<ClassItem> {
 
             val realmResult: RealmResults<in RealmObject> = query.findAll() as RealmResults<in RealmObject>
-            val getterMethods = findGettersOfFields(realmResult[0] as RealmObject)
+            val getterMethods = findGetters(realmResult[0] as RealmObject)
 
-            val result = arrayListOf<List<FieldItem>>()
+            val result = arrayListOf<ClassItem>()
             realmResult.forEach {
                 result.add(findFieldsOfInstance(it as RealmObject, getterMethods))
             }
@@ -80,27 +83,23 @@ class GetFields {
          * Find all getter methods for declared fields. This getter methods
          * will be then invoked to find the values
          */
-        private fun findGettersOfFields(objectInstance: RealmObject): Map<String, Method> {
+        private fun findGetters(objectInstance: RealmObject): Map<String, Method> {
 
-            val resultClass = objectInstance::class.java
-            val modelName = resultClass.simpleName.removeSuffix("RealmProxy")
-
-            // TODO: Handle empty map and show appropriate error
-            val classSchema = realm.schema.get(modelName) ?: return emptyMap()
-
-            val fieldNames = classSchema.fieldNames
             val map = mutableMapOf<String, Method>()
+            val resultClass = objectInstance::class.java
+            val classSchema = getClassSchema(objectInstance)
 
+            // insert other fields
+            val fieldNames = classSchema.fieldNames
             for (fieldName in fieldNames) {
 
-                val fieldNameCamelCase: String = fieldName.elementAt(0).toUpperCase() + fieldName.substring(1)
-                val getterMethodName = if (classSchema.getFieldType(fieldName) == RealmFieldType.BOOLEAN) {
-                    "is$fieldNameCamelCase"
-                } else {
-                    "get$fieldNameCamelCase"
+                val getterMethod = findGetter(classSchema, resultClass, fieldName)
+
+                if (getterMethod == null) {
+                    throw GetterMethodNotFoundException("Getter method not found for field $fieldName. " +
+                            "Getter method should start with get or is followed by field name with uppercase first char of field name")
                 }
 
-                val getterMethod = resultClass.getMethod(getterMethodName)
                 map.put(fieldName, getterMethod)
 
                 Log.d(TAG, "Mapping FieldName = $fieldName methodName = ${getterMethod.name}")
@@ -109,61 +108,79 @@ class GetFields {
             return map
         }
 
-        /**
-         * Gets a list of all field items for the given object
-         * @param resultInstance The object from which the getters are to be invoked
-         * @param fieldGetters Getters method which are to be invoked. Can be sullied
-         * as parameter so that the fields are not fetched every time for loops. If not
-         * supplied by default will fetch of the given instance
-         * @return A List of all field items for the given object
-         */
-        private fun findFieldsOfInstance(resultInstance: RealmObject,
-                                         fieldGetters: Map<String, Method> = findGettersOfFields(resultInstance))
-                : List<FieldItem> {
+        private fun getClassSchema(objectInstance: RealmObject): RealmObjectSchema {
+            val resultClass = objectInstance::class.java
+            val modelName = resultClass.simpleName.removeSuffix("RealmProxy")
 
-            val fieldItems = arrayListOf<FieldItem>()
+            val schema = realm.schema.get(modelName)
 
-            for (getter in fieldGetters) {
-
-                val type = getter.value.returnType
-                val name = getter.key
-                var data = getter.value.invoke(resultInstance)
-
-                if (data != null) {
-
-                    if (type.superclass == RealmObject::class.java) {
-
-                        // If the field is an instance of Realm object, recursively find items inside that.
-                        val getterOfField = findGettersOfFields(data as RealmObject)
-                        data = findFieldsOfInstance(data, getterOfField)
-
-                    } else if (type.isAssignableFrom(RealmList::class.java)) {
-
-                        val objects = data as RealmList<*>
-                        val listItems = arrayListOf<List<FieldItem>>()
-
-                        objects.forEachIndexed { index, any ->
-
-                            // check if the list of normal type (String, Boolean) or RealmObject
-                            if (any::class.java.superclass == RealmObject::class.java) {
-                                listItems.add(findFieldsOfInstance(any as RealmObject))
-                            } else {
-                                listItems.add(Collections.singletonList(FieldItem(any::class.java, "value $index", any)))
-                            }
-                        }
-
-                        data = listItems
-                    }
-                }
-
-                val fieldItem = FieldItem(type, name, data)
-                fieldItems.add(fieldItem)
+            if (schema != null) {
+                return schema
+            } else {
+                throw SchemaNotFoundException("Realm Schema not found for class $modelName")
             }
-
-            return fieldItems
         }
 
-        override fun onPostExecute(result: List<List<FieldItem>>?) {
+        private fun findGetter(objectSchema: RealmObjectSchema, resultClass: Class<out RealmObject>, fieldName: String): Method? {
+            val fieldNameCamelCase: String = fieldName.elementAt(0).toUpperCase() + fieldName.substring(1)
+            val getterMethodName = if (objectSchema.getFieldType(fieldName) == RealmFieldType.BOOLEAN) {
+                "is$fieldNameCamelCase"
+            } else {
+                "get$fieldNameCamelCase"
+            }
+
+            return resultClass.getMethod(getterMethodName)
+        }
+
+        private fun findFieldsOfInstance(resultInstance: RealmObject,
+                                         fieldGetters: Map<String, Method> = findGetters(resultInstance))
+                : ClassItem {
+
+            val schema = getClassSchema(resultInstance)
+            val primaryKeyFieldName = schema.primaryKey
+
+            var primaryKeyItem = FieldItem()
+            val fieldItems = arrayListOf<FieldItem>()
+
+            // invoke all getters for the instance
+            for (getter in fieldGetters) {
+
+                val fieldItem = getFieldItem(resultInstance, schema, getter);
+
+                if (getter.key == primaryKeyFieldName) {
+                    primaryKeyItem = fieldItem
+                } else {
+                    fieldItems.add(fieldItem)
+                }
+            }
+
+            return ClassItem(primaryKeyItem, fieldItems)
+        }
+
+        private fun getFieldItem(resultInstance: RealmObject, schema: RealmObjectSchema, getter: Map.Entry<String, Method>): FieldItem {
+
+            val fieldName = getter.key
+            val fieldType = schema.getFieldType(fieldName)
+            var data = getter.value.invoke(resultInstance)
+
+            if (data != null) {
+
+                if (fieldType == RealmFieldType.OBJECT) {
+
+                    val parentPrimaryKeyFieldName = schema.primaryKey
+                    val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
+                    val parentPrimaryKeyFieldValue = findGetter(schema, resultInstance::class.java, parentPrimaryKeyFieldName)?.invoke(resultInstance)
+                    data = ObjectType(data.javaClass.simpleName.removeSuffix("RealmProxy"),
+                            parentPrimaryKeyFieldName,
+                            parentPrimaryKeyFieldType,
+                            parentPrimaryKeyFieldValue)
+                }
+            }
+
+            return FieldItem(getter.key, data, fieldType)
+        }
+
+        override fun onPostExecute(result: List<ClassItem>?) {
             super.onPostExecute(result)
 
             if (callback == null)

@@ -42,3 +42,6 @@ const val TYPE_REALM_LIST: Byte = -11
 const val TYPE_REALM_OBJECT: Byte = -12
 
 const val GETTER_PREFIX = "get"
+const val BOOLEAN_GETTER_PREFIX = "is"
+
+const val ERROR_TEXT = "Some error occurred"
