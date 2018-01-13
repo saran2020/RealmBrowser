@@ -34,7 +34,7 @@ class RecyclerAdapter(private val context: Context, private val items: List<Clas
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        populateViews(holder?.item, items.get(position))
+        populateViews(context, holder?.item, items.get(position))
 
         if (position % 2 == 0) {
             holder?.item?.setBackgroundColor(evenColor)

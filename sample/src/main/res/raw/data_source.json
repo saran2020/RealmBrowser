@@ -34,7 +34,7 @@
       "id": 0,
       "bioguideid": "B001230"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -89,7 +89,7 @@
       "id": 1,
       "bioguideid": "B000944"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -144,7 +144,7 @@
       "id": 2,
       "bioguideid": "C000141"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -199,7 +199,7 @@
       "id": 3,
       "bioguideid": "F000444"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -254,7 +254,7 @@
       "id": 4,
       "bioguideid": "M000639"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -364,7 +364,7 @@
       "id": 6,
       "bioguideid": "C000127"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -419,7 +419,7 @@
       "id": 7,
       "bioguideid": "C000174"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -474,7 +474,7 @@
       "id": 8,
       "bioguideid": "F000062"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -529,7 +529,7 @@
       "id": 9,
       "bioguideid": "H000338"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -584,7 +584,7 @@
       "id": 10,
       "bioguideid": "N000032"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -638,7 +638,7 @@
       "id": 11,
       "bioguideid": "S000770"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -693,7 +693,7 @@
       "id": 12,
       "bioguideid": "M001169"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -748,7 +748,7 @@
       "id": 13,
       "bioguideid": "H001042"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -803,7 +803,7 @@
       "id": 14,
       "bioguideid": "D000607"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -858,7 +858,7 @@
       "id": 15,
       "bioguideid": "H001041"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -913,7 +913,7 @@
       "id": 16,
       "bioguideid": "G000555"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -968,7 +968,7 @@
       "id": 17,
       "bioguideid": "K000367"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1022,7 +1022,7 @@
       "id": 18,
       "bioguideid": "M001170"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1077,7 +1077,7 @@
       "id": 19,
       "bioguideid": "T000464"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1132,7 +1132,7 @@
       "id": 20,
       "bioguideid": "C001070"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1187,7 +1187,7 @@
       "id": 21,
       "bioguideid": "W000802"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1242,7 +1242,7 @@
       "id": 22,
       "bioguideid": "C001071"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1297,7 +1297,7 @@
       "id": 23,
       "bioguideid": "B001261"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1352,7 +1352,7 @@
       "id": 24,
       "bioguideid": "H001046"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1406,7 +1406,7 @@
       "id": 25,
       "bioguideid": "M001183"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1461,7 +1461,7 @@
       "id": 26,
       "bioguideid": "W000817"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1571,7 +1571,7 @@
       "id": 28,
       "bioguideid": "H001069"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1626,7 +1626,7 @@
       "id": 29,
       "bioguideid": "F000463"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1681,7 +1681,7 @@
       "id": 30,
       "bioguideid": "C001098"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1735,7 +1735,7 @@
       "id": 31,
       "bioguideid": "K000384"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1790,7 +1790,7 @@
       "id": 32,
       "bioguideid": "W000437"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       113,
       114,
@@ -1844,7 +1844,7 @@
       "id": 33,
       "bioguideid": "A000360"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -1899,7 +1899,7 @@
       "id": 34,
       "bioguideid": "C000567"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -1954,7 +1954,7 @@
       "id": 35,
       "bioguideid": "C001035"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2009,7 +2009,7 @@
       "id": 36,
       "bioguideid": "C001056"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2064,7 +2064,7 @@
       "id": 37,
       "bioguideid": "D000563"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2119,7 +2119,7 @@
       "id": 38,
       "bioguideid": "E000285"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2174,7 +2174,7 @@
       "id": 39,
       "bioguideid": "G000359"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2229,7 +2229,7 @@
       "id": 40,
       "bioguideid": "I000024"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2284,7 +2284,7 @@
       "id": 41,
       "bioguideid": "M000355"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2339,7 +2339,7 @@
       "id": 42,
       "bioguideid": "R000122"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2394,7 +2394,7 @@
       "id": 43,
       "bioguideid": "R000307"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2449,7 +2449,7 @@
       "id": 44,
       "bioguideid": "C001047"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2503,7 +2503,7 @@
       "id": 45,
       "bioguideid": "M000133"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2556,7 +2556,7 @@
       "id": 46,
       "bioguideid": "U000039"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2611,7 +2611,7 @@
       "id": 47,
       "bioguideid": "C001075"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2665,7 +2665,7 @@
       "id": 48,
       "bioguideid": "P000595"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2719,7 +2719,7 @@
       "id": 49,
       "bioguideid": "W000805"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2774,7 +2774,7 @@
       "id": 50,
       "bioguideid": "R000584"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2828,7 +2828,7 @@
       "id": 51,
       "bioguideid": "S001181"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2883,7 +2883,7 @@
       "id": 52,
       "bioguideid": "M001176"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2938,7 +2938,7 @@
       "id": 53,
       "bioguideid": "F000457"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -2993,7 +2993,7 @@
       "id": 54,
       "bioguideid": "C001088"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3048,7 +3048,7 @@
       "id": 55,
       "bioguideid": "G000562"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3102,7 +3102,7 @@
       "id": 56,
       "bioguideid": "C001095"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3155,7 +3155,7 @@
       "id": 57,
       "bioguideid": "D000618"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3209,7 +3209,7 @@
       "id": 58,
       "bioguideid": "B001288"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3263,7 +3263,7 @@
       "id": 59,
       "bioguideid": "S001198"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3316,7 +3316,7 @@
       "id": 60,
       "bioguideid": "P000612"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3369,7 +3369,7 @@
       "id": 61,
       "bioguideid": "E000295"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3422,7 +3422,7 @@
       "id": 62,
       "bioguideid": "T000476"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3475,7 +3475,7 @@
       "id": 63,
       "bioguideid": "R000605"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3528,7 +3528,7 @@
       "id": 64,
       "bioguideid": "S001197"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       114,
       115,
@@ -3581,7 +3581,7 @@
       "id": 65,
       "bioguideid": "C000880"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -3635,7 +3635,7 @@
       "id": 66,
       "bioguideid": "G000386"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -3690,7 +3690,7 @@
       "id": 67,
       "bioguideid": "L000174"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -3745,7 +3745,7 @@
       "id": 68,
       "bioguideid": "M000303"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -3799,7 +3799,7 @@
       "id": 69,
       "bioguideid": "M001153"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -3854,7 +3854,7 @@
       "id": 70,
       "bioguideid": "M001111"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -3909,7 +3909,7 @@
       "id": 71,
       "bioguideid": "S000148"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -3963,7 +3963,7 @@
       "id": 72,
       "bioguideid": "S000320"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4018,7 +4018,7 @@
       "id": 73,
       "bioguideid": "W000779"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4073,7 +4073,7 @@
       "id": 74,
       "bioguideid": "B000575"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4128,7 +4128,7 @@
       "id": 75,
       "bioguideid": "B001236"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4183,7 +4183,7 @@
       "id": 76,
       "bioguideid": "B001135"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4238,7 +4238,7 @@
       "id": 77,
       "bioguideid": "I000055"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4293,7 +4293,7 @@
       "id": 78,
       "bioguideid": "M000934"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4348,7 +4348,7 @@
       "id": 79,
       "bioguideid": "P000449"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4402,7 +4402,7 @@
       "id": 80,
       "bioguideid": "T000461"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4457,7 +4457,7 @@
       "id": 81,
       "bioguideid": "V000128"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4511,7 +4511,7 @@
       "id": 82,
       "bioguideid": "T000250"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4566,7 +4566,7 @@
       "id": 83,
       "bioguideid": "B001267"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4621,7 +4621,7 @@
       "id": 84,
       "bioguideid": "Y000064"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4675,7 +4675,7 @@
       "id": 85,
       "bioguideid": "L000575"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4728,7 +4728,7 @@
       "id": 86,
       "bioguideid": "S001184"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4783,7 +4783,7 @@
       "id": 87,
       "bioguideid": "B001277"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4838,7 +4838,7 @@
       "id": 88,
       "bioguideid": "R000595"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4893,7 +4893,7 @@
       "id": 89,
       "bioguideid": "P000603"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -4948,7 +4948,7 @@
       "id": 90,
       "bioguideid": "H001061"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5003,7 +5003,7 @@
       "id": 91,
       "bioguideid": "L000577"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5057,7 +5057,7 @@
       "id": 92,
       "bioguideid": "J000293"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5112,7 +5112,7 @@
       "id": 93,
       "bioguideid": "S001194"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5166,7 +5166,7 @@
       "id": 94,
       "bioguideid": "D000622"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5219,7 +5219,7 @@
       "id": 95,
       "bioguideid": "H001075"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5272,7 +5272,7 @@
       "id": 96,
       "bioguideid": "K000393"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5325,7 +5325,7 @@
       "id": 97,
       "bioguideid": "H001076"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5378,7 +5378,7 @@
       "id": 98,
       "bioguideid": "C001113"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116,
@@ -5431,7 +5431,7 @@
       "id": 99,
       "bioguideid": "S001202"
     },
-    "caucus": "",
+    "caucus": null,
     "congress_numbers": [
       115,
       116

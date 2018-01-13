@@ -3,6 +3,7 @@ package com.github.saran2020.realmbrowser
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
+import android.support.annotation.StyleRes
 import android.text.TextUtils
 import android.util.Log
 import android.view.ViewGroup
@@ -166,12 +167,7 @@ fun populateHeader(context: Context, layout: LinearLayout, item: ClassItem) {
 private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, textPadding: Int): TextView {
 
     val textHeader = getTextView(context, textWidth, textPadding)
-
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-        textHeader.setTextAppearance(context, R.style.headerTextAppearance)
-    } else {
-        textHeader.setTextAppearance(R.style.headerTextAppearance)
-    }
+    setStyleToText(context, textHeader, R.style.headerTextAppearance)
 
     textHeader.text = field.name
     Log.d(TAG, "data = ${field.name}")
@@ -179,7 +175,7 @@ private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, te
     return textHeader
 }
 
-fun populateViews(layout: LinearLayout?, item: ClassItem) {
+fun populateViews(context: Context, layout: LinearLayout?, item: ClassItem) {
 
     if (layout == null)
         return
@@ -187,21 +183,22 @@ fun populateViews(layout: LinearLayout?, item: ClassItem) {
     val viewCount = layout.childCount
 
     // primary key item first
-    setTextToView(layout.getChildAt(0) as TextView, item.primaryKey)
+    setTextToView(context, layout.getChildAt(0) as TextView, item.primaryKey)
 
     // other fields
     for (index in 1 until viewCount) {
         // index - 1 because first item of view is primary key
-        setTextToView(layout.getChildAt(index) as TextView, item.fieldsList[index - 1])
+        setTextToView(context, layout.getChildAt(index) as TextView, item.fieldsList[index - 1])
     }
 }
 
-private fun setTextToView(textView: TextView, field: FieldItem) {
+private fun setTextToView(context: Context, textView: TextView, field: FieldItem) {
 
     val fieldData: String
 
     if (field.value == null) {
         fieldData = "null"
+        setStyleToText(context, textView, R.style.nullTextAppearance)
     } else {
 
         fieldData = when (field.type) {
@@ -235,6 +232,15 @@ private fun setTextToView(textView: TextView, field: FieldItem) {
 
     Log.d(TAG, "data = $fieldData")
     textView.text = fieldData
+}
+
+private fun setStyleToText(context: Context, textView: TextView, @StyleRes resId: Int){
+
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        textView.setTextAppearance(context, resId)
+    } else {
+        textView.setTextAppearance(resId)
+    }
 }
 
 private fun getTextViewWidth(context: Context): Int {

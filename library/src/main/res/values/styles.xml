@@ -19,4 +19,10 @@
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textColor">@color/headerTextColor</item>
     </style>
+
+    <style name="nullTextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textColor">@color/nullTextColor</item>
+    </style>
 </resources>
