@@ -83,31 +83,27 @@ class GetFields {
         private fun findGettersOfFields(objectInstance: RealmObject): Map<String, Method> {
 
             val resultClass = objectInstance::class.java
+            val modelName = resultClass.simpleName.removeSuffix("RealmProxy")
 
-            val fieldNames = resultClass.getMethod("getFieldNames")
-                    .invoke(objectInstance) as List<String>
-            val methods = resultClass.methods
+            // TODO: Handle empty map and show appropriate error
+            val classSchema = realm.schema.get(modelName) ?: return emptyMap()
 
+            val fieldNames = classSchema.fieldNames
             val map = mutableMapOf<String, Method>()
 
-            // compare each method with fields to know if it is the getter for the required field
-            for (method in methods) {
+            for (fieldName in fieldNames) {
 
-                for (name in fieldNames) {
-
-                    // getters and is for boolean
-                    val nameGet = "get$name"
-                    val nameIs = "is$name"
-
-                    // check if this is the getter for a field.
-                    if (method.name.equals(nameGet, true) || method.name.equals(nameIs, true)) {
-                        Log.d("GetFields", "findGettersOfFields: Returned true it = ${method.name} fieldName = $name")
-                        map.set(name, method)
-                        break
-                    }
+                val fieldNameCamelCase: String = fieldName.elementAt(0).toUpperCase() + fieldName.substring(1)
+                val getterMethodName = if (classSchema.getFieldType(fieldName) == RealmFieldType.BOOLEAN) {
+                    "is$fieldNameCamelCase"
+                } else {
+                    "get$fieldNameCamelCase"
                 }
 
-                Log.d("GetFields", "findGettersOfFields: Returned false it = ${method.name}")
+                val getterMethod = resultClass.getMethod(getterMethodName)
+                map.put(fieldName, getterMethod)
+
+                Log.d(TAG, "Mapping FieldName = $fieldName methodName = ${getterMethod.name}")
             }
 
             return map
