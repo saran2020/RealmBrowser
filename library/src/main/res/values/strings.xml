@@ -1,0 +1,10 @@
+<resources>
+    <string name="library_name">RealmBrowserLibrary</string>
+
+    <string name="label_result">Result</string>
+
+    <string name="package_name">Package Name</string>
+    <string name="class_name">Class Name</string>
+    <string name="fetch">Fetch</string>
+    <string name="addQuery">Add Query</string>
+</resources>

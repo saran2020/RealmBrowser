@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="buttonTextColor">#FFFFFF</color>
+    <color name="positiveColor">#4CAF50</color>
+
+    <!--table colors-->
+    <color name="headerColor">#3F51B5</color>
+    <color name="tableBackroundOdd">#9FA8DA</color>
+    <color name="tableBackroundEven">#E8EAF6</color>
+    <color name="headerTextColor">#FFFFFF</color>
+    <color name="nullTextColor">#FF6D00</color>
+
+</resources>
