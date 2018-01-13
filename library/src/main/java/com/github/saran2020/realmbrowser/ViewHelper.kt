@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.res.Resources
 import android.os.Build
 import android.support.annotation.StyleRes
+import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.TextUtils
+import android.text.style.URLSpan
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -200,6 +203,7 @@ fun populateViews(context: Context, layout: LinearLayout?, item: ClassItem) {
 private fun setTextToView(context: Context, textView: TextView, field: FieldItem) {
 
     val fieldData: String
+    var isTextHyperlinkSylable: Boolean = false
 
     if (field.value == null) {
         fieldData = "null"
@@ -228,15 +232,25 @@ private fun setTextToView(context: Context, textView: TextView, field: FieldItem
                 }
             }
 
-            RealmFieldType.OBJECT -> (field.value as ObjectType).fieldText
-            RealmFieldType.LIST -> field.value as String
+            RealmFieldType.OBJECT -> {
+                isTextHyperlinkSylable = true
+                (field.value as ObjectType).fieldText
+            }
+            RealmFieldType.LIST -> {
+                isTextHyperlinkSylable = true
+                field.value as String
+            }
 
             else -> ERROR_TEXT
         }
     }
 
-    Log.d(TAG, "data = $fieldData")
-    textView.text = fieldData
+    if (isTextHyperlinkSylable) {
+        makeTextViewHyperlink(textView, fieldData)
+    } else {
+        Log.d(TAG, "data = $fieldData")
+        textView.text = fieldData
+    }
 }
 
 private fun setStyleToText(context: Context, textView: TextView, @StyleRes resId: Int) {
@@ -246,6 +260,13 @@ private fun setStyleToText(context: Context, textView: TextView, @StyleRes resId
     } else {
         textView.setTextAppearance(resId)
     }
+}
+
+private fun makeTextViewHyperlink(textView: TextView, text: String) {
+
+    val ssb = SpannableStringBuilder(text)
+    ssb.setSpan(URLSpan("#"), 0, ssb.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    textView.setText(ssb, TextView.BufferType.SPANNABLE)
 }
 
 private fun getTextViewWidth(context: Context): Int {
