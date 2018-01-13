@@ -154,20 +154,25 @@ fun populateHeader(context: Context, layout: LinearLayout, item: ClassItem) {
     val textPadding = dpToPx(8)
 
     // primary key first
-    layout.addView(getHeaderText(context, item.primaryKey, widthInPx, textPadding))
+    layout.addView(getHeaderText(context, item.primaryKey, widthInPx, textPadding, true))
 
     for (index in 0 until fieldCount) {
-        val textHeader = getHeaderText(context, item.fieldsList[index], widthInPx, textPadding)
+        val textHeader = getHeaderText(context, item.fieldsList[index], widthInPx, textPadding, false)
         layout.addView(textHeader)
     }
 
     Log.d(TAG, "Completed")
 }
 
-private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, textPadding: Int): TextView {
+private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, textPadding: Int, isPrimaryKey: Boolean): TextView {
 
     val textHeader = getTextView(context, textWidth, textPadding)
     setStyleToText(context, textHeader, R.style.headerTextAppearance)
+
+    if (isPrimaryKey) {
+        textHeader.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_primary_key_icon, 0, 0, 0)
+        textHeader.compoundDrawablePadding = dpToPx(4)
+    }
 
     textHeader.text = field.name
     Log.d(TAG, "data = ${field.name}")
@@ -234,7 +239,7 @@ private fun setTextToView(context: Context, textView: TextView, field: FieldItem
     textView.text = fieldData
 }
 
-private fun setStyleToText(context: Context, textView: TextView, @StyleRes resId: Int){
+private fun setStyleToText(context: Context, textView: TextView, @StyleRes resId: Int) {
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
         textView.setTextAppearance(context, resId)
