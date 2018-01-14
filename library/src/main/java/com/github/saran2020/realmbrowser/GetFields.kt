@@ -4,6 +4,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import com.github.saran2020.realmbrowser.Exception.GetterMethodNotFoundException
+import com.github.saran2020.realmbrowser.Exception.PrimaryKeyItemNotFoundException
 import com.github.saran2020.realmbrowser.Exception.SchemaNotFoundException
 import com.github.saran2020.realmbrowser.model.ClassItem
 import com.github.saran2020.realmbrowser.model.FieldItem
@@ -139,7 +140,7 @@ class GetFields {
             val schema = getClassSchema(resultInstance)
             val primaryKeyFieldName = schema.primaryKey
 
-            var primaryKeyItem = FieldItem()
+            var primaryKeyItem: FieldItem? = null
             val fieldItems = arrayListOf<FieldItem>()
 
             // invoke all getters for the instance
@@ -152,6 +153,11 @@ class GetFields {
                 } else {
                     fieldItems.add(fieldItem)
                 }
+            }
+
+            if (primaryKeyItem == null) {
+                // TODO: Improve exception message
+                throw PrimaryKeyItemNotFoundException("Field primary key not found")
             }
 
             return ClassItem(primaryKeyItem, fieldItems)
@@ -177,7 +183,7 @@ class GetFields {
                 }
             }
 
-            return FieldItem(getter.key, data, fieldType)
+            return FieldItem(getter.key, fieldType, data)
         }
 
         override fun onPostExecute(result: List<ClassItem>?) {

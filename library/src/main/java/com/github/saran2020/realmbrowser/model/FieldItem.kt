@@ -7,15 +7,4 @@ import io.realm.RealmFieldType
  *
  * A result item will contain the type and value of the field.
  */
-class FieldItem() {
-
-    lateinit var name: String
-    lateinit var type: RealmFieldType
-    var value: Any? = null
-
-    constructor(fieldName: String, fieldValue: Any?, fieldType: RealmFieldType) : this() {
-        this.name = fieldName
-        this.value = fieldValue
-        this.type = fieldType
-    }
-}
+data class FieldItem(val name: String, val type: RealmFieldType, val value: Any?)

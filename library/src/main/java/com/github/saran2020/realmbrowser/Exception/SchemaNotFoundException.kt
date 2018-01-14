@@ -1,7 +1,6 @@
 package com.github.saran2020.realmbrowser.Exception
 
 /**
- * Created by Saran Sankaran on 1/13/18.
+ * Created by Saran Sankaran on 1/14/18.
  */
-class SchemaNotFoundException(msg: String) : Exception(msg) {
-}
+class SchemaNotFoundException(msg: String) : Exception(msg)

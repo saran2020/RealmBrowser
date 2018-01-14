@@ -5,13 +5,4 @@ package com.github.saran2020.realmbrowser.model
  *
  * Created by Saran Sankaran on 1/13/18.
  */
-class ClassItem() {
-
-    lateinit var primaryKey: FieldItem
-    lateinit var fieldsList: List<FieldItem>
-
-    constructor(primaryKey: FieldItem, fieldsList: List<FieldItem>) : this() {
-        this.primaryKey = primaryKey
-        this.fieldsList = fieldsList
-    }
-}
+data class ClassItem(val primaryKey: FieldItem, val fieldsList: List<FieldItem>)
