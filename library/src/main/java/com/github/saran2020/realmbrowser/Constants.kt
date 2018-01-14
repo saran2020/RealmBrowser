@@ -1,4 +1,5 @@
 @file:JvmName("Constants")
+
 package com.github.saran2020.realmbrowser
 
 /**
@@ -10,6 +11,11 @@ const val NO_ITEM_SELECTED: Byte = -1
 // Extra keys
 const val EXTRA_CLASS_NAME = "EXTRA_CLASS_NAME"
 const val EXTRA_FIND = "EXTRA_FIND"
+
+const val EXTRA_PARENT_CLASS_NAME = "EXTRA_PARENT_CLASS_NAME"
+const val EXTRA_PARENT_PRIMARY_KEY_NAME = "EXTRA_PARENT_PRIMARY_KEY_NAME"
+const val EXTRA_PARENT_PRIMARY_KEY_TYPE = "EXTRA_PARENT_PRIMARY_KEY_TYPE"
+const val EXTRA_PARENT_PRIMARY_KEY_VALUE = "EXTRA_PARENT_PRIMARY_KEY_VALUE"
 
 // Query Types
 const val QUERY_EQUAL_TO: Byte = 50

@@ -163,7 +163,8 @@ class GetFields {
             return ClassItem(primaryKeyItem, fieldItems)
         }
 
-        private fun getFieldItem(resultInstance: RealmObject, schema: RealmObjectSchema, getter: Map.Entry<String, Method>): FieldItem {
+        private fun getFieldItem(resultInstance: RealmObject, schema: RealmObjectSchema,
+                                 getter: Map.Entry<String, Method>): FieldItem {
 
             val fieldName = getter.key
             val fieldType = schema.getFieldType(fieldName)
@@ -177,6 +178,7 @@ class GetFields {
                     val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
                     val parentPrimaryKeyFieldValue = findGetter(schema, resultInstance::class.java, parentPrimaryKeyFieldName)?.invoke(resultInstance)
                     data = ObjectType(data.javaClass.simpleName.removeSuffix("RealmProxy"),
+                            schema.className,
                             parentPrimaryKeyFieldName,
                             parentPrimaryKeyFieldType,
                             parentPrimaryKeyFieldValue)

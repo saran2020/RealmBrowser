@@ -38,8 +38,7 @@ class RecyclerAdapter(private val context: Context, private val items: List<Clas
         }
 
         Log.d(TAG, "Received click for pos ${tag[0]}|${tag[1]} item = $fieldItem")
-
-//        startResultActivity(context, fieldItem)
+        startResultActivity(context, fieldItem)
     }
 
     init {

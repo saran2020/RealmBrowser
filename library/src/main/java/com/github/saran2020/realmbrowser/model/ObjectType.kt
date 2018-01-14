@@ -18,6 +18,7 @@ import io.realm.RealmFieldType
  * Created by its me on 13-Jan-18.
  */
 data class ObjectType(val fieldText: String,
+                      val parentClassName: String,
                       val parentPrimaryKeyFieldName: String,
                       val parentPrimaryKeyType: RealmFieldType,
                       val parentPrimaryKeyValue: Any?)
