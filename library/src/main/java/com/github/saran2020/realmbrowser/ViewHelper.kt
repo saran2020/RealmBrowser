@@ -9,6 +9,7 @@ import android.text.Spanned
 import android.text.TextUtils
 import android.text.style.URLSpan
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.GridLayout
@@ -183,7 +184,9 @@ private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, te
     return textHeader
 }
 
-fun populateViews(context: Context, layout: LinearLayout?, item: ClassItem) {
+fun populateViews(context: Context, layout: LinearLayout?,
+                  objectClickListener: View.OnClickListener,
+                  item: ClassItem, position: Int) {
 
     if (layout == null)
         return
@@ -191,19 +194,23 @@ fun populateViews(context: Context, layout: LinearLayout?, item: ClassItem) {
     val viewCount = layout.childCount
 
     // primary key item first
-    setTextToView(context, layout.getChildAt(0) as TextView, item.primaryKey)
+    setTextToView(context, layout.getChildAt(0) as TextView, item.primaryKey,
+            objectClickListener, position, 0)
 
     // other fields
     for (index in 1 until viewCount) {
         // index - 1 because first item of view is primary key
-        setTextToView(context, layout.getChildAt(index) as TextView, item.fieldsList[index - 1])
+        setTextToView(context, layout.getChildAt(index) as TextView, item.fieldsList[index - 1],
+                objectClickListener, position, index)
     }
 }
 
-private fun setTextToView(context: Context, textView: TextView, field: FieldItem) {
+private fun setTextToView(context: Context, textView: TextView, field: FieldItem,
+                          objectClickListener: View.OnClickListener,
+                          rowPos: Int, viewPos: Int) {
 
     val fieldData: String
-    var isTextHyperlinkSylable: Boolean = false
+    var isTextHyperlinkStyleable: Boolean = false
 
     if (field.value == null) {
         fieldData = "null"
@@ -233,11 +240,11 @@ private fun setTextToView(context: Context, textView: TextView, field: FieldItem
             }
 
             RealmFieldType.OBJECT -> {
-                isTextHyperlinkSylable = true
+                isTextHyperlinkStyleable = true
                 (field.value as ObjectType).fieldText
             }
             RealmFieldType.LIST -> {
-                isTextHyperlinkSylable = true
+                isTextHyperlinkStyleable = true
                 field.value as String
             }
 
@@ -245,8 +252,8 @@ private fun setTextToView(context: Context, textView: TextView, field: FieldItem
         }
     }
 
-    if (isTextHyperlinkSylable) {
-        makeTextViewHyperlink(textView, fieldData)
+    if (isTextHyperlinkStyleable) {
+        makeTextViewHyperlink(textView, fieldData, objectClickListener, "$rowPos|$viewPos")
     } else {
         Log.d(TAG, "data = $fieldData")
         textView.text = fieldData
@@ -262,11 +269,15 @@ private fun setStyleToText(context: Context, textView: TextView, @StyleRes resId
     }
 }
 
-private fun makeTextViewHyperlink(textView: TextView, text: String) {
+private fun makeTextViewHyperlink(textView: TextView, text: String,
+                                  objectClickListener: View.OnClickListener, tag: String) {
 
     val ssb = SpannableStringBuilder(text)
     ssb.setSpan(URLSpan("#"), 0, ssb.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     textView.setText(ssb, TextView.BufferType.SPANNABLE)
+
+    textView.tag = tag
+    textView.setOnClickListener(objectClickListener)
 }
 
 private fun getTextViewWidth(context: Context): Int {
