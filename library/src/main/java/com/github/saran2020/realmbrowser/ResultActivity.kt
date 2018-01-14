@@ -25,17 +25,6 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var linearResultHeader: LinearLayout
     private lateinit var recyclerResults: RecyclerView
 
-    companion object {
-        // TODO: Review if the find parm is required
-        fun startActivity(context: Context, className: String, find: Byte) {
-
-            val intent = Intent(context, ResultActivity::class.java)
-            intent.putExtra(EXTRA_CLASS_NAME, className)
-            intent.putExtra(EXTRA_FIND, find)
-            context.startActivity(intent)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result_library)

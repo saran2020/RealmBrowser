@@ -102,8 +102,8 @@ class MainActivity : AppCompatActivity() {
 
         when (this@MainActivity.recyclerFindAdapter.selectedItem) {
             NO_ITEM_SELECTED -> this@MainActivity.recyclerFindAdapter.selectedItem
-            FIND_ALL -> ResultActivity.startActivity(this, fullClassName, FIND_ALL)
-            FIND_FIRST -> ResultActivity.startActivity(this, fullClassName, FIND_FIRST)
+            FIND_ALL -> startResultActivity(this, fullClassName, FIND_ALL)
+            FIND_FIRST -> startResultActivity(this, fullClassName, FIND_FIRST)
         }
     }
 }
