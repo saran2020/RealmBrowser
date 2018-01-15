@@ -62,7 +62,7 @@ class ResultActivity : AppCompatActivity() {
         override fun onFetchComplete(fields: List<ClassItem>?) {
             super.onFetchComplete(fields)
 
-            if (fields == null) {
+            if (fields == null || fields.isEmpty()) {
                 return
             }
 

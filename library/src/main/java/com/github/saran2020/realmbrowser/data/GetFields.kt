@@ -3,10 +3,13 @@ package com.github.saran2020.realmbrowser.data
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
-import com.github.saran2020.realmbrowser.*
 import com.github.saran2020.realmbrowser.Exception.GetterMethodNotFoundException
 import com.github.saran2020.realmbrowser.Exception.PrimaryKeyItemNotFoundException
 import com.github.saran2020.realmbrowser.Exception.SchemaNotFoundException
+import com.github.saran2020.realmbrowser.RESULT_TYPE_LIST
+import com.github.saran2020.realmbrowser.RESULT_TYPE_OBJECT
+import com.github.saran2020.realmbrowser.RESULT_TYPE_REALM_RESULT
+import com.github.saran2020.realmbrowser.TAG
 import com.github.saran2020.realmbrowser.data.model.ClassItem
 import com.github.saran2020.realmbrowser.data.model.FieldItem
 import com.github.saran2020.realmbrowser.data.model.ObjectType
@@ -39,50 +42,70 @@ class GetFields {
 
             realm = Realm.getDefaultInstance()
 
-//            val queryResult = RealmQueryCreater(realm, bundle).getResult()
+            val queryResult = RealmQueryCreater(realm, bundle).getResult()
 
-            val query = getRealmQuery()
+            if (queryResult.result == null) {
+                return emptyList()
+            }
 
-            return when (bundle.getByte(EXTRA_FIND)) {
-                FIND_FIRST -> {
-                    val fieldItems = findFirst(query)
+            return when (queryResult.resultType) {
+                RESULT_TYPE_OBJECT -> {
+                    val fieldItems = findFieldsFromInstance(queryResult.result as RealmObject)
                     arrayListOf(fieldItems)
                 }
-                FIND_ALL -> findAll(query)
+                RESULT_TYPE_REALM_RESULT -> {
+                    findFieldsFromRealmResult(queryResult.result as RealmResults<in RealmObject>)
+                }
+                RESULT_TYPE_LIST -> {
+                    findFieldsFromRealmList(queryResult.result as RealmList<in RealmObject>)
+                }
                 else -> emptyList()
             }
-//            return emptyList()
+
+//            val query = getRealmQuery()
+//
+//            return when (bundle.getByte(EXTRA_FIND)) {
+//                FIND_FIRST -> {
+//                    val fieldItems = findFirst(query)
+//                    arrayListOf(fieldItems)
+//                }
+//                FIND_ALL -> findAll(query)
+//                else -> emptyList()
+//            }
         }
 
-        //TODO: Handle class cast exception of casting to Class<RealmObject>
-        private fun getRealmQuery(): RealmQuery<*> {
-
-            val selectedClass = bundle.getString(EXTRA_CLASS_NAME)
-            val selectedClassInstance = realm.configuration.realmObjectClasses.single {
-                it.simpleName.equals(selectedClass, true)
-            }
-
-            val query = realm.where(selectedClassInstance)
-
-            return query
+        private fun findFieldsFromRealmList(realmResults: RealmList<in RealmObject>): List<ClassItem> {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 
+        //        //TODO: Handle class cast exception of casting to Class<RealmObject>
+//        private fun getRealmQuery(): RealmQuery<*> {
+//
+//            val selectedClass = bundle.getString(EXTRA_CLASS_NAME)
+//            val selectedClassInstance = realm.configuration.realmObjectClasses.single {
+//                it.simpleName.equals(selectedClass, true)
+//            }
+//
+//            val query = realm.where(selectedClassInstance)
+//
+//            return query
+//        }
+//
+//
+//        private fun findFirst(query: RealmQuery<*>): ClassItem {
+//
+//            val resultValue = query.findFirst() as RealmObject
+//            return findFieldsFromInstance(resultValue)
+//        }
+//
+//
+        private fun findFieldsFromRealmResult(realmResult: RealmResults<in RealmObject>): ArrayList<ClassItem> {
 
-        private fun findFirst(query: RealmQuery<*>): ClassItem {
-
-            val resultValue = query.findFirst() as RealmObject
-            return findFieldsOfInstance(resultValue)
-        }
-
-
-        private fun findAll(query: RealmQuery<*>): ArrayList<ClassItem> {
-
-            val realmResult: RealmResults<in RealmObject> = query.findAll() as RealmResults<in RealmObject>
             val getterMethods = findGetters(realmResult[0] as RealmObject)
 
             val result = arrayListOf<ClassItem>()
             realmResult.forEach {
-                result.add(findFieldsOfInstance(it as RealmObject, getterMethods))
+                result.add(findFieldsFromInstance(it as RealmObject, getterMethods))
             }
 
             return result
@@ -141,8 +164,8 @@ class GetFields {
             return resultClass.getMethod(getterMethodName)
         }
 
-        private fun findFieldsOfInstance(resultInstance: RealmObject,
-                                         fieldGetters: Map<String, Method> = findGetters(resultInstance))
+        private fun findFieldsFromInstance(resultInstance: RealmObject,
+                                           fieldGetters: Map<String, Method> = findGetters(resultInstance))
                 : ClassItem {
 
             val schema = getClassSchema(resultInstance)

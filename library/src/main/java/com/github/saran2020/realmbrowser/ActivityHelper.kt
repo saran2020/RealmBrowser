@@ -21,29 +21,33 @@ fun startResultActivity(context: Context, data: ObjectType) {
 
     val objectInfo = data.objectInfo
 
-    intent.putExtra(EXTRA_PARENT_CLASS_NAME, objectInfo.parentClassName)
+    intent.putExtra(EXTRA_CLASS_NAME, objectInfo.parentClassName)
     intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_NAME, objectInfo.parentPrimaryKeyFieldName)
     intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyType)
+    intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_GETTER_NAME, objectInfo.fieldGetterName)
 
+    // check type and insert value
     when (objectInfo.parentPrimaryKeyType) {
-        RealmFieldType.BOOLEAN.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue as Boolean)
-        RealmFieldType.FLOAT.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue as Float)
-        RealmFieldType.DOUBLE.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue as Double)
+        RealmFieldType.BOOLEAN.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_VALUE, objectInfo.parentPrimaryKeyValue as Boolean)
+        RealmFieldType.FLOAT.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_VALUE, objectInfo.parentPrimaryKeyValue as Float)
+        RealmFieldType.DOUBLE.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_VALUE, objectInfo.parentPrimaryKeyValue as Double)
 
         RealmFieldType.STRING.nativeValue -> {
-            intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue as String)
+            intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_VALUE, objectInfo.parentPrimaryKeyValue as String)
         }
 
         RealmFieldType.INTEGER.nativeValue -> {
             when (objectInfo.parentPrimaryKeyValue) {
-                is Long -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue)
-                is Int -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue)
-                is Short -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue)
-                is Byte -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue)
+                is Long -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_VALUE, objectInfo.parentPrimaryKeyValue)
+                is Int -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_VALUE, objectInfo.parentPrimaryKeyValue)
+                is Short -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_VALUE, objectInfo.parentPrimaryKeyValue)
+                is Byte -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_VALUE, objectInfo.parentPrimaryKeyValue)
                 else -> ERROR_TEXT
             }
         }
     }
+
+    intent.putExtra(EXTRA_FIND, FIND_FIRST)
 
     context.startActivity(intent)
 }
