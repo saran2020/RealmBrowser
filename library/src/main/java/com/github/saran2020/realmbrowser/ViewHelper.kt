@@ -241,7 +241,7 @@ private fun setTextToView(context: Context, textView: TextView, field: FieldItem
 
             RealmFieldType.OBJECT -> {
                 isTextHyperlinkStyleable = true
-                (field.value as ObjectType).fieldText
+                (field.value as ObjectType).displayText
             }
             RealmFieldType.LIST -> {
                 isTextHyperlinkStyleable = true

@@ -182,11 +182,14 @@ class GetFields {
                     val parentPrimaryKeyFieldName = schema.primaryKey
                     val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
                     val parentPrimaryKeyFieldValue = findGetter(schema, resultInstance::class.java, parentPrimaryKeyFieldName)?.invoke(resultInstance)
-                    data = ObjectType(data.javaClass.simpleName.removeSuffix("RealmProxy"),
+
+                    data = ObjectType(
+                            data.javaClass.simpleName.removeSuffix("RealmProxy"),
                             schema.className,
                             parentPrimaryKeyFieldName,
                             parentPrimaryKeyFieldType,
-                            parentPrimaryKeyFieldValue)
+                            parentPrimaryKeyFieldValue,
+                            getter.value.name)
                 }
             }
 

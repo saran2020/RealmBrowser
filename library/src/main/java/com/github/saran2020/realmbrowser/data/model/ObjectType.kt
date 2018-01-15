@@ -8,7 +8,7 @@ import io.realm.RealmFieldType
  * this item in table view
  *
  * ctor
- * @param fieldText The text that will be displayed in table view
+ * @param displayText The text that will be displayed in table view
  * @param parentPrimaryKeyFieldName Stores the parents primary key field name. This will be used
  * to data when the object is clicked in table view and we have to display the data.
  * @param parentPrimaryKeyFieldName Primary key type of parent
@@ -17,8 +17,16 @@ import io.realm.RealmFieldType
  *
  * Created by its me on 13-Jan-18.
  */
-data class ObjectType(val fieldText: String,
-                      val parentClassName: String,
-                      val parentPrimaryKeyFieldName: String,
-                      val parentPrimaryKeyType: RealmFieldType,
-                      val parentPrimaryKeyValue: Any?)
+data class ObjectType private constructor(val displayText: String) {
+
+    lateinit var objectInfo: ObjectInfo
+
+    constructor(displayText: String,
+                parentClassName: String,
+                parentPrimaryKeyFieldName: String,
+                parentPrimaryKeyType: RealmFieldType,
+                parentPrimaryKeyValue: Any?,
+                fieldGetterName: String) : this(displayText) {
+        objectInfo = ObjectInfo(parentClassName, parentPrimaryKeyFieldName, parentPrimaryKeyType, parentPrimaryKeyValue, fieldGetterName)
+    }
+}
