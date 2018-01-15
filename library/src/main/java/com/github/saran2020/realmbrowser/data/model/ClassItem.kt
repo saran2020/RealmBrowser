@@ -1,4 +1,4 @@
-package com.github.saran2020.realmbrowser.model
+package com.github.saran2020.realmbrowser.data.model
 
 /**
  * This class represents a realm model class and Primary key item is not included in the fields list

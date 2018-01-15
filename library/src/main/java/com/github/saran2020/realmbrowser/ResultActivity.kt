@@ -1,7 +1,5 @@
 package com.github.saran2020.realmbrowser
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -10,8 +8,9 @@ import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import com.github.saran2020.realmbrowser.model.ClassItem
-import com.github.saran2020.realmbrowser.model.FieldItem
+import com.github.saran2020.realmbrowser.data.FieldsTaskCompleteCallback
+import com.github.saran2020.realmbrowser.data.GetFields
+import com.github.saran2020.realmbrowser.data.model.ClassItem
 
 /**
  * Created by Saran Sankaran on 11/10/17.

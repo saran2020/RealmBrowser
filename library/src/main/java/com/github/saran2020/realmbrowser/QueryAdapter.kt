@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.github.saran2020.realmbrowser.model.QueryItem
+import com.github.saran2020.realmbrowser.data.model.QueryItem
 
 /**
  * Created by its me on 11-Nov-17.

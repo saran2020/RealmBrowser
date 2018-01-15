@@ -8,8 +8,8 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.github.saran2020.realmbrowser.model.ClassItem
-import com.github.saran2020.realmbrowser.model.ObjectType
+import com.github.saran2020.realmbrowser.data.model.ClassItem
+import com.github.saran2020.realmbrowser.data.model.ObjectType
 
 /**
  * Created by its me on 08-Jan-18.

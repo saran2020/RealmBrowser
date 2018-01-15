@@ -1,4 +1,4 @@
-package com.github.saran2020.realmbrowser.model
+package com.github.saran2020.realmbrowser.data.model
 
 import io.realm.RealmFieldType
 

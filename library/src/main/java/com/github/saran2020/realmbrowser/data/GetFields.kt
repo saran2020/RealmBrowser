@@ -1,14 +1,15 @@
-package com.github.saran2020.realmbrowser
+package com.github.saran2020.realmbrowser.data
 
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import com.github.saran2020.realmbrowser.*
 import com.github.saran2020.realmbrowser.Exception.GetterMethodNotFoundException
 import com.github.saran2020.realmbrowser.Exception.PrimaryKeyItemNotFoundException
 import com.github.saran2020.realmbrowser.Exception.SchemaNotFoundException
-import com.github.saran2020.realmbrowser.model.ClassItem
-import com.github.saran2020.realmbrowser.model.FieldItem
-import com.github.saran2020.realmbrowser.model.ObjectType
+import com.github.saran2020.realmbrowser.data.model.ClassItem
+import com.github.saran2020.realmbrowser.data.model.FieldItem
+import com.github.saran2020.realmbrowser.data.model.ObjectType
 import io.realm.*
 import java.lang.reflect.Method
 

@@ -1,7 +1,6 @@
-package com.github.saran2020.realmbrowser
+package com.github.saran2020.realmbrowser.data
 
-import com.github.saran2020.realmbrowser.model.ClassItem
-import com.github.saran2020.realmbrowser.model.FieldItem
+import com.github.saran2020.realmbrowser.data.model.ClassItem
 
 /**
  * Created by Saran Sankaran on 1/11/18.

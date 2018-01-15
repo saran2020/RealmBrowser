@@ -2,7 +2,7 @@ package com.github.saran2020.realmbrowser
 
 import android.content.Context
 import android.content.Intent
-import com.github.saran2020.realmbrowser.model.ObjectType
+import com.github.saran2020.realmbrowser.data.model.ObjectType
 import io.realm.RealmFieldType
 
 /**

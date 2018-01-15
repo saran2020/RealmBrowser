@@ -15,9 +15,9 @@ import android.widget.FrameLayout
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.github.saran2020.realmbrowser.model.ClassItem
-import com.github.saran2020.realmbrowser.model.FieldItem
-import com.github.saran2020.realmbrowser.model.ObjectType
+import com.github.saran2020.realmbrowser.data.model.ClassItem
+import com.github.saran2020.realmbrowser.data.model.FieldItem
+import com.github.saran2020.realmbrowser.data.model.ObjectType
 import io.realm.RealmFieldType
 
 /**
