@@ -7,6 +7,6 @@ import io.realm.RealmFieldType
  */
 data class ObjectInfo(val parentClassName: String,
                       val parentPrimaryKeyFieldName: String,
-                      val parentPrimaryKeyType: RealmFieldType,
+                      val parentPrimaryKeyType: Int,
                       val parentPrimaryKeyValue: Any?,
                       val fieldGetterName: String)

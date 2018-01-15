@@ -18,25 +18,28 @@ fun startResultActivity(context: Context, className: String, find: Byte) {
 
 fun startResultActivity(context: Context, data: ObjectType) {
     val intent = Intent(context, ResultActivity::class.java)
-    intent.putExtra(EXTRA_PARENT_CLASS_NAME, data.parentClassName)
-    intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_NAME, data.parentPrimaryKeyFieldName)
-    intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyType)
 
-    when (data.parentPrimaryKeyType) {
-        RealmFieldType.BOOLEAN -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyValue as Boolean)
-        RealmFieldType.FLOAT -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyValue as Float)
-        RealmFieldType.DOUBLE -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyValue as Double)
+    val objectInfo = data.objectInfo
 
-        RealmFieldType.STRING -> {
-            intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyValue as String)
+    intent.putExtra(EXTRA_PARENT_CLASS_NAME, objectInfo.parentClassName)
+    intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_NAME, objectInfo.parentPrimaryKeyFieldName)
+    intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyType)
+
+    when (objectInfo.parentPrimaryKeyType) {
+        RealmFieldType.BOOLEAN.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue as Boolean)
+        RealmFieldType.FLOAT.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue as Float)
+        RealmFieldType.DOUBLE.nativeValue -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue as Double)
+
+        RealmFieldType.STRING.nativeValue -> {
+            intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue as String)
         }
 
-        RealmFieldType.INTEGER -> {
-            when (data.parentPrimaryKeyValue) {
-                is Long -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyValue)
-                is Int -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyValue)
-                is Short -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyValue)
-                is Byte -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, data.parentPrimaryKeyValue)
+        RealmFieldType.INTEGER.nativeValue -> {
+            when (objectInfo.parentPrimaryKeyValue) {
+                is Long -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue)
+                is Int -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue)
+                is Short -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue)
+                is Byte -> intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyValue)
                 else -> ERROR_TEXT
             }
         }

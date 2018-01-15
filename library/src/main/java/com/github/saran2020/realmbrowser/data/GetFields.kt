@@ -39,6 +39,8 @@ class GetFields {
 
             realm = Realm.getDefaultInstance()
 
+//            val queryResult = RealmQueryCreater(realm, bundle).getResult()
+
             val query = getRealmQuery()
 
             return when (bundle.getByte(EXTRA_FIND)) {
@@ -49,6 +51,7 @@ class GetFields {
                 FIND_ALL -> findAll(query)
                 else -> emptyList()
             }
+//            return emptyList()
         }
 
         //TODO: Handle class cast exception of casting to Class<RealmObject>
@@ -151,7 +154,7 @@ class GetFields {
             // invoke all getters for the instance
             for (getter in fieldGetters) {
 
-                val fieldItem = getFieldItem(resultInstance, schema, getter);
+                val fieldItem = getFieldItem(resultInstance, schema, getter)
 
                 if (getter.key == primaryKeyFieldName) {
                     primaryKeyItem = fieldItem
@@ -175,6 +178,8 @@ class GetFields {
             val fieldType = schema.getFieldType(fieldName)
             var data = getter.value.invoke(resultInstance)
 
+            Log.d("Tag", "field name = $fieldName fieldtype name = ${fieldType.name} nativeValue = ${fieldType.nativeValue}")
+
             if (data != null) {
 
                 if (fieldType == RealmFieldType.OBJECT) {
@@ -187,7 +192,7 @@ class GetFields {
                             data.javaClass.simpleName.removeSuffix("RealmProxy"),
                             schema.className,
                             parentPrimaryKeyFieldName,
-                            parentPrimaryKeyFieldType,
+                            parentPrimaryKeyFieldType.nativeValue,
                             parentPrimaryKeyFieldValue,
                             getter.value.name)
                 }
