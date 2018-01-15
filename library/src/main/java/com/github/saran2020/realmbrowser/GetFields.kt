@@ -52,9 +52,13 @@ class GetFields {
 
         //TODO: Handle class cast exception of casting to Class<RealmObject>
         private fun getRealmQuery(): RealmQuery<*> {
-            val fullClassName = bundle.getString(EXTRA_CLASS_NAME)
-            val className = Class.forName(fullClassName) as Class<RealmObject>
-            val query = realm.where(className)
+
+            val selectedClass = bundle.getString(EXTRA_CLASS_NAME)
+            val selectedClassInstance = realm.configuration.realmObjectClasses.single {
+                it.simpleName.equals(selectedClass, true)
+            }
+
+            val query = realm.where(selectedClassInstance)
 
             return query
         }
