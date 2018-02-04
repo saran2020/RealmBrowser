@@ -218,32 +218,32 @@ private fun setTextToView(context: Context, textView: TextView, field: FieldItem
     } else {
 
         fieldData = when (field.type) {
-            RealmFieldType.BOOLEAN -> (field.value as Boolean).toString()
-            RealmFieldType.FLOAT -> (field.value as Float).toString()
-            RealmFieldType.DOUBLE -> (field.value as Double).toString()
+            RealmFieldType.BOOLEAN.nativeValue -> (field.value as Boolean).toString()
+            RealmFieldType.FLOAT.nativeValue -> (field.value as Float).toString()
+            RealmFieldType.DOUBLE.nativeValue -> (field.value as Double).toString()
 
-            RealmFieldType.STRING -> {
+            RealmFieldType.STRING.nativeValue -> {
                 if ((field.value as String).isEmpty())
                     "\"\""
                 else
                     field.value as String
             }
 
-            RealmFieldType.INTEGER -> {
+            RealmFieldType.INTEGER.nativeValue -> {
                 when (field.value) {
-                    is Long -> (field.value as Long).toString()
-                    is Int -> (field.value as Int).toString()
-                    is Short -> (field.value as Short).toString()
-                    is Byte -> (field.value as Byte).toString()
+                    is Long -> field.value.toString()
+                    is Int -> field.value.toString()
+                    is Short -> field.value.toString()
+                    is Byte -> field.value.toString()
                     else -> ERROR_TEXT
                 }
             }
 
-            RealmFieldType.OBJECT -> {
+            RealmFieldType.OBJECT.nativeValue -> {
                 isTextHyperlinkStyleable = true
                 (field.value as ObjectType).displayText
             }
-            RealmFieldType.LIST -> {
+            RealmFieldType.LIST.nativeValue -> {
                 isTextHyperlinkStyleable = true
                 field.value as String
             }

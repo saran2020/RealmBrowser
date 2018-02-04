@@ -203,8 +203,8 @@ class GetFields {
             return resultClass.getMethod(getterMethodName)
         }
 
-        private fun findFieldsUsingGetter(resultInstance: RealmObject, fieldGetters: Map<String, Method>)
-                : ClassItem {
+        private fun findFieldsUsingGetter(resultInstance: RealmObject,
+                                          fieldGetters: Map<String, Method>): ClassItem {
 
             val schema = getClassSchema(resultInstance)
             val primaryKeyFieldName = schema.primaryKey
@@ -236,14 +236,14 @@ class GetFields {
                                  getter: Map.Entry<String, Method>): FieldItem {
 
             val fieldName = getter.key
-            val fieldType = schema.getFieldType(fieldName)
+            val fieldType = schema.getFieldType(fieldName).nativeValue
             var data = getter.value.invoke(resultInstance)
 
-            Log.d("Tag", "field name = $fieldName fieldtype name = ${fieldType.name} nativeValue = ${fieldType.nativeValue}")
+            Log.d("Tag", "field name = $fieldName fieldtype = ${fieldType}")
 
             if (data != null) {
 
-                if (fieldType == RealmFieldType.OBJECT) {
+                if (fieldType == RealmFieldType.OBJECT.nativeValue) {
 
                     val parentPrimaryKeyFieldName = schema.primaryKey
                     val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
