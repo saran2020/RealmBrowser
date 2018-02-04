@@ -1,7 +1,5 @@
 package com.github.saran2020.realmbrowser.data.model
 
-import io.realm.RealmFieldType
-
 /**
  * Whenever any model contains a field type of Object(Instance of RealmObject or RealmModel) instead
  * of storing the exact value, we store this value instead. This will help us in handling the click on
@@ -26,7 +24,8 @@ data class ObjectType private constructor(val displayText: String) {
                 parentPrimaryKeyFieldName: String,
                 parentPrimaryKeyType: Int,
                 parentPrimaryKeyValue: Any?,
+                fieldName: String,
                 fieldGetterName: String) : this(displayText) {
-        objectInfo = ObjectInfo(parentClassName, parentPrimaryKeyFieldName, parentPrimaryKeyType, parentPrimaryKeyValue, fieldGetterName)
+        objectInfo = ObjectInfo(parentClassName, parentPrimaryKeyFieldName, parentPrimaryKeyType, parentPrimaryKeyValue, fieldName, fieldGetterName)
     }
 }

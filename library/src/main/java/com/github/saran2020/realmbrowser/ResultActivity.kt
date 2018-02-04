@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import com.github.saran2020.realmbrowser.data.FieldsTaskCompleteCallback
 import com.github.saran2020.realmbrowser.data.GetFields
 import com.github.saran2020.realmbrowser.data.model.ClassItem
+import com.github.saran2020.realmbrowser.data.model.DisplayResult
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -57,22 +58,24 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
-    private val callback: FieldsTaskCompleteCallback = object : FieldsTaskCompleteCallback() {
+    private val callback: FieldsTaskCompleteCallback = object : FieldsTaskCompleteCallback {
 
-        override fun onFetchComplete(fields: List<ClassItem>?) {
-            super.onFetchComplete(fields)
 
-            if (fields == null || fields.isEmpty()) {
-                return
-            }
+        override fun onFetchComplete(result: DisplayResult) {
 
-            linearResultHeader.removeAllViews()
-            populateHeader(this@ResultActivity, linearResultHeader, fields[0])
-
-            recyclerResults.layoutManager =
-                    LinearLayoutManager(this@ResultActivity, LinearLayoutManager.VERTICAL, false)
-            recyclerResults.adapter = RecyclerAdapter(this@ResultActivity, fields)
             showLoader(false)
+
+            if (result.type == RESULT_TYPE_OBJECT.toInt() || result.type == RESULT_TYPE_REALM_RESULT.toInt()) {
+
+                linearResultHeader.removeAllViews()
+                val fields = result.result as List<ClassItem>
+
+                populateHeader(this@ResultActivity, linearResultHeader, fields[0])
+
+                recyclerResults.layoutManager =
+                        LinearLayoutManager(this@ResultActivity, LinearLayoutManager.VERTICAL, false)
+                recyclerResults.adapter = RecyclerAdapter(this@ResultActivity, fields)
+            }
         }
     }
 }

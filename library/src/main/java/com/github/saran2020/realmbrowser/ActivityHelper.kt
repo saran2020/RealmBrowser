@@ -24,7 +24,8 @@ fun startResultActivity(context: Context, data: ObjectType) {
     intent.putExtra(EXTRA_CLASS_NAME, objectInfo.parentClassName)
     intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_NAME, objectInfo.parentPrimaryKeyFieldName)
     intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_TYPE, objectInfo.parentPrimaryKeyType)
-    intent.putExtra(EXTRA_PARENT_PRIMARY_KEY_GETTER_NAME, objectInfo.fieldGetterName)
+    intent.putExtra(EXTRA_KEY_FIELD_GETTER_NAME, objectInfo.fieldGetterName)
+    intent.putExtra(EXTRA_KEY_FIELD_NAME, objectInfo.fieldGetterName)
 
     // check type and insert value
     when (objectInfo.parentPrimaryKeyType) {
