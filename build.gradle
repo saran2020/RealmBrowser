@@ -3,7 +3,7 @@
 buildscript {
 
     ext {
-        kotlin_version = '1.2.10'
+        kotlin_version = '1.2.21'
         support_library = '26.1.0'
         flow_layout_manager = '1.2.3.2'
     }
