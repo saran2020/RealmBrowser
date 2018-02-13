@@ -25,7 +25,8 @@ data class ObjectType private constructor(val displayText: String) {
                 parentPrimaryKeyType: Int,
                 parentPrimaryKeyValue: Any?,
                 fieldName: String,
-                fieldGetterName: String) : this(displayText) {
-        objectInfo = ObjectInfo(parentClassName, parentPrimaryKeyFieldName, parentPrimaryKeyType, parentPrimaryKeyValue, fieldName, fieldGetterName)
+                fieldGetterName: String,
+                fieldType: Int) : this(displayText) {
+        objectInfo = ObjectInfo(parentClassName, parentPrimaryKeyFieldName, parentPrimaryKeyType, parentPrimaryKeyValue, fieldName, fieldGetterName, fieldType)
     }
 }

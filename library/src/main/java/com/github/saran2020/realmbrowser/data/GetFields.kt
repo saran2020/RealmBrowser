@@ -56,7 +56,8 @@ class GetFields {
                         RESULT_TYPE_LIST -> {
                             findFields(queryResult.result as RealmList<*>,
                                     bundle.getString(EXTRA_CLASS_NAME),
-                                    bundle.getString(EXTRA_KEY_FIELD_NAME))
+                                    bundle.getString(EXTRA_KEY_FIELD_NAME),
+                                    bundle.getInt(EXTRA_KEY_FIELD_TYPE))
                         }
                         else -> DisplayResult(RESULT_TYPE_EMPTY.toInt(), null)
                     }
@@ -107,22 +108,33 @@ class GetFields {
                 val getterMethod = result.result!!::class.java.getMethod(getterMethodName)
                 result.result = getterMethod.invoke(result.result)
 
-                if (getterMethod.returnType.isAssignableFrom(RealmList::class.java)) {
-                    result.resultType = RESULT_TYPE_LIST
-                } else if (getterMethod.returnType.superclass == RealmObject::class.java) {
-                    result.resultType = RESULT_TYPE_OBJECT
-                }
+                val fieldType = bundle.getInt(EXTRA_KEY_FIELD_TYPE)
 
+                result.resultType =
+                        when {
+                            fieldType > RealmFieldType.LIST.nativeValue -> // List of RealmObjects
+                                RESULT_TYPE_LIST
+                            fieldType == RealmFieldType.OBJECT.nativeValue -> // Is an RealmObject
+                                RESULT_TYPE_OBJECT
+                            else -> RESULT_TYPE_EMPTY
+                        }
             }
 
             return result
         }
 
+        /**
+         * find fields from RealmObject
+         */
         private fun findFields(realmInstance: RealmObject): ClassItem {
             val getters = findGetters(realmInstance)
             return findFieldsUsingGetter(realmInstance, getters)
         }
 
+
+        /**
+         * find fields from Realmresult
+         */
         private fun findFields(realmResult: RealmResults<in RealmObject>): DisplayResult {
 
             val getterMethods = findGetters(realmResult[0] as RealmObject)
@@ -135,22 +147,26 @@ class GetFields {
             return DisplayResult(RESULT_TYPE_REALM_RESULT.toInt(), result)
         }
 
-        private fun findFields(realmList: RealmList<*>, className: String, fieldName: String): DisplayResult {
 
-            val fieldType = realm.schema.get(className)?.getFieldType(fieldName)
-            val type = fieldType?.nativeValue ?: RESULT_TYPE_EMPTY.toInt()
+        /**
+         * find fields from RealmList
+         */
+        private fun findFields(realmList: RealmList<*>, className: String, fieldName: String, fieldType: Int): DisplayResult {
 
-            val result: Any =
-                    if (type == RealmFieldType.LIST.nativeValue) {
-                        val classItems = arrayListOf<ClassItem>()
-                        realmList.forEach {
-                            classItems.add(findFields(it as RealmObject))
-                        }
-                    } else {
-                        realmList.toList()
-                    }
+            return if (fieldType == RealmFieldType.LIST.nativeValue) {
 
-            return DisplayResult(type, result)
+                val classItems = arrayListOf<ClassItem>()
+                realmList.forEach {
+                    classItems.add(findFields(it as RealmObject))
+                }
+
+                DisplayResult(fieldType, classItems)
+            } else {
+
+                val result = NativeListType(fieldName, realmList.toList())
+                DisplayResult(fieldType, result)
+            }
+
         }
 
         /**
@@ -167,8 +183,8 @@ class GetFields {
             val fieldNames = classSchema.fieldNames
             for (fieldName in fieldNames) {
 
-                val getterMethod = findGetter(classSchema, resultClass, fieldName) ?:
-                        throw GetterMethodNotFoundException("Getter method not found for field $fieldName. " +
+                val getterMethod = findGetter(classSchema, resultClass, fieldName)
+                        ?: throw GetterMethodNotFoundException("Getter method not found for field $fieldName. " +
                                 "Getter method should start with get or is followed by field name with uppercase first char of field name")
 
                 map.put(fieldName, getterMethod)
@@ -243,7 +259,7 @@ class GetFields {
 
             if (data != null) {
 
-                if (fieldType == RealmFieldType.OBJECT.nativeValue) {
+                if (fieldType == RealmFieldType.OBJECT.nativeValue || fieldType >= RealmFieldType.LIST.nativeValue) {
 
                     val parentPrimaryKeyFieldName = schema.primaryKey
                     val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
@@ -256,7 +272,8 @@ class GetFields {
                             parentPrimaryKeyFieldType.nativeValue,
                             parentPrimaryKeyFieldValue,
                             getter.key,
-                            getter.value.name)
+                            getter.value.name,
+                            fieldType)
                 }
             }
 

@@ -12,6 +12,9 @@ import com.github.saran2020.realmbrowser.data.FieldsTaskCompleteCallback
 import com.github.saran2020.realmbrowser.data.GetFields
 import com.github.saran2020.realmbrowser.data.model.ClassItem
 import com.github.saran2020.realmbrowser.data.model.DisplayResult
+import com.github.saran2020.realmbrowser.data.model.NativeListType
+import io.realm.RealmFieldType
+import io.realm.internal.Property
 
 /**
  * Created by Saran Sankaran on 11/10/17.
@@ -65,16 +68,36 @@ class ResultActivity : AppCompatActivity() {
 
             showLoader(false)
 
-            if (result.type == RESULT_TYPE_OBJECT.toInt() || result.type == RESULT_TYPE_REALM_RESULT.toInt()) {
+            if (result.type == RESULT_TYPE_EMPTY.toInt()) {
+                // TODO: Handle
+            } else {
 
                 linearResultHeader.removeAllViews()
-                val fields = result.result as List<ClassItem>
 
-                populateHeader(this@ResultActivity, linearResultHeader, fields[0])
+                // TODO: instead of using RESULT_TYPE_OBJECT declared in library, use the one provided in RealmFieldType
+                if (result.type == RESULT_TYPE_OBJECT.toInt()
+                        || result.type == RESULT_TYPE_REALM_RESULT.toInt()
+                        || result.type == RealmFieldType.LIST.nativeValue) {
 
-                recyclerResults.layoutManager =
-                        LinearLayoutManager(this@ResultActivity, LinearLayoutManager.VERTICAL, false)
-                recyclerResults.adapter = RecyclerAdapter(this@ResultActivity, fields)
+                    // result will be list of class item
+                    val fields = result.result as List<ClassItem>
+
+                    populateHeader(this@ResultActivity, linearResultHeader, fields[0])
+
+                    recyclerResults.layoutManager =
+                            LinearLayoutManager(this@ResultActivity, LinearLayoutManager.VERTICAL, false)
+                    recyclerResults.adapter = RecyclerAdapter(this@ResultActivity, fields)
+
+                } else {
+
+                    val fields = (result.result as NativeListType).fieldValue
+
+                    recyclerResults.layoutManager =
+                            LinearLayoutManager(this@ResultActivity, LinearLayoutManager.VERTICAL, false)
+
+                    // Property.TYPE_ARRAY is the offset for list of primitive list eg if int = 1 list of int is Property.TYPE_ARRAY + VALUE_OF_INT
+                    recyclerResults.adapter = RecyclerNativeAdapter(this@ResultActivity, fields, Property.TYPE_ARRAY - result.type)
+                }
             }
         }
     }

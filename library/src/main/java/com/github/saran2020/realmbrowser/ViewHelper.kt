@@ -101,7 +101,7 @@ val TAG = "ViewHelper"
 //}
 
 private fun dpToPx(dp: Int): Int {
-    return (dp * Resources.getSystem().getDisplayMetrics().density).toInt()
+    return (dp * Resources.getSystem().displayMetrics.density).toInt()
 }
 
 private fun createGridLayout(context: Context): GridLayout {
@@ -160,10 +160,9 @@ fun populateHeader(context: Context, layout: LinearLayout, item: ClassItem) {
     // primary key first
     layout.addView(getHeaderText(context, item.primaryKey, widthInPx, textPadding, true))
 
-    for (index in 0 until fieldCount) {
-        val textHeader = getHeaderText(context, item.fieldsList[index], widthInPx, textPadding, false)
-        layout.addView(textHeader)
-    }
+    (0 until fieldCount)
+            .map { getHeaderText(context, item.fieldsList[it], widthInPx, textPadding, false) }
+            .forEach { layout.addView(it) }
 
     Log.d(TAG, "Completed")
 }
@@ -184,6 +183,9 @@ private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, te
     return textHeader
 }
 
+/**
+ * populate views of object type
+ */
 fun populateViews(context: Context, layout: LinearLayout?,
                   objectClickListener: View.OnClickListener,
                   item: ClassItem, position: Int) {
@@ -194,61 +196,82 @@ fun populateViews(context: Context, layout: LinearLayout?,
     val viewCount = layout.childCount
 
     // primary key item first
-    setTextToView(context, layout.getChildAt(0) as TextView, item.primaryKey,
-            objectClickListener, position, 0)
+    setTextToView(context, layout.getChildAt(0) as TextView, item.primaryKey.value,
+            item.primaryKey.type, objectClickListener, position, 0)
 
     // other fields
     for (index in 1 until viewCount) {
         // index - 1 because first item of view is primary key
-        setTextToView(context, layout.getChildAt(index) as TextView, item.fieldsList[index - 1],
-                objectClickListener, position, index)
+        val fieldItem = item.fieldsList[index - 1]
+        setTextToView(context, layout.getChildAt(index) as TextView, fieldItem.value,
+                fieldItem.type, objectClickListener, position, index)
     }
 }
 
-private fun setTextToView(context: Context, textView: TextView, field: FieldItem,
-                          objectClickListener: View.OnClickListener,
-                          rowPos: Int, viewPos: Int) {
+/**
+ * populate views of native type
+ */
+fun populateViews(context: Context, layout: LinearLayout?,
+                  value: Any?, valueType: Int, position: Int) {
+
+    if (layout == null)
+        return
+
+    setTextToView(context, layout.getChildAt(0) as TextView,
+            value, valueType, null, position, 0)
+}
+
+private fun setTextToView(context: Context, textView: TextView, value: Any?, valueType: Int,
+                          objectClickListener: View.OnClickListener?, rowPos: Int, viewPos: Int) {
 
     val fieldData: String
-    var isTextHyperlinkStyleable: Boolean = false
+    var isTextHyperlinkStyleable = false
 
-    if (field.value == null) {
+    if (value == null) {
         fieldData = "null"
         setStyleToText(context, textView, R.style.nullTextAppearance)
     } else {
 
-        fieldData = when (field.type) {
-            RealmFieldType.BOOLEAN.nativeValue -> (field.value as Boolean).toString()
-            RealmFieldType.FLOAT.nativeValue -> (field.value as Float).toString()
-            RealmFieldType.DOUBLE.nativeValue -> (field.value as Double).toString()
+        // TODO: Check casting of native values might not be required because of RMI
+        fieldData = when (valueType) {
+            RealmFieldType.BOOLEAN.nativeValue -> (value as Boolean).toString()
+            RealmFieldType.FLOAT.nativeValue -> (value as Float).toString()
+            RealmFieldType.DOUBLE.nativeValue -> (value as Double).toString()
 
             RealmFieldType.STRING.nativeValue -> {
-                if ((field.value as String).isEmpty())
+                if ((value as String).isEmpty())
                     "\"\""
                 else
-                    field.value as String
+                    value
             }
 
             RealmFieldType.INTEGER.nativeValue -> {
-                when (field.value) {
-                    is Long -> field.value.toString()
-                    is Int -> field.value.toString()
-                    is Short -> field.value.toString()
-                    is Byte -> field.value.toString()
+                when (value) {
+                    is Long -> value.toString()
+                    is Int -> value.toString()
+                    is Short -> value.toString()
+                    is Byte -> value.toString()
                     else -> ERROR_TEXT
                 }
             }
 
             RealmFieldType.OBJECT.nativeValue -> {
                 isTextHyperlinkStyleable = true
-                (field.value as ObjectType).displayText
+                (value as ObjectType).displayText
             }
             RealmFieldType.LIST.nativeValue -> {
                 isTextHyperlinkStyleable = true
-                field.value as String
+                (value as ObjectType).displayText
             }
 
-            else -> ERROR_TEXT
+            else -> {
+                if (valueType > RealmFieldType.LIST.nativeValue) {
+                    isTextHyperlinkStyleable = true
+                    (value as ObjectType).displayText
+                } else {
+                    ERROR_TEXT
+                }
+            }
         }
     }
 
@@ -270,10 +293,10 @@ private fun setStyleToText(context: Context, textView: TextView, @StyleRes resId
 }
 
 private fun makeTextViewHyperlink(textView: TextView, text: String,
-                                  objectClickListener: View.OnClickListener, tag: String) {
+                                  objectClickListener: View.OnClickListener?, tag: String) {
 
     val ssb = SpannableStringBuilder(text)
-    ssb.setSpan(URLSpan("#"), 0, ssb.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    ssb.setSpan(URLSpan("#"), 0, ssb.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     textView.setText(ssb, TextView.BufferType.SPANNABLE)
 
     textView.tag = tag

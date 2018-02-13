@@ -8,4 +8,5 @@ data class ObjectInfo(val parentClassName: String,
                       val parentPrimaryKeyType: Int,
                       val parentPrimaryKeyValue: Any?,
                       val fieldName: String,
-                      val fieldGetterName: String)
+                      val fieldGetterName: String,
+                      val fieldType: Int)
