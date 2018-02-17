@@ -12,7 +12,7 @@ import com.github.saran2020.realmbrowser.data.model.ClassItem
 import com.github.saran2020.realmbrowser.data.model.ObjectType
 
 /**
- * Created by its me on 08-Jan-18.
+ * Created by Saran on 08-Jan-18.
  */
 class RecyclerAdapter(private val context: Context, private val items: List<ClassItem>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 

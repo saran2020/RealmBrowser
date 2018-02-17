@@ -4,7 +4,7 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
 /**
- * Created by its me on 24-Dec-17.
+ * Created by Saran on 24-Dec-17.
  */
 open class Person() : RealmObject() {
 

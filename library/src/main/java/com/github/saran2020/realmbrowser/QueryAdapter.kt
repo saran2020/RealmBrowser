@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.github.saran2020.realmbrowser.data.model.QueryItem
 
 /**
- * Created by its me on 11-Nov-17.
+ * Created by Saran on 11-Nov-17.
  */
 class QueryAdapter : RecyclerView.Adapter<QueryAdapter.ViewHolder>() {
 

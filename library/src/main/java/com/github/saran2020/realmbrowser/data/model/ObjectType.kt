@@ -13,7 +13,7 @@ package com.github.saran2020.realmbrowser.data.model
  * @param parentPrimaryKeyValue Value of primary key of parent, this will be used to display the
  * data when this item is clicked in table view
  *
- * Created by its me on 13-Jan-18.
+ * Created by Saran on 13-Jan-18.
  */
 data class ObjectType private constructor(val displayText: String) {
 

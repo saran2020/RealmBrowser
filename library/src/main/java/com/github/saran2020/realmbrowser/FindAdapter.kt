@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 /**
- * Created by its me on 11-Nov-17.
+ * Created by Saran on 11-Nov-17.
  */
 class FindAdapter(private var itemList: List<String>) : RecyclerView.Adapter<FindAdapter.ViewHolder>() {
 

@@ -7,7 +7,7 @@ import io.realm.RealmFieldType
 
 /**
  * Helper class to store activity related stuff
- * Created by its me on 14-Jan-18.
+ * Created by Saran on 14-Jan-18.
  */
 fun startResultActivity(context: Context, className: String, find: Byte) {
     val intent = Intent(context, ResultActivity::class.java)

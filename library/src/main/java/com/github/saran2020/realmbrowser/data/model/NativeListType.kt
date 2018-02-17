@@ -8,6 +8,6 @@ import io.realm.RealmList
  * will help us in handling the click on this item in table view
  *
  * ctor
- * Created by its me on 14-Feb-18.
+ * Created by Saran on 14-Feb-18.
  */
 data class NativeListType (val fieldName: String, val fieldValue: List<*>)

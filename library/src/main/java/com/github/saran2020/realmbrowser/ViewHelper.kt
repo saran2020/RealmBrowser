@@ -22,7 +22,7 @@ import io.realm.RealmFieldType
 
 /**
  * A helper class to get the gridview with populated field items
- * Created by its me on 02-Jan-18.
+ * Created by Saran on 02-Jan-18.
  */
 
 val TAG = "ViewHelper"

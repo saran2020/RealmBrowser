@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 
 /**
- * Created by its me on 08-Jan-18.
+ * Created by Saran on 08-Jan-18.
  */
 class RecyclerNativeAdapter(private val context: Context, private val items: List<Any?>,
                             private val itemType: Int) : RecyclerView.Adapter<RecyclerNativeAdapter.ViewHolder>() {
