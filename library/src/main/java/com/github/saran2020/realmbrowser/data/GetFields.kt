@@ -11,6 +11,7 @@ import com.github.saran2020.realmbrowser.data.model.*
 import io.realm.*
 import java.lang.reflect.Method
 
+
 /**
  * Created by its me on 29-Dec-17.
  */
@@ -265,8 +266,26 @@ class GetFields {
                     val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
                     val parentPrimaryKeyFieldValue = findGetter(schema, resultInstance::class.java, parentPrimaryKeyFieldName)?.invoke(resultInstance)
 
+                    val displayText =
+                            if (fieldType == RealmFieldType.OBJECT.nativeValue) {
+
+                                data.javaClass.simpleName.removeSuffix("RealmProxy")
+                            } else {
+
+                                val javaClass = data.javaClass
+                                val className = javaClass.simpleName.removeSuffix("RealmProxy")
+                                val superName = (data as RealmList<*>).firstOrNull()?.javaClass?.simpleName
+
+                                if (superName == null) {
+                                    className
+                                } else {
+                                    "$className<$superName>"
+                                }
+                            }
+
+
                     data = ObjectType(
-                            data.javaClass.simpleName.removeSuffix("RealmProxy"),
+                            displayText,
                             schema.className,
                             parentPrimaryKeyFieldName,
                             parentPrimaryKeyFieldType.nativeValue,
