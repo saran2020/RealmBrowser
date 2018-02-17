@@ -11,8 +11,6 @@ import android.text.style.URLSpan
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.github.saran2020.realmbrowser.data.model.ClassItem
@@ -31,9 +29,9 @@ private fun dpToPx(dp: Int): Int {
     return (dp * Resources.getSystem().displayMetrics.density).toInt()
 }
 
-fun getLinearLayout(context: Context, size: Int): LinearLayout {
+fun getLinearLayout(context: Context, size: Int, verticalViewsInScreen: Int): LinearLayout {
     val layout = getLinearLayout(context)
-    val widthInPx = getTextViewWidth(context)
+    val widthInPx = getTextViewWidth(context, verticalViewsInScreen)
     val textPadding = dpToPx(8)
 
     for (index in 0 until size) {
@@ -67,10 +65,10 @@ private fun getTextView(context: Context, widthPx: Int, padding: Int): TextView 
     return textView
 }
 
-fun populateHeader(context: Context, layout: LinearLayout, item: ClassItem) {
+fun populateHeader(context: Context, layout: LinearLayout, item: ClassItem, verticalViewsInScreen: Int) {
 
     val fieldCount = item.fieldsList.size
-    val widthInPx = getTextViewWidth(context)
+    val widthInPx = getTextViewWidth(context, verticalViewsInScreen)
     val textPadding = dpToPx(8)
 
     // primary key first
@@ -219,7 +217,7 @@ private fun makeTextViewHyperlink(textView: TextView, text: String,
     textView.setOnClickListener(objectClickListener)
 }
 
-private fun getTextViewWidth(context: Context): Int {
+private fun getTextViewWidth(context: Context, verticalViewsInScreen: Int): Int {
     val metrics = context.resources.displayMetrics
-    return metrics.widthPixels / 3
+    return metrics.widthPixels / verticalViewsInScreen
 }

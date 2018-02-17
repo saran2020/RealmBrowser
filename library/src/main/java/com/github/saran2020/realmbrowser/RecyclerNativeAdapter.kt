@@ -13,11 +13,15 @@ import android.widget.LinearLayout
 class RecyclerNativeAdapter(private val context: Context, private val items: List<Any?>,
                             private val itemType: Int) : RecyclerView.Adapter<RecyclerNativeAdapter.ViewHolder>() {
 
+    private val ITEM_PER_SCREEN_VERTICAL: Int = context.resources.getInteger(R.integer.ITEMS_PER_SCREEN_NATIVE)
     val TAG = RecyclerNativeAdapter::class.java.canonicalName
 
     private val size = 1
-    @ColorInt private val oddColor: Int
-    @ColorInt private val evenColor: Int
+
+    @ColorInt
+    private val oddColor: Int
+    @ColorInt
+    private val evenColor: Int
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -32,7 +36,7 @@ class RecyclerNativeAdapter(private val context: Context, private val items: Lis
     override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(getLinearLayout(context, size))
+        return ViewHolder(getLinearLayout(context, size, ITEM_PER_SCREEN_VERTICAL))
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {

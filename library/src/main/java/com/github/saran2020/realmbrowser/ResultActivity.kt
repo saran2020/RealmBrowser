@@ -82,7 +82,7 @@ class ResultActivity : AppCompatActivity() {
                     // result will be list of class item
                     val fields = result.result as List<ClassItem>
 
-                    populateHeader(this@ResultActivity, linearResultHeader, fields[0])
+                    populateHeader(this@ResultActivity, linearResultHeader, fields[0], resources.getInteger(R.integer.ITEMS_PER_SCREEN_OBJECT))
 
                     recyclerResults.layoutManager =
                             LinearLayoutManager(this@ResultActivity, LinearLayoutManager.VERTICAL, false)

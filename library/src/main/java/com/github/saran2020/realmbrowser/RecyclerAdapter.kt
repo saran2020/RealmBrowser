@@ -18,6 +18,7 @@ class RecyclerAdapter(private val context: Context, private val items: List<Clas
 
     val TAG = RecyclerAdapter::class.java.canonicalName
 
+    private val ITEM_PER_SCREEN_VERTICAL: Int = context.resources.getInteger(R.integer.ITEMS_PER_SCREEN_OBJECT)
     private val size: Int = items[0].fieldsList.size + 1
     @ColorInt private val oddColor: Int
     @ColorInt private val evenColor: Int
@@ -54,7 +55,7 @@ class RecyclerAdapter(private val context: Context, private val items: List<Clas
     override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(getLinearLayout(context, size))
+        return ViewHolder(getLinearLayout(context, size, ITEM_PER_SCREEN_VERTICAL))
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
