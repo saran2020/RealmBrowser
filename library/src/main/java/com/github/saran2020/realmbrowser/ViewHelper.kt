@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.github.saran2020.realmbrowser.data.model.ClassItem
-import com.github.saran2020.realmbrowser.data.model.FieldItem
 import com.github.saran2020.realmbrowser.data.model.ObjectType
 import io.realm.RealmFieldType
 
@@ -72,16 +71,25 @@ fun populateHeader(context: Context, layout: LinearLayout, item: ClassItem, vert
     val textPadding = dpToPx(8)
 
     // primary key first
-    layout.addView(getHeaderText(context, item.primaryKey, widthInPx, textPadding, true))
+    layout.addView(getHeaderTextView(context, item.primaryKey.name, widthInPx, textPadding, true))
 
     (0 until fieldCount)
-            .map { getHeaderText(context, item.fieldsList[it], widthInPx, textPadding, false) }
+            .map { getHeaderTextView(context, item.fieldsList[it].name, widthInPx, textPadding, false) }
             .forEach { layout.addView(it) }
 
     Log.d(TAG, "Completed")
 }
 
-private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, textPadding: Int, isPrimaryKey: Boolean): TextView {
+fun populateHeader(context: Context, layout: LinearLayout, item: String, verticalViewsInScreen: Int) {
+
+    val widthInPx = getTextViewWidth(context, verticalViewsInScreen)
+
+    // primary key first
+    layout.addView(getHeaderTextView(context, item, widthInPx, 0, false))
+    Log.d(TAG, "Completed")
+}
+
+private fun getHeaderTextView(context: Context, field: String, textWidth: Int, textPadding: Int, isPrimaryKey: Boolean): TextView {
 
     val textHeader = getTextView(context, textWidth, textPadding)
     setStyleToText(context, textHeader, R.style.headerTextAppearance)
@@ -91,8 +99,8 @@ private fun getHeaderText(context: Context, field: FieldItem, textWidth: Int, te
         textHeader.compoundDrawablePadding = dpToPx(4)
     }
 
-    textHeader.text = field.name
-    Log.d(TAG, "data = ${field.name}")
+    textHeader.text = field
+    Log.d(TAG, "data = ${field}")
 
     return textHeader
 }
