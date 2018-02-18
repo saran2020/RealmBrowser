@@ -22,32 +22,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:hint="@string/class_name"/>
-
-            <TextView
-                android:id="@+id/packageName_library"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/editClassName_library"
-                tools:text="com.github.saran2020.realmbrowser2.MyRealmTestObject"/>
+                android:focusable="false"
+                android:hint="@string/class_name"
+                android:longClickable="false"
+                android:maxLines="1" />
 
             <View
                 android:id="@+id/border1_library"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/packageName_library"
+                android:layout_below="@id/editClassName_library"
                 android:layout_marginTop="@dimen/itemMargin"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/queryTitle_library"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_alignBaseline="@id/queryAdd_library"
                 android:layout_alignParentStart="true"
                 android:layout_alignTop="@id/queryAdd_library"
-                android:gravity="center_vertical"
-                android:text="Query"/>
+                android:text="Query" />
 
             <ImageView
                 android:id="@+id/queryAdd_library"
@@ -59,37 +55,37 @@
                 android:layout_marginTop="@dimen/itemMargin"
                 android:contentDescription="@string/addQuery"
                 android:src="@drawable/ic_add_black_24dp"
-                android:tint="@color/positiveColor"/>
+                android:tint="@color/positiveColor" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/queryRecycler_library"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_below="@id/queryAdd_library"/>
+                android:layout_below="@id/queryAdd_library" />
 
             <TextView
                 android:id="@+id/findTitle_library"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/queryRecycler_library"
                 android:layout_marginBottom="@dimen/itemMargin"
                 android:layout_marginTop="@dimen/itemMargin"
-                android:gravity="center_vertical"
-                android:text="Find"/>
+                android:text="Find" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/findRecycler_library"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_below="@id/findTitle_library"/>
+                android:layout_below="@id/findTitle_library" />
 
             <TextView
                 android:id="@+id/query_library"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/findRecycler_library"
-                tools:text="Realm.where(MyRealmTestObject).findAll()"/>
+                tools:text="Realm.where(MyRealmTestObject).findAll()" />
 
         </RelativeLayout>
     </ScrollView>
@@ -108,5 +104,5 @@
         android:paddingRight="16dp"
         android:text="@string/fetch"
         android:textColor="@color/buttonTextColor"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 </LinearLayout>

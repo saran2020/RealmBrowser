@@ -1,6 +1,8 @@
 package com.github.saran2020.realmbrowser
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -17,14 +19,12 @@ class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.java.simpleName
 
     // global var
-    lateinit var appPackageName: String
     lateinit var realm: Realm
     private lateinit var recyclerQueryAdapter: QueryAdapter
     private lateinit var recyclerFindAdapter: FindAdapter
 
     //views
     private lateinit var editClassName: EditText
-    private lateinit var textPackageName: TextView
     private lateinit var imageAddQuery: ImageView
     private lateinit var recyclerQueryContent: RecyclerView
     private lateinit var recyclerFindContent: RecyclerView
@@ -38,11 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         realm = Realm.getDefaultInstance()
 
-        appPackageName = applicationContext.packageName
-
         // views
         editClassName = findViewById(R.id.editClassName_library)
-        textPackageName = findViewById(R.id.packageName_library)
         imageAddQuery = findViewById(R.id.queryAdd_library)
         recyclerQueryContent = findViewById(R.id.queryRecycler_library)
         recyclerFindContent = findViewById(R.id.findRecycler_library)
@@ -61,6 +58,10 @@ class MainActivity : AppCompatActivity() {
         recyclerFindAdapter = FindAdapter(getFindItems())
         recyclerFindContent.layoutManager = FlowLayoutManager()
         recyclerFindContent.adapter = recyclerFindAdapter
+
+        editClassName.setOnClickListener {
+            showModelPicker()
+        }
     }
 
     override fun onDestroy() {
@@ -76,6 +77,22 @@ class MainActivity : AppCompatActivity() {
         return listOf(
                 FIND_ALL_STRING,
                 FIND_FIRST_STRING)
+    }
+
+    private fun showModelPicker() {
+
+        val classes = realm.configuration.realmObjectClasses
+                .map { it.simpleName as CharSequence }
+                .toTypedArray()
+
+
+        val listener = DialogInterface.OnClickListener { _, which ->
+            editClassName.setText(classes[which])
+        }
+
+        AlertDialog.Builder(this)
+                .setTitle("Pick a Model")
+                .setItems(classes, listener).show()
     }
 
     private val onAddQueryClickListener = View.OnClickListener {
