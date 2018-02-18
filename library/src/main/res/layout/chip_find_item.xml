@@ -10,6 +10,6 @@
     android:gravity="center"
     android:paddingEnd="12dp"
     android:paddingStart="12dp"
-    android:textColor="#212121"
+    android:textColor="@color/findTextColor"
     android:textSize="13sp"
     tools:text="Query()"/>

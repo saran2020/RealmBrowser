@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         recyclerQueryContent.adapter = recyclerQueryAdapter
 
         // find recycler
-        recyclerFindAdapter = FindAdapter(getFindItems())
+        recyclerFindAdapter = FindAdapter(this, getFindItems())
         recyclerFindContent.layoutManager = FlowLayoutManager()
         recyclerFindContent.adapter = recyclerFindAdapter
 
@@ -85,7 +85,6 @@ class MainActivity : AppCompatActivity() {
                 .map { it.simpleName as CharSequence }
                 .toTypedArray()
 
-
         val listener = DialogInterface.OnClickListener { _, which ->
             editClassName.setText(classes[which])
         }
@@ -96,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val onAddQueryClickListener = View.OnClickListener {
-        Toast.makeText(this@MainActivity, "Add Clicked", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@MainActivity, "Coming soon", Toast.LENGTH_SHORT).show()
     }
 
     private var onFetchClickListener = View.OnClickListener {
