@@ -4,9 +4,9 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import com.github.saran2020.realmbrowser.*
-import com.github.saran2020.realmbrowser.Exception.GetterMethodNotFoundException
-import com.github.saran2020.realmbrowser.Exception.PrimaryKeyItemNotFoundException
-import com.github.saran2020.realmbrowser.Exception.SchemaNotFoundException
+import com.github.saran2020.realmbrowser.exception.GetterMethodNotFoundException
+import com.github.saran2020.realmbrowser.exception.PrimaryKeyItemNotFoundException
+import com.github.saran2020.realmbrowser.exception.SchemaNotFoundException
 import com.github.saran2020.realmbrowser.data.model.*
 import io.realm.*
 import java.lang.reflect.Method
