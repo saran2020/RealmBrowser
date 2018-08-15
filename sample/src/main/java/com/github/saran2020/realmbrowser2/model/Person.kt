@@ -2,6 +2,7 @@ package com.github.saran2020.realmbrowser2.model
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
+import java.util.Date
 
 /**
  * Created by Saran on 24-Dec-17.
@@ -12,7 +13,7 @@ open class Person() : RealmObject() {
     var id: Int = Int.MIN_VALUE
 
     lateinit var bioguideid: String
-    lateinit var birthday: String
+    lateinit var birthday: Date
     var cspanid: Int = 0
     lateinit var firstname: String
     lateinit var gender: String

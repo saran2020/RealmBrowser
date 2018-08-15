@@ -4,6 +4,8 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
+import java.util.Date;
+
 /**
  * Created by Saran on 24-Dec-17.
  */
@@ -17,7 +19,7 @@ public class Senator extends RealmObject {
     private boolean current = true;
     private String description;
     private String district;
-    private String enddate;
+    private Date enddate;
     private Extra extra;
     private String leadership_title;
     private String party;
@@ -29,7 +31,7 @@ public class Senator extends RealmObject {
     private String senator_class_label;
     private String senator_rank;
     private String senator_rank_label;
-    private String startdate;
+    private Date startdate;
     private String state;
     private String title;
     private String title_long;
@@ -83,11 +85,11 @@ public class Senator extends RealmObject {
         this.district = district;
     }
 
-    public String getEnddate() {
+    public Date getEnddate() {
         return enddate;
     }
 
-    public void setEnddate(String enddate) {
+    public void setEnddate(Date enddate) {
         this.enddate = enddate;
     }
 
@@ -179,11 +181,11 @@ public class Senator extends RealmObject {
         this.senator_rank_label = senator_rank_label;
     }
 
-    public String getStartdate() {
+    public Date getStartdate() {
         return startdate;
     }
 
-    public void setStartdate(String startdate) {
+    public void setStartdate(Date startdate) {
         this.startdate = startdate;
     }
 
