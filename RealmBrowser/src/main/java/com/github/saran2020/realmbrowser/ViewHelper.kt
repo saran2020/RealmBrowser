@@ -13,8 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.github.saran2020.realmbrowser.data.model.ClassItem
-import com.github.saran2020.realmbrowser.data.model.ObjectType
+import com.github.saran2020.realmbrowser.data.model.classrepresentation.ClassItem
+import com.github.saran2020.realmbrowser.data.model.classrepresentation.ObjectType
 import io.realm.RealmFieldType
 
 /**

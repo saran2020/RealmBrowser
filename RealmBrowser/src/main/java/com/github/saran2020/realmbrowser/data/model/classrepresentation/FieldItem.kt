@@ -1,6 +1,4 @@
-package com.github.saran2020.realmbrowser.data.model
-
-import io.realm.RealmFieldType
+package com.github.saran2020.realmbrowser.data.model.classrepresentation
 
 /**
  * Created by Saran on 29-Dec-17.

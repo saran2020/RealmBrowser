@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import com.github.saran2020.realmbrowser.*
 import com.github.saran2020.realmbrowser.data.model.*
+import com.github.saran2020.realmbrowser.data.model.classrepresentation.ClassItem
+import com.github.saran2020.realmbrowser.data.model.classrepresentation.FieldItem
+import com.github.saran2020.realmbrowser.data.model.classrepresentation.NativeListType
+import com.github.saran2020.realmbrowser.data.model.classrepresentation.ObjectType
 import com.github.saran2020.realmbrowser.exception.GetterMethodNotFoundException
 import com.github.saran2020.realmbrowser.exception.PrimaryKeyItemNotFoundException
 import com.github.saran2020.realmbrowser.exception.SchemaNotFoundException

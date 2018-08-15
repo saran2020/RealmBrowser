@@ -1,6 +1,4 @@
-package com.github.saran2020.realmbrowser.data.model
-
-import io.realm.RealmList
+package com.github.saran2020.realmbrowser.data.model.classrepresentation
 
 /**
  * Whenever any model contains a field type of RealmListList(only RealmList of native values,
@@ -10,4 +8,4 @@ import io.realm.RealmList
  * ctor
  * Created by Saran on 14-Feb-18.
  */
-data class NativeListType (val fieldName: String, val fieldValue: List<*>)
+data class NativeListType(val fieldName: String, val fieldValue: List<*>)
