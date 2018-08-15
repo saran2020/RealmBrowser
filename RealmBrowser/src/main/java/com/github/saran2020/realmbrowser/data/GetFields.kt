@@ -250,44 +250,44 @@ class GetFields {
             val fieldType = schema.getFieldType(fieldName).nativeValue
             var data = getter.value.invoke(resultInstance)
 
-            Log.d("Tag", "field name = $fieldName fieldtype = ${fieldType}")
+            Log.d("Tag", "field name = $fieldName fieldtype = $fieldType")
+            if (data == null) {
+                return FieldItem(getter.key, fieldType, data)
+            }
 
-            if (data != null) {
+            if (fieldType == RealmFieldType.OBJECT.nativeValue || fieldType >= RealmFieldType.LIST.nativeValue) {
 
-                if (fieldType == RealmFieldType.OBJECT.nativeValue || fieldType >= RealmFieldType.LIST.nativeValue) {
+                val parentPrimaryKeyFieldName = schema.primaryKey
+                val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
+                val parentPrimaryKeyFieldValue = findGetter(schema, resultInstance::class.java, parentPrimaryKeyFieldName)?.invoke(resultInstance)
 
-                    val parentPrimaryKeyFieldName = schema.primaryKey
-                    val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
-                    val parentPrimaryKeyFieldValue = findGetter(schema, resultInstance::class.java, parentPrimaryKeyFieldName)?.invoke(resultInstance)
+                val displayText =
+                        if (fieldType == RealmFieldType.OBJECT.nativeValue) {
 
-                    val displayText =
-                            if (fieldType == RealmFieldType.OBJECT.nativeValue) {
+                            data.javaClass.simpleName.removeSuffix("RealmProxy")
+                        } else {
 
-                                data.javaClass.simpleName.removeSuffix("RealmProxy")
+                            val javaClass = data.javaClass
+                            val className = javaClass.simpleName.removeSuffix("RealmProxy")
+                            val superName = (data as RealmList<*>).firstOrNull()?.javaClass?.simpleName
+
+                            if (superName == null) {
+                                className
                             } else {
-
-                                val javaClass = data.javaClass
-                                val className = javaClass.simpleName.removeSuffix("RealmProxy")
-                                val superName = (data as RealmList<*>).firstOrNull()?.javaClass?.simpleName
-
-                                if (superName == null) {
-                                    className
-                                } else {
-                                    "$className<$superName>"
-                                }
+                                "$className<$superName>"
                             }
+                        }
 
 
-                    data = ObjectType(
-                            displayText,
-                            schema.className,
-                            parentPrimaryKeyFieldName,
-                            parentPrimaryKeyFieldType.nativeValue,
-                            parentPrimaryKeyFieldValue,
-                            getter.key,
-                            getter.value.name,
-                            fieldType)
-                }
+                data = ObjectType(
+                        displayText,
+                        schema.className,
+                        parentPrimaryKeyFieldName,
+                        parentPrimaryKeyFieldType.nativeValue,
+                        parentPrimaryKeyFieldValue,
+                        getter.key,
+                        getter.value.name,
+                        fieldType)
             }
 
             return FieldItem(getter.key, fieldType, data)
