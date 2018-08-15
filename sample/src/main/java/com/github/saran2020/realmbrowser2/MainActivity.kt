@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "Completed..")
         } else {
             val inputStream = resources.openRawResource(R.raw.data_source)
-            FeedDataTask(textStatus, inputStream, TAG).execute()
+            FeedDataTask(textStatus, inputStream).execute()
         }
     }
 
@@ -54,10 +54,10 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    class FeedDataTask(textStatus: TextView, val inputStream: InputStream, val TAG: String)
+    class FeedDataTask(textStatus: TextView, private val inputStream: InputStream)
         : AsyncTask<Unit, Unit, Boolean>() {
 
-        val textView: WeakReference<TextView> = WeakReference(textStatus)
+        private val textView: WeakReference<TextView> = WeakReference(textStatus)
 
         override fun doInBackground(vararg params: Unit?): Boolean {
             val gson = GsonBuilder()
