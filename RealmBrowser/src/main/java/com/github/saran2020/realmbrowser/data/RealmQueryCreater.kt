@@ -1,9 +1,10 @@
 package com.github.saran2020.realmbrowser.data
 
 import android.os.Bundle
-import com.github.saran2020.realmbrowser.*
-import com.github.saran2020.realmbrowser.data.model.QueryResult
-import io.realm.*
+import com.github.saran2020.realmbrowser.EXTRA_CLASS_NAME
+import io.realm.Realm
+import io.realm.RealmModel
+import io.realm.RealmQuery
 
 /**
  * Created by Saran Sankaran on 1/15/18.

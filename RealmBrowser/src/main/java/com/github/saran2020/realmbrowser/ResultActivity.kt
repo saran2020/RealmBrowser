@@ -10,8 +10,8 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import com.github.saran2020.realmbrowser.data.FieldsTaskCompleteCallback
 import com.github.saran2020.realmbrowser.data.GetFields
-import com.github.saran2020.realmbrowser.data.model.classrepresentation.ClassItem
 import com.github.saran2020.realmbrowser.data.model.DisplayResult
+import com.github.saran2020.realmbrowser.data.model.classrepresentation.ClassItem
 import com.github.saran2020.realmbrowser.data.model.classrepresentation.NativeListType
 import io.realm.RealmFieldType
 import io.realm.internal.Property

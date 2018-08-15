@@ -2,7 +2,7 @@ package com.github.saran2020.realmbrowser2.model
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import java.util.Date
+import java.util.*
 
 /**
  * Created by Saran on 24-Dec-17.
