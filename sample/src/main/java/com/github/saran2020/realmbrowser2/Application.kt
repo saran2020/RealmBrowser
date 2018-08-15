@@ -7,6 +7,7 @@ import io.realm.RealmConfiguration
 /**
  * Created by Saran Sankaran on 11/9/17.
  */
+@Suppress("unused")
 class Application : Application() {
 
     override fun onCreate() {
@@ -14,7 +15,10 @@ class Application : Application() {
         Realm.init(this)
 
         val realmConfig = RealmConfiguration.Builder()
-                .name("sample.realm").schemaVersion(1).build()
+                .name("sample.realm")
+                .schemaVersion(2)
+                .deleteRealmIfMigrationNeeded()
+                .build()
         Realm.setDefaultConfiguration(realmConfig)
     }
 }
