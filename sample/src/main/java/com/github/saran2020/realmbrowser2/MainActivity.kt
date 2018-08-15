@@ -6,9 +6,21 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.TextView
 import com.github.saran2020.realmbrowser2.model.Senator
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.reflect.TypeToken
 import io.realm.Realm
+import io.realm.RealmList
 import java.io.InputStream
+import java.io.InputStreamReader
 import java.lang.ref.WeakReference
+import java.lang.reflect.Type
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,14 +54,24 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    class FeedDataTask(textStatus: TextView, val inputStream: InputStream, val TAG: String) : AsyncTask<Unit, Unit, Boolean>() {
+    class FeedDataTask(textStatus: TextView, val inputStream: InputStream, val TAG: String)
+        : AsyncTask<Unit, Unit, Boolean>() {
 
         val textView: WeakReference<TextView> = WeakReference(textStatus)
 
         override fun doInBackground(vararg params: Unit?): Boolean {
-            Realm.getDefaultInstance().use {
+            val gson = GsonBuilder()
+                    .registerTypeAdapter(Date::class.java, DateSerializers())
+                    .create()
 
-                it.executeTransaction { realm -> realm.createAllFromJson(Senator::class.java, inputStream) }
+            val listType = object : TypeToken<RealmList<Senator>>() {
+            }.type
+            val inputStreamReader = InputStreamReader(inputStream)
+
+            val models = gson.fromJson<RealmList<Senator>>(inputStreamReader, listType)
+            Log.d("buggy_bug", models.size.toString())
+            Realm.getDefaultInstance().use {
+                it.executeTransaction { realm -> realm.insert(models) }
             }
 
             return true
@@ -60,6 +82,20 @@ class MainActivity : AppCompatActivity() {
 
             val textView = this.textView.get()
             textView?.text = "Completed.."
+        }
+    }
+
+    class DateSerializers : JsonDeserializer<Date> {
+
+        private val dateFormatter: DateFormat
+
+        init {
+            dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        }
+
+        override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Date {
+            val dateString = json?.asJsonPrimitive?.asString
+            return dateFormatter.parse(dateString)
         }
     }
 }
