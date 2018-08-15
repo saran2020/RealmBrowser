@@ -17,20 +17,20 @@ class QueryAdapter : RecyclerView.Adapter<QueryAdapter.ViewHolder>() {
 
     override fun getItemCount() = itemList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        var view = LayoutInflater.from(parent?.context).inflate(R.layout.chip_query_item, parent, false)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.chip_query_item, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var queryString = ""
 
         when (itemList.get(position).type) {
             QUERY_EQUAL_TO -> queryString = QUERY_EQUAL_TO_STRING
         }
 
-        holder?.textItemQuery?.text = queryString
+        holder.textItemQuery.text = queryString
     }
 
     private fun removeItemFromList(position: Int) {

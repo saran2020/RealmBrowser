@@ -35,17 +35,17 @@ class RecyclerNativeAdapter(private val context: Context, private val items: Lis
 
     override fun getItemCount() = items.size
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(getLinearLayout(context, size, ITEM_PER_SCREEN_VERTICAL))
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        populateViews(context, holder?.item, items[position], itemType, position)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        populateViews(context, holder.item, items[position], itemType, position)
 
         if (position % 2 == 0) {
-            holder?.item?.setBackgroundColor(evenColor)
+            holder.item.setBackgroundColor(evenColor)
         } else {
-            holder?.item?.setBackgroundColor(oddColor)
+            holder.item.setBackgroundColor(oddColor)
         }
     }
 

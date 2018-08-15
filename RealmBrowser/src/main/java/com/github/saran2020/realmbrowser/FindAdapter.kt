@@ -19,13 +19,13 @@ class FindAdapter(private var context: Context, private var itemList: List<Strin
 
     override fun getItemCount() = itemList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = inflator.inflate(R.layout.chip_find_item, parent, false)
         return ViewHolder(view as TextView)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        holder?.textView?.text = itemList[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.textView.text = itemList[position]
     }
 
     private fun setSelectedItem(textView: TextView, position: Int) {
