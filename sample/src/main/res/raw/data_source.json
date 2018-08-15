@@ -48,7 +48,12 @@
       "rss_url": "http://www.baldwin.senate.gov/rss/feeds/?type=all",
       "office": "709 Hart Senate Office Building",
       "id": 0,
-      "fax": "202-225-6942"
+      "fax": "202-225-6942",
+      "random_dates": [
+        "1989-10-25",
+        "1970-02-14",
+        "1973-05-30"
+      ]
     },
     "state": "WI",
     "id": 0,
@@ -103,7 +108,12 @@
       "rss_url": "http://www.brown.senate.gov/rss/feeds/?type=all&amp;",
       "office": "713 Hart Senate Office Building",
       "id": 1,
-      "fax": "202-228-6321"
+      "fax": "202-228-6321",
+      "random_dates": [
+        "1973-05-30",
+        "1975-07-19",
+        "1975-10-02"
+      ]
     },
     "state": "OH",
     "id": 1,
@@ -158,7 +168,12 @@
       "rss_url": "http://www.cardin.senate.gov/rss/feeds/?type=all",
       "office": "509 Hart Senate Office Building",
       "id": 2,
-      "fax": "202-224-1651"
+      "fax": "202-224-1651",
+      "random_dates": [
+        "1975-10-02",
+        "1979-11-06",
+        "1982-08-14"
+      ]
     },
     "state": "MD",
     "id": 2,
@@ -213,7 +228,12 @@
       "rss_url": "http://www.flake.senate.gov/public/index.cfm/rss/feed",
       "office": "413 Russell Senate Office Building",
       "id": 3,
-      "fax": "202-226-4386"
+      "fax": "202-226-4386",
+      "random_dates": [
+        "1982-08-14",
+        "1983-07-27",
+        "1986-03-13"
+      ]
     },
     "state": "AZ",
     "id": 3,
@@ -245,10 +265,10 @@
       "osid": "N00000699",
       "twitterid": "SenatorMenendez",
       "lastname": "Menéndez",
-      "sortname": "Menéndez, Robert \u201cBob\u201d (Sen.) [D-NJ]",
+      "sortname": "Menéndez, Robert “Bob” (Sen.) [D-NJ]",
       "namemod": "",
       "cspanid": 29608,
-      "name": "Sen. Robert \u201cBob\u201d Menéndez [D-NJ]",
+      "name": "Sen. Robert “Bob” Menéndez [D-NJ]",
       "nickname": "Bob",
       "youtubeid": "SenatorMenendezNJ",
       "id": 4,
@@ -268,7 +288,12 @@
       "rss_url": "http://www.menendez.senate.gov/rss/feeds/index.cfm?type=news",
       "office": "528 Hart Senate Office Building",
       "id": 4,
-      "fax": "202-228-2197"
+      "fax": "202-228-2197",
+      "random_dates": [
+        "1986-03-13",
+        "1992-11-18",
+        "1994-10-18"
+      ]
     },
     "state": "NJ",
     "id": 4,
@@ -300,10 +325,10 @@
       "osid": "N00000528",
       "twitterid": "SenSanders",
       "lastname": "Sanders",
-      "sortname": "Sanders, Bernard \u201cBernie\u201d (Sen.) [I-VT]",
+      "sortname": "Sanders, Bernard “Bernie” (Sen.) [I-VT]",
       "namemod": "",
       "cspanid": 994,
-      "name": "Sen. Bernard \u201cBernie\u201d Sanders [I-VT]",
+      "name": "Sen. Bernard “Bernie” Sanders [I-VT]",
       "nickname": "Bernie",
       "youtubeid": "senatorsanders",
       "id": 5,
@@ -323,7 +348,12 @@
       "rss_url": "http://www.sanders.senate.gov/rss/",
       "office": "332 Dirksen Senate Office Building",
       "id": 5,
-      "fax": "202-228-0776"
+      "fax": "202-228-0776",
+      "random_dates": [
+        "1994-10-18",
+        "1996-03-30",
+        "1997-12-26"
+      ]
     },
     "state": "VT",
     "id": 5,
@@ -378,7 +408,12 @@
       "rss_url": "http://www.cantwell.senate.gov/public/index.cfm/rss/feed",
       "office": "511 Hart Senate Office Building",
       "id": 6,
-      "fax": "202-228-0514"
+      "fax": "202-228-0514",
+      "random_dates": [
+        "1997-12-26",
+        "2003-12-15",
+        "2006-07-21"
+      ]
     },
     "state": "WA",
     "id": 6,
@@ -433,7 +468,12 @@
       "rss_url": "http://www.carper.senate.gov/public/index.cfm/rss/feed",
       "office": "513 Hart Senate Office Building",
       "id": 7,
-      "fax": "202-228-2190"
+      "fax": "202-228-2190",
+      "random_dates": [
+        "2006-07-21",
+        "2008-08-05",
+        "2008-08-07"
+      ]
     },
     "state": "DE",
     "id": 7,
@@ -488,7 +528,12 @@
       "rss_url": "http://www.feinstein.senate.gov/public/?a=rss.feed",
       "office": "331 Hart Senate Office Building",
       "id": 8,
-      "fax": "202-228-3954"
+      "fax": "202-228-3954",
+      "random_dates": [
+        "2008-08-07",
+        "2011-02-14",
+        "2012-07-07"
+      ]
     },
     "state": "CA",
     "id": 8,
@@ -543,7 +588,12 @@
       "rss_url": "http://www.hatch.senate.gov/public/index.cfm/rss/feed",
       "office": "104 Hart Senate Office Building",
       "id": 9,
-      "fax": "202-224-6331"
+      "fax": "202-224-6331",
+      "random_dates": [
+        "2012-07-07",
+        "2013-12-09",
+        "2018-07-07"
+      ]
     },
     "state": "UT",
     "id": 9,
@@ -597,7 +647,12 @@
       "contact_form": "https://www.billnelson.senate.gov/contact-bill",
       "office": "716 Hart Senate Office Building",
       "id": 10,
-      "fax": "202-228-2183"
+      "fax": "202-228-2183",
+      "random_dates": [
+        "2018-07-07",
+        "2019-05-02",
+        "2020-05-14"
+      ]
     },
     "state": "FL",
     "id": 10,
@@ -652,7 +707,12 @@
       "rss_url": "http://stabenow.senate.gov/rss/?p=news",
       "office": "731 Hart Senate Office Building",
       "id": 11,
-      "fax": "202-228-0325"
+      "fax": "202-228-0325",
+      "random_dates": [
+        "2020-05-14",
+        "2020-12-22",
+        "2023-03-26"
+      ]
     },
     "state": "MI",
     "id": 11,
@@ -707,7 +767,12 @@
       "rss_url": "http://www.theday.com/article/20121216/nws12/312169935/1069/rss",
       "office": "136 Hart Senate Office Building",
       "id": 12,
-      "fax": "202-225-5933"
+      "fax": "202-225-5933",
+      "random_dates": [
+        "2023-03-26",
+        "2025-07-06",
+        "1970-10-09"
+      ]
     },
     "state": "CT",
     "id": 12,
@@ -762,7 +827,12 @@
       "rss_url": "http://www.hirono.senate.gov/rss/feeds/?type=all",
       "office": "730 Hart Senate Office Building",
       "id": 13,
-      "fax": "202-225-4987"
+      "fax": "202-225-4987",
+      "random_dates": [
+        "1970-10-09",
+        "1970-11-06",
+        "1972-01-17"
+      ]
     },
     "state": "HI",
     "id": 13,
@@ -817,7 +887,12 @@
       "rss_url": "http://www.donnelly.senate.gov/rss/feeds/?type=all",
       "office": "720 Hart Senate Office Building",
       "id": 14,
-      "fax": "202-225-6798"
+      "fax": "202-225-6798",
+      "random_dates": [
+        "1972-01-17",
+        "1978-12-27",
+        "1982-03-27"
+      ]
     },
     "state": "IN",
     "id": 14,
@@ -872,7 +947,12 @@
       "rss_url": "http://www.heller.senate.gov/public/index.cfm/rss/feed",
       "office": "324 Hart Senate Office Building",
       "id": 15,
-      "fax": "202-228-6753"
+      "fax": "202-228-6753",
+      "random_dates": [
+        "1982-03-27",
+        "1986-06-09",
+        "1987-03-25"
+      ]
     },
     "state": "NV",
     "id": 15,
@@ -927,7 +1007,12 @@
       "rss_url": "http://www.gillibrand.senate.gov/rss/",
       "office": "478 Russell Senate Office Building",
       "id": 16,
-      "fax": "202-228-0282"
+      "fax": "202-228-0282",
+      "random_dates": [
+        "1987-03-25",
+        "1987-04-05",
+        "1987-06-14"
+      ]
     },
     "state": "NY",
     "id": 16,
@@ -981,7 +1066,12 @@
       "contact_form": "http://www.klobuchar.senate.gov/public/index.cfm/contact",
       "office": "302 Hart Senate Office Building",
       "id": 17,
-      "fax": "202-228-2186"
+      "fax": "202-228-2186",
+      "random_dates": [
+        "1987-06-14",
+        "1987-09-12",
+        "1988-10-29"
+      ]
     },
     "state": "MN",
     "id": 17,
@@ -1036,7 +1126,12 @@
       "rss_url": "http://mccaskill.senate.gov/rss/?p=news",
       "office": "503 Hart Senate Office Building",
       "id": 18,
-      "fax": "202-228-6326"
+      "fax": "202-228-6326",
+      "random_dates": [
+        "1988-10-29",
+        "1992-08-08",
+        "1993-07-23"
+      ]
     },
     "state": "MO",
     "id": 18,
@@ -1091,7 +1186,12 @@
       "rss_url": "http://www.tester.senate.gov/rss/?p=hot_topic",
       "office": "311 Hart Senate Office Building",
       "id": 19,
-      "fax": "202-224-8594"
+      "fax": "202-224-8594",
+      "random_dates": [
+        "1993-07-23",
+        "2001-02-10",
+        "2002-02-16"
+      ]
     },
     "state": "MT",
     "id": 19,
@@ -1123,10 +1223,10 @@
       "osid": "N00027503",
       "twitterid": "SenBobCasey",
       "lastname": "Casey",
-      "sortname": "Casey, Robert \u201cBob\u201d (Sen.) [D-PA]",
+      "sortname": "Casey, Robert “Bob” (Sen.) [D-PA]",
       "namemod": "Jr.",
       "cspanid": 47036,
-      "name": "Sen. Robert \u201cBob\u201d Casey [D-PA]",
+      "name": "Sen. Robert “Bob” Casey [D-PA]",
       "nickname": "Bob",
       "youtubeid": "SenatorBobCasey",
       "id": 20,
@@ -1146,7 +1246,12 @@
       "rss_url": "http://www.casey.senate.gov/rss/feeds/?all",
       "office": "393 Russell Senate Office Building",
       "id": 20,
-      "fax": "202-228-0604"
+      "fax": "202-228-0604",
+      "random_dates": [
+        "2002-02-16",
+        "2009-04-03",
+        "2010-12-03"
+      ]
     },
     "state": "PA",
     "id": 20,
@@ -1201,7 +1306,12 @@
       "rss_url": "http://www.whitehouse.senate.gov/rss/feeds/?type=all&amp;cachebuster=1",
       "office": "530 Hart Senate Office Building",
       "id": 21,
-      "fax": "202-228-6362"
+      "fax": "202-228-6362",
+      "random_dates": [
+        "2010-12-03",
+        "2011-11-16",
+        "2015-06-04"
+      ]
     },
     "state": "RI",
     "id": 21,
@@ -1256,7 +1366,12 @@
       "rss_url": "http://www.corker.senate.gov/public/index.cfm/rss/feed",
       "office": "425 Dirksen Senate Office Building",
       "id": 22,
-      "fax": "202-228-0566"
+      "fax": "202-228-0566",
+      "random_dates": [
+        "2015-06-04",
+        "2024-12-29",
+        "2025-01-27"
+      ]
     },
     "state": "TN",
     "id": 22,
@@ -1311,7 +1426,12 @@
       "rss_url": "http://www.barrasso.senate.gov/public/index.cfm?FuseAction=Rss.Feed",
       "office": "307 Dirksen Senate Office Building",
       "id": 23,
-      "fax": "202-224-1724"
+      "fax": "202-224-1724",
+      "random_dates": [
+        "2025-01-27",
+        "2027-09-02",
+        "2028-09-15"
+      ]
     },
     "state": "WY",
     "id": 23,
@@ -1365,7 +1485,12 @@
       "contact_form": "http://www.heinrich.senate.gov/contact",
       "office": "303 Hart Senate Office Building",
       "id": 24,
-      "fax": "202-225-4975"
+      "fax": "202-225-4975",
+      "random_dates": [
+        "2028-09-15",
+        "2028-12-24",
+        "2029-12-09"
+      ]
     },
     "state": "NM",
     "id": 24,
@@ -1420,7 +1545,12 @@
       "rss_url": "http://www.manchin.senate.gov/public/index.cfm/rss/feed",
       "office": "306 Hart Senate Office Building",
       "id": 25,
-      "fax": "202-228-0002"
+      "fax": "202-228-0002",
+      "random_dates": [
+        "2029-12-09",
+        "1975-11-26",
+        "1977-04-11"
+      ]
     },
     "state": "WV",
     "id": 25,
@@ -1475,7 +1605,12 @@
       "rss_url": "http://www.warren.senate.gov/rss/?p=hot_topic",
       "office": "317 Hart Senate Office Building",
       "id": 26,
-      "fax": "202-228-2072"
+      "fax": "202-228-2072",
+      "random_dates": [
+        "1977-04-11",
+        "1981-05-11",
+        "1981-11-21"
+      ]
     },
     "state": "MA",
     "id": 26,
@@ -1530,7 +1665,12 @@
       "rss_url": "http://www.king.senate.gov/rss/feeds/?type=all",
       "office": "133 Hart Senate Office Building",
       "id": 27,
-      "fax": "202-224-1946"
+      "fax": "202-224-1946",
+      "random_dates": [
+        "1981-11-21",
+        "1983-05-19",
+        "1984-05-13"
+      ]
     },
     "state": "ME",
     "id": 27,
@@ -1585,7 +1725,12 @@
       "rss_url": "http://www.heitkamp.senate.gov/public/index.cfm/rss/feed",
       "office": "516 Hart Senate Office Building",
       "id": 28,
-      "fax": "202-224-7776"
+      "fax": "202-224-7776",
+      "random_dates": [
+        "1984-05-13",
+        "1986-03-08",
+        "1988-03-06"
+      ]
     },
     "state": "ND",
     "id": 28,
@@ -1640,7 +1785,12 @@
       "rss_url": "http://www.fischer.senate.gov/public/index.cfm/rss/feed",
       "office": "454 Russell Senate Office Building",
       "id": 29,
-      "fax": "202-228-1325"
+      "fax": "202-228-1325",
+      "random_dates": [
+        "1988-03-06",
+        "1988-08-01",
+        "1988-08-09"
+      ]
     },
     "state": "NE",
     "id": 29,
@@ -1694,7 +1844,12 @@
       "contact_form": "https://www.cruz.senate.gov/?p=form&id=16",
       "office": "404 Russell Senate Office Building",
       "id": 30,
-      "fax": "202-228-3398"
+      "fax": "202-228-3398",
+      "random_dates": [
+        "1988-08-09",
+        "1990-02-04",
+        "1990-03-08"
+      ]
     },
     "state": "TX",
     "id": 30,
@@ -1749,7 +1904,12 @@
       "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
       "office": "231 Russell Senate Office Building",
       "id": 31,
-      "fax": "202-228-6363"
+      "fax": "202-228-6363",
+      "random_dates": [
+        "1990-03-08",
+        "1990-12-07",
+        "1991-02-25"
+      ]
     },
     "state": "VA",
     "id": 31,
@@ -1803,7 +1963,12 @@
       "contact_form": "https://www.wicker.senate.gov/public/index.cfm/contact",
       "office": "555 Dirksen Senate Office Building",
       "id": 32,
-      "fax": "202-228-0378"
+      "fax": "202-228-0378",
+      "random_dates": [
+        "1991-02-25",
+        "1991-12-28",
+        "1993-01-15"
+      ]
     },
     "state": "MS",
     "id": 32,
@@ -1858,7 +2023,12 @@
       "rss_url": "http://www.alexander.senate.gov/public/?a=rss.feed",
       "office": "455 Dirksen Senate Office Building",
       "id": 33,
-      "fax": "202-228-3398"
+      "fax": "202-228-3398",
+      "random_dates": [
+        "1993-01-15",
+        "1994-06-28",
+        "1998-09-14"
+      ]
     },
     "state": "TN",
     "id": 33,
@@ -1913,7 +2083,12 @@
       "rss_url": "http://www.cochran.senate.gov/public/index.cfm/rss/feed",
       "office": "113 Dirksen Senate Office Building",
       "id": 34,
-      "fax": "202-224-9450"
+      "fax": "202-224-9450",
+      "random_dates": [
+        "1998-09-14",
+        "2005-09-23",
+        "2016-12-10"
+      ]
     },
     "state": "MS",
     "id": 34,
@@ -1968,7 +2143,12 @@
       "rss_url": "http://www.collins.senate.gov/public/?a=rss.feed",
       "office": "413 Dirksen Senate Office Building",
       "id": 35,
-      "fax": "202-224-2693"
+      "fax": "202-224-2693",
+      "random_dates": [
+        "2016-12-10",
+        "2016-12-11",
+        "2019-08-27"
+      ]
     },
     "state": "ME",
     "id": 35,
@@ -2023,7 +2203,12 @@
       "rss_url": "http://www.cornyn.senate.gov/public/?a=rss.feed",
       "office": "517 Hart Senate Office Building",
       "id": 36,
-      "fax": "202-228-2856"
+      "fax": "202-228-2856",
+      "random_dates": [
+        "2019-08-27",
+        "2021-04-16",
+        "2028-10-13"
+      ]
     },
     "state": "TX",
     "id": 36,
@@ -2078,7 +2263,12 @@
       "rss_url": "http://durbin.senate.gov/public/index.cfm/rss/feed",
       "office": "711 Hart Senate Office Building",
       "id": 37,
-      "fax": "202-228-0400"
+      "fax": "202-228-0400",
+      "random_dates": [
+        "2028-10-13",
+        "2029-01-28",
+        "1970-01-09"
+      ]
     },
     "state": "IL",
     "id": 37,
@@ -2133,7 +2323,12 @@
       "rss_url": "http://www.enzi.senate.gov/public/index.cfm/rss/feed",
       "office": "379a Russell Senate Office Building",
       "id": 38,
-      "fax": "202-228-0359"
+      "fax": "202-228-0359",
+      "random_dates": [
+        "1970-01-09",
+        "1970-07-16",
+        "1970-08-05"
+      ]
     },
     "state": "WY",
     "id": 38,
@@ -2188,7 +2383,12 @@
       "rss_url": "http://www.lgraham.senate.gov/public/index.cfm?FuseAction=Rss.Feed",
       "office": "290 Russell Senate Office Building",
       "id": 39,
-      "fax": "202-224-3808"
+      "fax": "202-224-3808",
+      "random_dates": [
+        "1970-08-05",
+        "1972-07-01",
+        "1972-11-02"
+      ]
     },
     "state": "SC",
     "id": 39,
@@ -2220,10 +2420,10 @@
       "osid": "N00005582",
       "twitterid": "InhofePress",
       "lastname": "Inhofe",
-      "sortname": "Inhofe, James \u201cJim\u201d (Sen.) [R-OK]",
+      "sortname": "Inhofe, James “Jim” (Sen.) [R-OK]",
       "namemod": "",
       "cspanid": 5619,
-      "name": "Sen. James \u201cJim\u201d Inhofe [R-OK]",
+      "name": "Sen. James “Jim” Inhofe [R-OK]",
       "nickname": "Jim",
       "youtubeid": "jiminhofepressoffice",
       "id": 40,
@@ -2243,7 +2443,12 @@
       "rss_url": "http://www.inhofe.senate.gov/rss/feeds/?type=all&amp;cachebuster=eea6c4d7%2d939c%2d5c1e%2db6c7aa3b8b291208",
       "office": "205 Russell Senate Office Building",
       "id": 40,
-      "fax": "202-228-0380"
+      "fax": "202-228-0380",
+      "random_dates": [
+        "1972-11-02",
+        "1976-10-30",
+        "1980-12-24"
+      ]
     },
     "state": "OK",
     "id": 40,
@@ -2298,7 +2503,12 @@
       "rss_url": "http://www.mcconnell.senate.gov/public/?a=rss.feed",
       "office": "317 Russell Senate Office Building",
       "id": 41,
-      "fax": "202-224-2499"
+      "fax": "202-224-2499",
+      "random_dates": [
+        "1980-12-24",
+        "1981-04-19",
+        "1981-12-19"
+      ]
     },
     "state": "KY",
     "id": 41,
@@ -2330,10 +2540,10 @@
       "osid": "N00000362",
       "twitterid": "SenJackReed",
       "lastname": "Reed",
-      "sortname": "Reed, John \u201cJack\u201d (Sen.) [D-RI]",
+      "sortname": "Reed, John “Jack” (Sen.) [D-RI]",
       "namemod": "",
       "cspanid": 24239,
-      "name": "Sen. John \u201cJack\u201d Reed [D-RI]",
+      "name": "Sen. John “Jack” Reed [D-RI]",
       "nickname": "Jack",
       "youtubeid": "SenatorReed",
       "id": 42,
@@ -2353,7 +2563,12 @@
       "rss_url": "https://www.reed.senate.gov//rss/feeds/?type=all",
       "office": "728 Hart Senate Office Building",
       "id": 42,
-      "fax": "202-224-4680"
+      "fax": "202-224-4680",
+      "random_dates": [
+        "1981-12-19",
+        "1982-02-27",
+        "1982-10-01"
+      ]
     },
     "state": "RI",
     "id": 42,
@@ -2408,7 +2623,12 @@
       "rss_url": "http://www.roberts.senate.gov/public/?a=rss.feed",
       "office": "109 Hart Senate Office Building",
       "id": 43,
-      "fax": "202-224-3514"
+      "fax": "202-224-3514",
+      "random_dates": [
+        "1982-10-01",
+        "1983-04-18",
+        "1983-10-05"
+      ]
     },
     "state": "KS",
     "id": 43,
@@ -2462,7 +2682,12 @@
       "contact_form": "https://www.capito.senate.gov/contact/contact-shelley",
       "office": "172 Russell Senate Office Building",
       "id": 44,
-      "fax": "202-225-7856"
+      "fax": "202-225-7856",
+      "random_dates": [
+        "1983-10-05",
+        "1989-11-06",
+        "1990-08-04"
+      ]
     },
     "state": "WV",
     "id": 44,
@@ -2494,10 +2719,10 @@
       "osid": "N00000270",
       "twitterid": "SenMarkey",
       "lastname": "Markey",
-      "sortname": "Markey, Edward \u201cEd\u201d (Sen.) [D-MA]",
+      "sortname": "Markey, Edward “Ed” (Sen.) [D-MA]",
       "namemod": "",
       "cspanid": 260,
-      "name": "Sen. Edward \u201cEd\u201d Markey [D-MA]",
+      "name": "Sen. Edward “Ed” Markey [D-MA]",
       "nickname": "Ed",
       "youtubeid": "RepMarkey",
       "id": 45,
@@ -2515,7 +2740,12 @@
       "address": "255 Dirksen Senate Office Building Washington DC 20510",
       "contact_form": "https://www.markey.senate.gov/contact",
       "office": "255 Dirksen Senate Office Building",
-      "id": 45
+      "id": 45,
+      "random_dates": [
+        "1990-08-04",
+        "1994-09-13",
+        "1995-05-13"
+      ]
     },
     "state": "MA",
     "id": 45,
@@ -2570,7 +2800,12 @@
       "rss_url": "http://tomudall.senate.gov/rss/?p=blog",
       "office": "531 Hart Senate Office Building",
       "id": 46,
-      "fax": "202-228-3261"
+      "fax": "202-228-3261",
+      "random_dates": [
+        "1995-05-13",
+        "1997-06-29",
+        "2004-06-30"
+      ]
     },
     "state": "NM",
     "id": 46,
@@ -2624,7 +2859,12 @@
       "contact_form": "https://www.cassidy.senate.gov/contact",
       "office": "520 Hart Senate Office Building",
       "id": 47,
-      "fax": "202-225-7313"
+      "fax": "202-225-7313",
+      "random_dates": [
+        "2004-06-30",
+        "2008-12-07",
+        "2010-07-28"
+      ]
     },
     "state": "LA",
     "id": 47,
@@ -2678,7 +2918,12 @@
       "contact_form": "https://www.peters.senate.gov/contact/email-gary",
       "office": "724 Hart Senate Office Building",
       "id": 48,
-      "fax": "202-226-2356"
+      "fax": "202-226-2356",
+      "random_dates": [
+        "2010-07-28",
+        "2012-10-06",
+        "2015-05-05"
+      ]
     },
     "state": "MI",
     "id": 48,
@@ -2733,7 +2978,12 @@
       "rss_url": "http://www.warner.senate.gov/public/?a=rss.feed",
       "office": "703 Hart Senate Office Building",
       "id": 49,
-      "fax": "202-224-6295"
+      "fax": "202-224-6295",
+      "random_dates": [
+        "2015-05-05",
+        "2024-12-18",
+        "2027-10-21"
+      ]
     },
     "state": "VA",
     "id": 49,
@@ -2787,7 +3037,12 @@
       "contact_form": "http://www.risch.senate.gov/public/index.cfm?p=Email",
       "office": "483 Russell Senate Office Building",
       "id": 50,
-      "fax": "202-224-2573"
+      "fax": "202-224-2573",
+      "random_dates": [
+        "2027-10-21",
+        "1970-03-06",
+        "1974-09-15"
+      ]
     },
     "state": "ID",
     "id": 50,
@@ -2842,7 +3097,12 @@
       "rss_url": "http://www.shaheen.senate.gov/rss/",
       "office": "506 Hart Senate Office Building",
       "id": 51,
-      "fax": "202-228-3194"
+      "fax": "202-228-3194",
+      "random_dates": [
+        "1974-09-15",
+        "1977-01-22",
+        "1978-05-18"
+      ]
     },
     "state": "NH",
     "id": 51,
@@ -2897,7 +3157,12 @@
       "rss_url": "http://www.merkley.senate.gov/rss/",
       "office": "313 Hart Senate Office Building",
       "id": 52,
-      "fax": "202-228-3997"
+      "fax": "202-228-3997",
+      "random_dates": [
+        "1978-05-18",
+        "1982-06-16",
+        "1983-07-11"
+      ]
     },
     "state": "OR",
     "id": 52,
@@ -2929,10 +3194,10 @@
       "osid": "N00029016",
       "twitterid": "SenFranken",
       "lastname": "Franken",
-      "sortname": "Franken, Alan \u201cAl\u201d (Sen.) [D-MN]",
+      "sortname": "Franken, Alan “Al” (Sen.) [D-MN]",
       "namemod": "",
       "cspanid": 23334,
-      "name": "Sen. Alan \u201cAl\u201d Franken [D-MN]",
+      "name": "Sen. Alan “Al” Franken [D-MN]",
       "nickname": "Al",
       "youtubeid": "SenatorFranken",
       "id": 53,
@@ -2952,7 +3217,12 @@
       "rss_url": "http://franken.senate.gov/rss/?p=hot_topic",
       "office": "309 Hart Senate Office Building",
       "id": 53,
-      "fax": "202-224-0044"
+      "fax": "202-224-0044",
+      "random_dates": [
+        "1983-07-11",
+        "1986-07-17",
+        "1988-11-01"
+      ]
     },
     "state": "MN",
     "id": 53,
@@ -3007,7 +3277,12 @@
       "rss_url": "http://www.coons.senate.gov/rss/feeds/?type=all",
       "office": "127a Russell Senate Office Building",
       "id": 54,
-      "fax": "202-228-3075"
+      "fax": "202-228-3075",
+      "random_dates": [
+        "1988-11-01",
+        "1994-04-21",
+        "1997-08-19"
+      ]
     },
     "state": "DE",
     "id": 54,
@@ -3061,7 +3336,12 @@
       "contact_form": "https://www.gardner.senate.gov/contact-cory/email-cory",
       "office": "354 Russell Senate Office Building",
       "id": 55,
-      "fax": "202-225-5870"
+      "fax": "202-225-5870",
+      "random_dates": [
+        "1997-08-19",
+        "1998-09-21",
+        "1999-09-18"
+      ]
     },
     "state": "CO",
     "id": 55,
@@ -3114,7 +3394,12 @@
       "address": "124 Russell Senate Office Building Washington DC 20510",
       "contact_form": "http://www.cotton.senate.gov/?p=contact",
       "office": "124 Russell Senate Office Building",
-      "id": 56
+      "id": 56,
+      "random_dates": [
+        "1999-09-18",
+        "2003-08-01",
+        "2003-08-10"
+      ]
     },
     "state": "AR",
     "id": 56,
@@ -3168,7 +3453,12 @@
       "contact_form": "https://www.daines.senate.gov/connect/email-steve",
       "office": "320 Hart Senate Office Building",
       "id": 57,
-      "fax": "202-228-1236"
+      "fax": "202-228-1236",
+      "random_dates": [
+        "2003-08-10",
+        "2006-07-17",
+        "2009-04-16"
+      ]
     },
     "state": "MT",
     "id": 57,
@@ -3222,7 +3512,12 @@
       "contact_form": "https://www.booker.senate.gov/?p=contact",
       "office": "359 Dirksen Senate Office Building",
       "id": 58,
-      "fax": "202-224-8378"
+      "fax": "202-224-8378",
+      "random_dates": [
+        "2009-04-16",
+        "2012-02-03",
+        "2014-11-14"
+      ]
     },
     "state": "NJ",
     "id": 58,
@@ -3275,7 +3570,12 @@
       "address": "702 Hart Senate Office Building Washington DC 20510",
       "contact_form": "https://www.sullivan.senate.gov/contact/email",
       "office": "702 Hart Senate Office Building",
-      "id": 59
+      "id": 59,
+      "random_dates": [
+        "2014-11-14",
+        "2016-11-28",
+        "2020-12-28"
+      ]
     },
     "state": "AK",
     "id": 59,
@@ -3328,7 +3628,12 @@
       "address": "455 Russell Senate Office Building Washington DC 20510",
       "contact_form": "https://www.perdue.senate.gov/connect/email",
       "office": "455 Russell Senate Office Building",
-      "id": 60
+      "id": 60,
+      "random_dates": [
+        "2020-12-28",
+        "2023-03-17",
+        "2024-02-05"
+      ]
     },
     "state": "GA",
     "id": 60,
@@ -3381,7 +3686,12 @@
       "address": "111 Russell Senate Office Building Washington DC 20510",
       "contact_form": "https://www.ernst.senate.gov/public/index.cfm/contact",
       "office": "111 Russell Senate Office Building",
-      "id": 61
+      "id": 61,
+      "random_dates": [
+        "2024-02-05",
+        "2026-11-01",
+        "2027-06-30"
+      ]
     },
     "state": "IA",
     "id": 61,
@@ -3434,7 +3744,12 @@
       "address": "185 Dirksen Senate Office Building Washington DC 20510",
       "contact_form": "https://www.tillis.senate.gov/public/index.cfm/email-me",
       "office": "185 Dirksen Senate Office Building",
-      "id": 62
+      "id": 62,
+      "random_dates": [
+        "2027-06-30",
+        "2030-08-08",
+        "1970-01-12"
+      ]
     },
     "state": "NC",
     "id": 62,
@@ -3487,7 +3802,12 @@
       "address": "502 Hart Senate Office Building Washington DC 20510",
       "contact_form": "https://www.rounds.senate.gov/contact/email-mike",
       "office": "502 Hart Senate Office Building",
-      "id": 63
+      "id": 63,
+      "random_dates": [
+        "1970-01-12",
+        "1970-04-25",
+        "1971-08-29"
+      ]
     },
     "state": "SD",
     "id": 63,
@@ -3540,7 +3860,12 @@
       "address": "136 Russell Senate Office Building Washington DC 20510",
       "contact_form": "http://www.sasse.senate.gov/public/index.cfm/email-ben",
       "office": "136 Russell Senate Office Building",
-      "id": 64
+      "id": 64,
+      "random_dates": [
+        "1971-08-29",
+        "1973-02-01",
+        "1973-04-26"
+      ]
     },
     "state": "NE",
     "id": 64,
@@ -3594,7 +3919,12 @@
       "contact_form": "https://www.crapo.senate.gov/contact",
       "office": "239 Dirksen Senate Office Building",
       "id": 65,
-      "fax": "202-228-1375"
+      "fax": "202-228-1375",
+      "random_dates": [
+        "1973-04-26",
+        "1974-02-25",
+        "1976-09-18"
+      ]
     },
     "state": "ID",
     "id": 65,
@@ -3626,10 +3956,10 @@
       "osid": "N00001758",
       "twitterid": "ChuckGrassley",
       "lastname": "Grassley",
-      "sortname": "Grassley, Charles \u201cChuck\u201d (Sen.) [R-IA]",
+      "sortname": "Grassley, Charles “Chuck” (Sen.) [R-IA]",
       "namemod": "",
       "cspanid": 1167,
-      "name": "Sen. Charles \u201cChuck\u201d Grassley [R-IA]",
+      "name": "Sen. Charles “Chuck” Grassley [R-IA]",
       "nickname": "Chuck",
       "youtubeid": "senchuckgrassley",
       "id": 66,
@@ -3649,7 +3979,12 @@
       "rss_url": "http://grassley.senate.gov/customcf/rss_feed.cfm",
       "office": "135 Hart Senate Office Building",
       "id": 66,
-      "fax": "202-224-6020"
+      "fax": "202-224-6020",
+      "random_dates": [
+        "1976-09-18",
+        "1983-01-30",
+        "1983-05-29"
+      ]
     },
     "state": "IA",
     "id": 66,
@@ -3704,7 +4039,12 @@
       "rss_url": "http://www.leahy.senate.gov/rss/feeds/press/",
       "office": "437 Russell Senate Office Building",
       "id": 67,
-      "fax": "202-224-3479"
+      "fax": "202-224-3479",
+      "random_dates": [
+        "1983-05-29",
+        "1983-07-02",
+        "1989-03-11"
+      ]
     },
     "state": "VT",
     "id": 67,
@@ -3758,7 +4098,12 @@
       "contact_form": "https://www.mccain.senate.gov/public/index.cfm/contact-form",
       "office": "218 Russell Senate Office Building",
       "id": 68,
-      "fax": "202-228-2862"
+      "fax": "202-228-2862",
+      "random_dates": [
+        "1989-03-11",
+        "1995-03-12",
+        "1995-03-13"
+      ]
     },
     "state": "AZ",
     "id": 68,
@@ -3813,7 +4158,12 @@
       "rss_url": "http://www.murkowski.senate.gov/public/?a=rss.feed",
       "office": "522 Hart Senate Office Building",
       "id": 69,
-      "fax": "202-224-5301"
+      "fax": "202-224-5301",
+      "random_dates": [
+        "1995-03-13",
+        "1999-07-25",
+        "2000-11-28"
+      ]
     },
     "state": "AK",
     "id": 69,
@@ -3868,7 +4218,12 @@
       "rss_url": "http://www.murray.senate.gov/public/?a=rss.feed",
       "office": "154 Russell Senate Office Building",
       "id": 70,
-      "fax": "202-224-0238"
+      "fax": "202-224-0238",
+      "random_dates": [
+        "2000-11-28",
+        "2001-11-04",
+        "2007-02-25"
+      ]
     },
     "state": "WA",
     "id": 70,
@@ -3900,10 +4255,10 @@
       "osid": "N00001093",
       "twitterid": "SenSchumer",
       "lastname": "Schumer",
-      "sortname": "Schumer, Charles \u201cChuck\u201d (Sen.) [D-NY]",
+      "sortname": "Schumer, Charles “Chuck” (Sen.) [D-NY]",
       "namemod": "",
       "cspanid": 5929,
-      "name": "Sen. Charles \u201cChuck\u201d Schumer [D-NY]",
+      "name": "Sen. Charles “Chuck” Schumer [D-NY]",
       "nickname": "Chuck",
       "youtubeid": "SenatorSchumer",
       "id": 71,
@@ -3922,7 +4277,12 @@
       "contact_form": "https://www.schumer.senate.gov/contact/email-chuck",
       "office": "322 Hart Senate Office Building",
       "id": 71,
-      "fax": "202-228-3027"
+      "fax": "202-228-3027",
+      "random_dates": [
+        "2007-02-25",
+        "2007-12-04",
+        "2010-06-17"
+      ]
     },
     "state": "NY",
     "id": 71,
@@ -3977,7 +4337,12 @@
       "rss_url": "http://www.shelby.senate.gov/public/index.cfm/rss/feed",
       "office": "304 Russell Senate Office Building",
       "id": 72,
-      "fax": "202-224-3416"
+      "fax": "202-224-3416",
+      "random_dates": [
+        "2010-06-17",
+        "2013-11-25",
+        "2017-02-03"
+      ]
     },
     "state": "AL",
     "id": 72,
@@ -4032,7 +4397,12 @@
       "rss_url": "http://www.wyden.senate.gov/rss/feeds/?type=all&amp;",
       "office": "221 Dirksen Senate Office Building",
       "id": 73,
-      "fax": "202-228-2717"
+      "fax": "202-228-2717",
+      "random_dates": [
+        "2017-02-03",
+        "2019-04-19",
+        "2019-08-12"
+      ]
     },
     "state": "OR",
     "id": 73,
@@ -4087,7 +4457,12 @@
       "rss_url": "http://www.blunt.senate.gov/public/?a=rss.feed",
       "office": "260 Russell Senate Office Building",
       "id": 74,
-      "fax": "202-224-8149"
+      "fax": "202-224-8149",
+      "random_dates": [
+        "2019-08-12",
+        "2024-04-23",
+        "2029-11-21"
+      ]
     },
     "state": "MO",
     "id": 74,
@@ -4142,7 +4517,12 @@
       "rss_url": "http://www.boozman.senate.gov/public/index.cfm/rss/feed",
       "office": "141 Hart Senate Office Building",
       "id": 75,
-      "fax": "202-228-1371"
+      "fax": "202-228-1371",
+      "random_dates": [
+        "2029-11-21",
+        "1971-12-12",
+        "1980-01-30"
+      ]
     },
     "state": "AR",
     "id": 75,
@@ -4197,7 +4577,12 @@
       "rss_url": "http://www.burr.senate.gov/public/index.cfm?fuseaction=rss.feed",
       "office": "217 Russell Senate Office Building",
       "id": 76,
-      "fax": "202-228-2981"
+      "fax": "202-228-2981",
+      "random_dates": [
+        "1980-01-30",
+        "1980-11-16",
+        "1981-03-26"
+      ]
     },
     "state": "NC",
     "id": 76,
@@ -4229,10 +4614,10 @@
       "osid": "N00002593",
       "twitterid": "SenatorIsakson",
       "lastname": "Isakson",
-      "sortname": "Isakson, John \u201cJohnny\u201d (Sen.) [R-GA]",
+      "sortname": "Isakson, John “Johnny” (Sen.) [R-GA]",
       "namemod": "",
       "cspanid": 59135,
-      "name": "Sen. John \u201cJohnny\u201d Isakson [R-GA]",
+      "name": "Sen. John “Johnny” Isakson [R-GA]",
       "nickname": "Johnny",
       "youtubeid": "SenatorIsakson",
       "id": 77,
@@ -4252,7 +4637,12 @@
       "rss_url": "http://www.isakson.senate.gov/public/?a=RSS.Feed",
       "office": "131 Russell Senate Office Building",
       "id": 77,
-      "fax": "202-228-0724"
+      "fax": "202-228-0724",
+      "random_dates": [
+        "1981-03-26",
+        "1981-10-25",
+        "1983-09-22"
+      ]
     },
     "state": "GA",
     "id": 77,
@@ -4307,7 +4697,12 @@
       "rss_url": "http://www.moran.senate.gov/public/index.cfm/rss/feed/",
       "office": "521 Dirksen Senate Office Building",
       "id": 78,
-      "fax": "202-228-6966"
+      "fax": "202-228-6966",
+      "random_dates": [
+        "1983-09-22",
+        "1985-10-09",
+        "1988-08-19"
+      ]
     },
     "state": "KS",
     "id": 78,
@@ -4339,10 +4734,10 @@
       "osid": "N00003682",
       "twitterid": "SenRobPortman",
       "lastname": "Portman",
-      "sortname": "Portman, Robert \u201cRob\u201d (Sen.) [R-OH]",
+      "sortname": "Portman, Robert “Rob” (Sen.) [R-OH]",
       "namemod": "",
       "cspanid": 31819,
-      "name": "Sen. Robert \u201cRob\u201d Portman [R-OH]",
+      "name": "Sen. Robert “Rob” Portman [R-OH]",
       "nickname": "Rob",
       "youtubeid": "SenRobPortman",
       "id": 79,
@@ -4361,7 +4756,12 @@
       "contact_form": "https://www.portman.senate.gov/public/index.cfm/contact?p=contact-form",
       "rss_url": "http://www.portman.senate.gov/public/index.cfm/rss/feed",
       "office": "448 Russell Senate Office Building",
-      "id": 79
+      "id": 79,
+      "random_dates": [
+        "1988-08-19",
+        "1989-10-25",
+        "1990-03-22"
+      ]
     },
     "state": "OH",
     "id": 79,
@@ -4393,10 +4793,10 @@
       "osid": "N00001489",
       "twitterid": "SenToomey",
       "lastname": "Toomey",
-      "sortname": "Toomey, Patrick \u201cPat\u201d (Sen.) [R-PA]",
+      "sortname": "Toomey, Patrick “Pat” (Sen.) [R-PA]",
       "namemod": "",
       "cspanid": 7958,
-      "name": "Sen. Patrick \u201cPat\u201d Toomey [R-PA]",
+      "name": "Sen. Patrick “Pat” Toomey [R-PA]",
       "nickname": "Pat",
       "youtubeid": "sentoomey",
       "id": 80,
@@ -4416,7 +4816,12 @@
       "rss_url": "http://toomey.senate.gov/rss/?p=hot_topic",
       "office": "248 Russell Senate Office Building",
       "id": 80,
-      "fax": "202-228-0284"
+      "fax": "202-228-0284",
+      "random_dates": [
+        "1990-03-22",
+        "1990-04-25",
+        "1993-02-01"
+      ]
     },
     "state": "PA",
     "id": 80,
@@ -4470,7 +4875,12 @@
       "contact_form": "https://www.vanhollen.senate.gov/content/contact-senator",
       "office": "110 Hart Senate Office Building",
       "id": 81,
-      "fax": "202-225-0375"
+      "fax": "202-225-0375",
+      "random_dates": [
+        "1993-02-01",
+        "1993-06-05",
+        "1996-08-19"
+      ]
     },
     "state": "MD",
     "id": 81,
@@ -4525,7 +4935,12 @@
       "rss_url": "http://www.thune.senate.gov/public/index.cfm/rss/feed",
       "office": "511 Dirksen Senate Office Building",
       "id": 82,
-      "fax": "202-228-5429"
+      "fax": "202-228-5429",
+      "random_dates": [
+        "1996-08-19",
+        "1999-04-11",
+        "2000-03-30"
+      ]
     },
     "state": "SD",
     "id": 82,
@@ -4580,7 +4995,12 @@
       "rss_url": "http://www.bennet.senate.gov/rss/feeds/?type=news",
       "office": "261 Russell Senate Office Building",
       "id": 83,
-      "fax": "202-228-5097"
+      "fax": "202-228-5097",
+      "random_dates": [
+        "2000-03-30",
+        "2005-11-20",
+        "2010-07-29"
+      ]
     },
     "state": "CO",
     "id": 83,
@@ -4634,7 +5054,12 @@
       "contact_form": "https://www.young.senate.gov/contact",
       "office": "400 Russell Senate Office Building",
       "id": 84,
-      "fax": "202-226-6866"
+      "fax": "202-226-6866",
+      "random_dates": [
+        "2010-07-29",
+        "2011-11-19",
+        "2013-08-01"
+      ]
     },
     "state": "IN",
     "id": 84,
@@ -4687,7 +5112,12 @@
       "address": "316 Hart Senate Office Building Washington DC 20510",
       "contact_form": "http://www.lankford.senate.gov/contact/email",
       "office": "316 Hart Senate Office Building",
-      "id": 85
+      "id": 85,
+      "random_dates": [
+        "2013-08-01",
+        "2013-11-26",
+        "2021-04-11"
+      ]
     },
     "state": "OK",
     "id": 85,
@@ -4742,7 +5172,12 @@
       "rss_url": "http://www.scott.senate.gov/rss.xml",
       "office": "717 Hart Senate Office Building",
       "id": 86,
-      "fax": "202-225-3407"
+      "fax": "202-225-3407",
+      "random_dates": [
+        "2021-04-11",
+        "2028-10-16",
+        "2030-09-10"
+      ]
     },
     "state": "SC",
     "id": 86,
@@ -4797,7 +5232,12 @@
       "rss_url": "http://www.blumenthal.senate.gov/rss/feeds/?type=all",
       "office": "706 Hart Senate Office Building",
       "id": 87,
-      "fax": "202-224-9673"
+      "fax": "202-224-9673",
+      "random_dates": [
+        "2030-09-10",
+        "2030-12-23",
+        "1971-03-02"
+      ]
     },
     "state": "CT",
     "id": 87,
@@ -4852,7 +5292,12 @@
       "rss_url": "http://www.rubio.senate.gov/public/?a=rss.feed",
       "office": "284 Russell Senate Office Building",
       "id": 88,
-      "fax": "202-228-0285"
+      "fax": "202-228-0285",
+      "random_dates": [
+        "1971-03-02",
+        "1971-04-12",
+        "1978-09-22"
+      ]
     },
     "state": "FL",
     "id": 88,
@@ -4907,7 +5352,12 @@
       "rss_url": "http://paul.senate.gov/rss/?p=news",
       "office": "167 Russell Senate Office Building",
       "id": 89,
-      "fax": "202-228-1373"
+      "fax": "202-228-1373",
+      "random_dates": [
+        "1978-09-22",
+        "1979-04-18",
+        "1981-09-19"
+      ]
     },
     "state": "KY",
     "id": 89,
@@ -4962,7 +5412,12 @@
       "rss_url": "http://www.hoeven.senate.gov/public/index.cfm/rss/feed",
       "office": "338 Russell Senate Office Building",
       "id": 90,
-      "fax": "202-224-7999"
+      "fax": "202-224-7999",
+      "random_dates": [
+        "1981-09-19",
+        "1988-11-01",
+        "1992-04-09"
+      ]
     },
     "state": "ND",
     "id": 90,
@@ -5016,7 +5471,12 @@
       "contact_form": "https://www.lee.senate.gov/public/index.cfm/contact",
       "rss_url": "http://www.lee.senate.gov/public/index.cfm/rss/feed",
       "office": "361a Russell Senate Office Building",
-      "id": 91
+      "id": 91,
+      "random_dates": [
+        "1992-04-09",
+        "1997-09-20",
+        "1998-01-20"
+      ]
     },
     "state": "UT",
     "id": 91,
@@ -5071,7 +5531,12 @@
       "rss_url": "http://www.ronjohnson.senate.gov/public/index.cfm/rss/feed",
       "office": "328 Hart Senate Office Building",
       "id": 92,
-      "fax": "920-230-7262"
+      "fax": "920-230-7262",
+      "random_dates": [
+        "1998-01-20",
+        "1998-07-06",
+        "1998-07-31"
+      ]
     },
     "state": "WI",
     "id": 92,
@@ -5125,7 +5590,12 @@
       "contact_form": "https://www.schatz.senate.gov/contact",
       "office": "722 Hart Senate Office Building",
       "id": 93,
-      "fax": "202-228-1153"
+      "fax": "202-228-1153",
+      "random_dates": [
+        "1998-07-31",
+        "1999-03-20",
+        "2000-04-07"
+      ]
     },
     "state": "HI",
     "id": 93,
@@ -5178,7 +5648,12 @@
       "address": "524 Hart Senate Office Building Washington DC 20510",
       "contact_form": "https://www.duckworth.senate.gov/content/contact-senator",
       "office": "524 Hart Senate Office Building",
-      "id": 94
+      "id": 94,
+      "random_dates": [
+        "2000-04-07",
+        "2000-05-08",
+        "2000-10-23"
+      ]
     },
     "state": "IL",
     "id": 94,
@@ -5231,7 +5706,12 @@
       "address": "112 Hart Senate Office Building Washington DC 20510",
       "contact_form": "https://www.harris.senate.gov/contact",
       "office": "112 Hart Senate Office Building",
-      "id": 95
+      "id": 95,
+      "random_dates": [
+        "2000-10-23",
+        "2002-02-06",
+        "2002-07-31"
+      ]
     },
     "state": "CA",
     "id": 95,
@@ -5284,7 +5764,12 @@
       "address": "383 Russell Senate Office Building Washington DC 20510",
       "contact_form": "https://www.kennedy.senate.gov/public/email-me",
       "office": "383 Russell Senate Office Building",
-      "id": 96
+      "id": 96,
+      "random_dates": [
+        "2002-07-31",
+        "2006-02-15",
+        "2006-06-28"
+      ]
     },
     "state": "LA",
     "id": 96,
@@ -5316,10 +5801,10 @@
       "osid": "N00038397",
       "twitterid": "Senatorhassan",
       "lastname": "Hassan",
-      "sortname": "Hassan, Margaret \u201cMaggie\u201d (Sen.) [D-NH]",
+      "sortname": "Hassan, Margaret “Maggie” (Sen.) [D-NH]",
       "namemod": "",
       "cspanid": 67481,
-      "name": "Sen. Margaret \u201cMaggie\u201d Hassan [D-NH]",
+      "name": "Sen. Margaret “Maggie” Hassan [D-NH]",
       "nickname": "Maggie",
       "youtubeid": "",
       "id": 97,
@@ -5337,7 +5822,12 @@
       "address": "330 Hart Senate Office Building Washington DC 20510",
       "contact_form": "https://www.hassan.senate.gov/content/contact-senator",
       "office": "330 Hart Senate Office Building",
-      "id": 97
+      "id": 97,
+      "random_dates": [
+        "2006-06-28",
+        "2010-03-19",
+        "2011-11-18"
+      ]
     },
     "state": "NH",
     "id": 97,
@@ -5390,7 +5880,12 @@
       "address": "204 Russell Senate Office Building Washington DC 20510",
       "contact_form": "https://www.cortezmasto.senate.gov/contact",
       "office": "204 Russell Senate Office Building",
-      "id": 98
+      "id": 98,
+      "random_dates": [
+        "2011-11-18",
+        "2013-11-29",
+        "2019-01-31"
+      ]
     },
     "state": "NV",
     "id": 98,
@@ -5442,7 +5937,12 @@
       "address": "326 Russell Senate Office Building Washington DC 20510",
       "contact_form": "https://www.strange.senate.gov/content/contact-senator",
       "office": "326 Russell Senate Office Building",
-      "id": 99
+      "id": 99,
+      "random_dates": [
+        "2019-01-31",
+        "2029-02-28",
+        "2030-08-15"
+      ]
     },
     "state": "AL",
     "id": 99,
