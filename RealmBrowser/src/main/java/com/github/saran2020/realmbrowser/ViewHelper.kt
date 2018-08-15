@@ -16,6 +16,7 @@ import android.widget.TextView
 import com.github.saran2020.realmbrowser.data.model.classrepresentation.ClassItem
 import com.github.saran2020.realmbrowser.data.model.classrepresentation.ObjectType
 import io.realm.RealmFieldType
+import java.util.*
 
 /**
  * A helper class to get the gridview with populated field items
@@ -177,10 +178,15 @@ private fun setTextToView(context: Context, textView: TextView, value: Any?, val
                 }
             }
 
+            RealmFieldType.DATE.nativeValue -> {
+                (value as Date).toString()
+            }
+
             RealmFieldType.OBJECT.nativeValue -> {
                 isTextHyperlinkStyleable = true
                 (value as ObjectType).displayText
             }
+
             RealmFieldType.LIST.nativeValue -> {
                 isTextHyperlinkStyleable = true
                 (value as ObjectType).displayText

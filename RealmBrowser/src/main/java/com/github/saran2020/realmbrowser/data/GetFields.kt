@@ -4,7 +4,8 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import com.github.saran2020.realmbrowser.*
-import com.github.saran2020.realmbrowser.data.model.*
+import com.github.saran2020.realmbrowser.data.model.DisplayResult
+import com.github.saran2020.realmbrowser.data.model.QueryResult
 import com.github.saran2020.realmbrowser.data.model.classrepresentation.ClassItem
 import com.github.saran2020.realmbrowser.data.model.classrepresentation.FieldItem
 import com.github.saran2020.realmbrowser.data.model.classrepresentation.NativeListType
@@ -259,11 +260,13 @@ class GetFields {
                 return FieldItem(getter.key, fieldType, data)
             }
 
-            if (fieldType == RealmFieldType.OBJECT.nativeValue || fieldType >= RealmFieldType.LIST.nativeValue) {
+            if (fieldType == RealmFieldType.OBJECT.nativeValue ||
+                    (fieldType >= RealmFieldType.LIST.nativeValue && fieldType != RealmFieldType.DATE_LIST.nativeValue)) {
 
                 val parentPrimaryKeyFieldName = schema.primaryKey
                 val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)
-                val parentPrimaryKeyFieldValue = findGetter(schema, resultInstance::class.java, parentPrimaryKeyFieldName)?.invoke(resultInstance)
+                val parentPrimaryKeyFieldValue =
+                        findGetter(schema, resultInstance::class.java, parentPrimaryKeyFieldName)?.invoke(resultInstance)
 
                 val displayText =
                         if (fieldType == RealmFieldType.OBJECT.nativeValue) {
