@@ -4,10 +4,10 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import com.github.saran2020.realmbrowser.*
+import com.github.saran2020.realmbrowser.data.model.*
 import com.github.saran2020.realmbrowser.exception.GetterMethodNotFoundException
 import com.github.saran2020.realmbrowser.exception.PrimaryKeyItemNotFoundException
 import com.github.saran2020.realmbrowser.exception.SchemaNotFoundException
-import com.github.saran2020.realmbrowser.data.model.*
 import io.realm.*
 import java.lang.reflect.Method
 
@@ -30,7 +30,8 @@ class GetFields {
         FetchFieldsTask(bundle, this.callback).execute()
     }
 
-    class FetchFieldsTask(private val bundle: Bundle, private val callback: FieldsTaskCompleteCallback?) : AsyncTask<Void, Void, DisplayResult>() {
+    class FetchFieldsTask(private val bundle: Bundle, private val callback: FieldsTaskCompleteCallback?) :
+            AsyncTask<Void, Void, DisplayResult>() {
 
         lateinit var realm: Realm
 
@@ -99,11 +100,6 @@ class GetFields {
             val result = QueryResult(RESULT_TYPE_OBJECT, query.findFirst())
 
             if (bundle.containsKey(EXTRA_KEY_FIELD_GETTER_NAME) && result.result != null) {
-
-                // TODO: handle
-                if (result.result == null) {
-                    return result
-                }
 
                 val getterMethodName = bundle.getString(EXTRA_KEY_FIELD_GETTER_NAME)
                 val getterMethod = result.result!!::class.java.getMethod(getterMethodName)
