@@ -260,8 +260,7 @@ class GetFields {
                 return FieldItem(getter.key, fieldType, data)
             }
 
-            if (fieldType == RealmFieldType.OBJECT.nativeValue ||
-                    (fieldType >= RealmFieldType.LIST.nativeValue && fieldType != RealmFieldType.DATE_LIST.nativeValue)) {
+            if (fieldType == RealmFieldType.OBJECT.nativeValue || fieldType >= RealmFieldType.LIST.nativeValue) {
 
                 val parentPrimaryKeyFieldName = schema.primaryKey
                 val parentPrimaryKeyFieldType = schema.getFieldType(parentPrimaryKeyFieldName)

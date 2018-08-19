@@ -98,7 +98,7 @@ class ResultActivity : AppCompatActivity() {
                     populateHeader(this@ResultActivity, linearResultHeader, fields.fieldName, resources.getInteger(R.integer.ITEMS_PER_SCREEN_NATIVE))
 
                     // Property.TYPE_ARRAY is the offset for list of primitive list eg if int = 1 list of int is Property.TYPE_ARRAY + VALUE_OF_INT
-                    recyclerResults.adapter = RecyclerNativeAdapter(this@ResultActivity, fields.fieldValue, Property.TYPE_ARRAY - result.type)
+                    recyclerResults.adapter = RecyclerNativeAdapter(this@ResultActivity, fields.fieldValue, result.type - Property.TYPE_ARRAY)
                 }
             }
         }
