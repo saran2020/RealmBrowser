@@ -211,9 +211,9 @@ class GetFields {
         private fun findGetter(objectSchema: RealmObjectSchema, resultClass: Class<out RealmObject>, fieldName: String): Method? {
             val fieldNameCamelCase: String = fieldName.elementAt(0).toUpperCase() + fieldName.substring(1)
             val getterMethodName = if (objectSchema.getFieldType(fieldName) == RealmFieldType.BOOLEAN) {
-                "is$fieldNameCamelCase"
+                BOOLEAN_GETTER_PREFIX + fieldNameCamelCase
             } else {
-                "get$fieldNameCamelCase"
+                GETTER_PREFIX + fieldNameCamelCase
             }
 
             return resultClass.getMethod(getterMethodName)
