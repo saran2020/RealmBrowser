@@ -11,7 +11,7 @@ ext {
 
     publishedGroupId = 'com.github.saran2020.realmbrowser'
     artifact = 'RealmBrowser'
-    libraryVersion = '0.1'
+    libraryVersion = '0.2'
 
     libraryDescription = 'A database browser for Android to browse Realm database'
 
