@@ -179,7 +179,7 @@ class GetFields {
 
             val map = mutableMapOf<String, Method>()
             val resultClass = objectInstance::class.java
-            val classSchema = getClassSchema()
+            val classSchema = getClassSchema(objectInstance);
 
             // insert other fields
             val fieldNames = classSchema.fieldNames
@@ -197,8 +197,9 @@ class GetFields {
             return map
         }
 
-        private fun getClassSchema(): RealmObjectSchema {
-            val modelName = bundle.getString(EXTRA_CLASS_NAME)
+        private fun getClassSchema(objectInstance: RealmObject): RealmObjectSchema {
+            val resultClass = objectInstance::class.java
+            val modelName = resultClass.simpleName.removeSuffix("RealmProxy")
             val schema = realm.schema.get(modelName)
 
             if (schema != null) {
@@ -222,7 +223,7 @@ class GetFields {
         private fun findFieldsUsingGetter(resultInstance: RealmObject,
                                           fieldGetters: Map<String, Method>): ClassItem {
 
-            val schema = getClassSchema()
+            val schema = getClassSchema(resultInstance)
             val primaryKeyFieldName = schema.primaryKey
 
             var primaryKeyItem: FieldItem? = null
