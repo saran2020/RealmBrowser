@@ -62,7 +62,6 @@ class GetFields {
                         }
                         RESULT_TYPE_LIST -> {
                             findFields(queryResult.result as RealmList<*>,
-                                    bundle.getString(EXTRA_CLASS_NAME),
                                     bundle.getString(EXTRA_KEY_FIELD_NAME),
                                     bundle.getInt(EXTRA_KEY_FIELD_TYPE))
                         }
@@ -153,7 +152,7 @@ class GetFields {
         /**
          * find fields from RealmList
          */
-        private fun findFields(realmList: RealmList<*>, className: String, fieldName: String, fieldType: Int): DisplayResult {
+        private fun findFields(realmList: RealmList<*>, fieldName: String, fieldType: Int): DisplayResult {
 
             return if (fieldType == RealmFieldType.LIST.nativeValue) {
 
@@ -199,7 +198,7 @@ class GetFields {
 
         private fun getClassSchema(objectInstance: RealmObject): RealmObjectSchema {
             val resultClass = objectInstance::class.java
-            val modelName = resultClass.simpleName.removeSuffix("RealmProxy")
+            val modelName = resultClass.superclass.simpleName
             val schema = realm.schema.get(modelName)
 
             if (schema != null) {
@@ -271,7 +270,7 @@ class GetFields {
                 val displayText =
                         if (fieldType == RealmFieldType.OBJECT.nativeValue) {
 
-                            data.javaClass.simpleName.removeSuffix("RealmProxy")
+                            data.javaClass.superclass.simpleName
                         } else {
 
                             val javaClass = data.javaClass
