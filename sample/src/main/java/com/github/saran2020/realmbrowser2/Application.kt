@@ -1,6 +1,7 @@
 package com.github.saran2020.realmbrowser2
 
 import android.app.Application
+import com.github.saran2020.realmbrowser.RealmBrowser
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -20,5 +21,7 @@ class Application : Application() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
         Realm.setDefaultConfiguration(realmConfig)
+
+        RealmBrowser.showStartNotif(this)
     }
 }
