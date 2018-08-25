@@ -5,7 +5,6 @@
     <application>
         <activity
             android:name=".MainActivity"
-            android:icon="@drawable/ic_drafts_black_24dp"
             android:label="@string/library_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
