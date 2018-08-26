@@ -10,11 +10,12 @@ import android.widget.LinearLayout
 /**
  * Created by Saran on 08-Jan-18.
  */
-class RecyclerNativeAdapter(private val context: Context, private val items: List<Any?>,
-                            private val itemType: Int) : RecyclerView.Adapter<RecyclerNativeAdapter.ViewHolder>() {
+class NativeResultsAdapter(private val context: Context,
+                           private val items: List<Any?>,
+                           private val itemType: Int) : RecyclerView.Adapter<NativeResultsAdapter.ViewHolder>() {
 
     private val ITEM_PER_SCREEN_VERTICAL: Int = context.resources.getInteger(R.integer.ITEMS_PER_SCREEN_NATIVE)
-    val TAG = RecyclerNativeAdapter::class.java.canonicalName
+    val TAG = NativeResultsAdapter::class.java.canonicalName
 
     private val size = 1
 

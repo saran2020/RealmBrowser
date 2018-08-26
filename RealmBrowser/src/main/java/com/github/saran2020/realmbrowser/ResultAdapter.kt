@@ -14,14 +14,17 @@ import com.github.saran2020.realmbrowser.data.model.classrepresentation.ObjectTy
 /**
  * Created by Saran on 08-Jan-18.
  */
-class RecyclerAdapter(private val context: Context, private val items: List<ClassItem>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class ResultAdapter(private val context: Context, private val items: List<ClassItem>) :
+        RecyclerView.Adapter<ResultAdapter.ViewHolder>() {
 
-    val TAG = RecyclerAdapter::class.java.canonicalName
+    val TAG = ResultAdapter::class.java.canonicalName
 
     private val ITEM_PER_SCREEN_VERTICAL: Int = context.resources.getInteger(R.integer.ITEMS_PER_SCREEN_OBJECT)
     private val size: Int = items[0].fieldsList.size + 1
-    @ColorInt private val oddColor: Int
-    @ColorInt private val evenColor: Int
+    @ColorInt
+    private val oddColor: Int
+    @ColorInt
+    private val evenColor: Int
 
     private val onObjectClickListener = View.OnClickListener { view: View? ->
 
