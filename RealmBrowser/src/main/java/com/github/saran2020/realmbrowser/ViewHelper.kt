@@ -29,7 +29,7 @@ private fun dpToPx(dp: Int): Int {
     return (dp * Resources.getSystem().displayMetrics.density).toInt()
 }
 
-fun getLinearLayout(context: Context, size: Int, verticalViewsInScreen: Int): LinearLayout {
+fun getSingleResultLayout(context: Context, size: Int, verticalViewsInScreen: Int): LinearLayout {
     val layout = getLinearLayout(context)
     val widthInPx = getTextViewWidth(context, verticalViewsInScreen)
     val textPadding = dpToPx(8)

@@ -27,7 +27,7 @@ class NativeResultsAdapter(private val context: Context,
     override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(getLinearLayout(context, size, ITEM_PER_SCREEN_VERTICAL))
+        return ViewHolder(getSingleResultLayout(context, size, ITEM_PER_SCREEN_VERTICAL))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
