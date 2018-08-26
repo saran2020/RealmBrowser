@@ -55,7 +55,9 @@ class MainActivity : AppCompatActivity() {
         recyclerQueryContent.adapter = recyclerQueryAdapter
 
         // find recycler
-        recyclerFindAdapter = FindAdapter(this, getFindItems())
+        recyclerFindAdapter = FindAdapter(this, getFindItems()) {
+            return@FindAdapter recyclerFindContent.findViewHolderForLayoutPosition(it)
+        }
         recyclerFindContent.layoutManager = FlowLayoutManager()
         recyclerFindContent.adapter = recyclerFindAdapter
 
