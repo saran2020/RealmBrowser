@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView
-    android:id="@+id/findItemText_library"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="32dp"
-    android:background="@drawable/background_chip"
-    android:fontFamily="sans-serif"
-    android:gravity="center"
-    android:paddingEnd="12dp"
-    android:paddingStart="12dp"
-    android:textColor="@color/findTextColor"
-    android:textSize="13sp"
-    tools:text="Query()"/>
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/findItemText_library"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:background="@drawable/background_chip"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:textColor="@color/find_text_color"
+        android:textSize="13sp"
+        tools:text="Query()"/>
