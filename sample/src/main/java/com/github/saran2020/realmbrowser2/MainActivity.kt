@@ -4,7 +4,10 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
+import com.github.saran2020.realmbrowser.RealmBrowser
 import com.github.saran2020.realmbrowser2.model.Senator
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
@@ -44,6 +47,22 @@ class MainActivity : AppCompatActivity() {
             val inputStream = resources.openRawResource(R.raw.data_source)
             FeedDataTask(textStatus, inputStream).execute()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.default_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        super.onOptionsItemSelected(item)
+
+        if (item?.itemId == R.id.open_realm_browser) {
+            RealmBrowser.start(this)
+        }
+
+        return true
     }
 
     override fun onDestroy() {
