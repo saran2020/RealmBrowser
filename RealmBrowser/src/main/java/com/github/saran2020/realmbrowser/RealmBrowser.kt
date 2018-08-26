@@ -10,8 +10,8 @@ class RealmBrowser {
 
     companion object {
 
-        const val CHANNEL_ID = "RealmBrowser"
-        const val NOTIFCATION_ID = 101
+        private const val CHANNEL_ID = "RealmBrowser"
+        private const val NOTIFCATION_ID = 101
 
         fun showStartNotif(context: Context) {
 
@@ -28,6 +28,11 @@ class RealmBrowser {
 
             val notifManager = NotificationManagerCompat.from(context)
             notifManager.notify(NOTIFCATION_ID, notifBuilder.build())
+        }
+
+        fun start(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
         }
     }
 }
