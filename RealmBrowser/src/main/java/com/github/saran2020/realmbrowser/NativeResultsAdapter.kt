@@ -1,8 +1,8 @@
 package com.github.saran2020.realmbrowser
 
 import android.content.Context
-import android.os.Build
 import android.support.annotation.ColorInt
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -20,19 +20,9 @@ class NativeResultsAdapter(private val context: Context,
     private val size = 1
 
     @ColorInt
-    private val oddColor: Int
+    private val oddColor = ResourcesCompat.getColor(context.resources, R.color.tableBackroundOdd, null)
     @ColorInt
-    private val evenColor: Int
-
-    init {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            oddColor = context.getColor(R.color.tableBackroundOdd)
-            evenColor = context.getColor(R.color.tableBackroundEven)
-        } else {
-            oddColor = context.resources.getColor(R.color.tableBackroundOdd)
-            evenColor = context.resources.getColor(R.color.tableBackroundEven)
-        }
-    }
+    private val evenColor = ResourcesCompat.getColor(context.resources, R.color.tableBackroundEven, null)
 
     override fun getItemCount() = items.size
 

@@ -1,8 +1,8 @@
 package com.github.saran2020.realmbrowser
 
 import android.content.Context
-import android.os.Build
 import android.support.annotation.ColorInt
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
@@ -22,9 +22,9 @@ class ResultAdapter(private val context: Context, private val items: List<ClassI
     private val ITEM_PER_SCREEN_VERTICAL: Int = context.resources.getInteger(R.integer.ITEMS_PER_SCREEN_OBJECT)
     private val size: Int = items[0].fieldsList.size + 1
     @ColorInt
-    private val oddColor: Int
+    private val oddColor = ResourcesCompat.getColor(context.resources, R.color.tableBackroundOdd, null)
     @ColorInt
-    private val evenColor: Int
+    private val evenColor = ResourcesCompat.getColor(context.resources, R.color.tableBackroundEven, null)
 
     private val onObjectClickListener = View.OnClickListener { view: View? ->
 
@@ -43,16 +43,6 @@ class ResultAdapter(private val context: Context, private val items: List<ClassI
 
         Log.d(TAG, "Received click for pos ${tag[0]}|${tag[1]} item = $fieldItem")
         startResultActivity(context, fieldItem)
-    }
-
-    init {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            oddColor = context.getColor(R.color.tableBackroundOdd)
-            evenColor = context.getColor(R.color.tableBackroundEven)
-        } else {
-            oddColor = context.resources.getColor(R.color.tableBackroundOdd)
-            evenColor = context.resources.getColor(R.color.tableBackroundEven)
-        }
     }
 
     override fun getItemCount() = items.size
