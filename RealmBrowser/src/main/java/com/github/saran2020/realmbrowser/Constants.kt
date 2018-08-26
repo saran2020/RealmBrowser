@@ -28,8 +28,8 @@ const val QUERY_EQUAL_TO_STRING = "equalTo()"
 
 // Find Type
 const val FIND_NO: Byte = -1
-const val FIND_ALL: Byte = 1
-const val FIND_FIRST: Byte = 2
+const val FIND_ALL: Byte = 0
+const val FIND_FIRST: Byte = 1
 
 // Find Type String
 const val FIND_ALL_STRING = "findAll()"
