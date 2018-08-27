@@ -40,4 +40,5 @@ dependencies {
 
     // Library
     debugImplementation project(':RealmBrowser')
+    releaseImplementation project(':RealmBrowser-no-op')
 }
