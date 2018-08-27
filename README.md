@@ -7,7 +7,8 @@ the app level build.gradle of your project
 ```
 dependencies {
     ...
-    implementation  'com.github.saran2020.realmbrowser:RealmBrowser:0.2'
+    implementation  'com.github.saran2020.realmbrowser:RealmBrowser:0.3'
+    releaseImplementation 'com.github.saran2020.realmbrowser:RealmBrowser-no-op:0.3'
 }
 ```
 or by cloning this project.
