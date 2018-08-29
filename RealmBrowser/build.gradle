@@ -36,18 +36,7 @@ android {
         targetSdkVersion project.targetSdkVersion.toInteger()
         versionCode project.versionCode.toInteger()
         versionName project.versionName
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
 }
 
 dependencies {
@@ -56,11 +45,6 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_library"
     implementation "com.android.support:recyclerview-v7:$support_library"
     implementation "com.xiaofeng.android:flowlayoutmanager:$flow_layout_manager"
-
-    // Test dependencies
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
 repositories {
