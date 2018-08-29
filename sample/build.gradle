@@ -6,15 +6,15 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion project.compileSdkVersion.toInteger()
+    buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
         applicationId "com.github.saran2020.realmbrowser2"
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 3
-        versionName "0.3"
+        minSdkVersion project.minSdkVersion.toInteger()
+        targetSdkVersion project.targetSdkVersion.toInteger()
+        versionCode project.versionCode.toInteger()
+        versionName project.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

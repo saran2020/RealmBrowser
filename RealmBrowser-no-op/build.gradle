@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 
+Properties localProps = new Properties()
+localProps.load(new FileInputStream(file('../local.properties')))
+
 ext {
     bintrayRepo = 'RealmBrowser'
     bintrayName = 'com.github.saran2020.realmbrowser'
@@ -8,14 +11,14 @@ ext {
 
     publishedGroupId = 'com.github.saran2020.realmbrowser'
     artifact = 'RealmBrowser-no-op'
-    libraryVersion = '0.3'
+    libraryVersion = project.versionName
 
-    libraryDescription = 'A database browser for Android to browse Realm database no op package'
+    libraryDescription = project.libraryDescription
 
     siteUrl = 'https://github.com/saran2020/RealmBrowser'
     gitUrl = 'https://github.com/saran2020/RealmBrowser.git'
 
-    developerId = 'saran2020'
+    developerId = localProps.developerId
     developerName = 'Saran Sankaran'
     developerEmail = 'sands.developer@gmail.com'
 
@@ -26,9 +29,11 @@ ext {
 
 android {
 
-    compileSdkVersion 27
+    compileSdkVersion project.compileSdkVersion.toInteger()
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion project.minSdkVersion.toInteger()
+        versionCode project.versionCode.toInteger()
+        versionName project.versionName
     }
 }
 

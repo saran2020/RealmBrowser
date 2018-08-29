@@ -11,9 +11,9 @@ ext {
 
     publishedGroupId = 'com.github.saran2020.realmbrowser'
     artifact = 'RealmBrowser'
-    libraryVersion = '0.3'
+    libraryVersion = project.versionName
 
-    libraryDescription = 'A database browser for Android to browse Realm database'
+    libraryDescription = project.libraryDescription
 
     siteUrl = 'https://github.com/saran2020/RealmBrowser'
     gitUrl = 'https://github.com/saran2020/RealmBrowser.git'
@@ -28,14 +28,14 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion project.compileSdkVersion.toInteger()
+    buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 3
-        versionName "0.3"
+        minSdkVersion project.minSdkVersion.toInteger()
+        targetSdkVersion project.targetSdkVersion.toInteger()
+        versionCode project.versionCode.toInteger()
+        versionName project.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
